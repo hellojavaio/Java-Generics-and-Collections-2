@@ -1,3 +1,5 @@
+<<< [返回首页](README.md)
+
 # 前言
  - Java现在支持泛型，这是自从`Java 1.2`中增加内部类以来语言最重大的变化 - 有些人会说这是语言中最重大的变化。
  - 假设你想处理列表。 有些可能是整数列表，其他列表的字符串，还有其他列表的字符串列表。 在泛型之前的`Java`中，这很简单。 
@@ -126,4 +128,6 @@
  
  - 我们的编辑Michael Loukides总是乐于提供好的建议。 WINDOWS软件公司的Paul C. Anagnostopoulos把我们的LATEX转换成了照相软件，JeremyYallop制作了索引。
                                                             
- - 我们的家人让我们保持健康（疯狂）。爱他们，Adam, Ben, Catherine, Daniel, Isaac,Joe, Leora, Lionel, 和 Ruth.                                                        
+ - 我们的家人让我们保持健康（疯狂）。爱他们，Adam, Ben, Catherine, Daniel, Isaac,Joe, Leora, Lionel, 和 Ruth.
+
+ <<< [返回首页](README.md)
