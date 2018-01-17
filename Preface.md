@@ -1,4 +1,4 @@
-<<< [返回首页](README.md)
+《《《 [返回首页](README.md)
 
 # 前言
  - Java现在支持泛型，这是自从`Java 1.2`中增加内部类以来语言最重大的变化 - 有些人会说这是语言中最重大的变化。
@@ -130,4 +130,4 @@
                                                             
  - 我们的家人让我们保持健康（疯狂）。爱他们，Adam, Ben, Catherine, Daniel, Isaac,Joe, Leora, Lionel, 和 Ruth.
 
- <<< [返回首页](README.md)
+ 《《《 [返回首页](README.md)
