@@ -1,5 +1,7 @@
 # Java-Generics-and-Collections
-:books: Java Generics and Collections 
+:book: Java Generics and Collections 
+
+---
 
 # [前言](Preface.md)
  - [获取示例程序](Preface.md#获取示例程序)
@@ -8,7 +10,9 @@
  - [Safari®联机丛书](Preface.md#Safari®联机丛书)
  - [致谢](Preface.md#致谢)
 
+---
+
 ![Java Generics and Collections](book.jpg)
 
-https://github.com/maskleo/Java-Generics-and-Collections/files/1634266/Java.pdf
+### 高清英文版PDF[下载](https://github.com/maskleo/Java-Generics-and-Collections/files/1634266/Java.pdf)
 
