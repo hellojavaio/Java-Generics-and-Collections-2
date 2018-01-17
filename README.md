@@ -19,3 +19,6 @@
 
 ### 高清英文版PDF[下载](https://github.com/maskleo/Java-Generics-and-Collections/files/1634266/Java.pdf)
 
+
+<script src="https://gist.github.com/hackjutsu/288bbaaf821851df0ded368cf36e3104.js"></script>
+
