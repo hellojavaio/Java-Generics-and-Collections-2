@@ -10,7 +10,7 @@
  - [Safari®联机丛书](Preface.md#Safari®联机丛书)
  - [致谢](Preface.md#致谢)
 # 第一部分：泛型
- - [第一章(简介)](ch/01_Introduction.md#第一章(简介))
+ - [第一章(简介)](ch1/01_Introduction.md#第一章(简介))
 
 
 ---
