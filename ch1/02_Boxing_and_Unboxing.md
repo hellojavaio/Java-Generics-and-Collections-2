@@ -60,11 +60,11 @@
   
 - 注意这个！ 装箱和拆箱的一个微妙之处在于`==`在原语和参考类型上的定义是不同的。 在`int`类型上，它是由值相等来定义的，
 而`Integer`类型则由对象标识来定义。 所以下面的两个断言使用`Sun`的`JVM`成功： 
- ```java
-   List<Integer> bigs = Arrays.asList(100,200,300);
-   assert sumInteger(bigs) == sum(bigs);
-   assert sumInteger(bigs) != sumInteger(bigs); // not recommended
- ```
+  ```java
+    List<Integer> bigs = Arrays.asList(100,200,300);
+    assert sumInteger(bigs) == sum(bigs);
+    assert sumInteger(bigs) != sumInteger(bigs); // not recommended
+  ```
 - 在第一个断言中，拆箱会导致值进行比较，所以结果是相同的。在第二个断言中，没有拆箱，两个方法调用返回不同整数对象，
 所以即使两个整数对象都表示结果也是不相等的相同的值，`600`。我们建议您不要使用`==`来比较类型的值`Integer`。 
 要么首先取消装箱，所以`==`比较`int`类型的值，否则使用`equals`比较`Integer`类型的值。
@@ -72,11 +72,11 @@
 - 更精妙的是盒装值可以被缓存。 装箱时需要缓存一个介于`-128`和`127`之间的`int`或`short`值，
 一个介于'\ u0000'和之间的char值'\ u007f'，一个字节或一个布尔值; 并在装箱时允许进行缓存。
 因此，与我们之前的例子相比，我们有以下几点：
- ```java
-   List<Integer> smalls = Arrays.asList(1,2,3);
-   assert sumInteger(smalls) == sum(smalls);
-   assert sumInteger(smalls) == sumInteger(smalls); // not recommended
- ```
+  ```java
+    List<Integer> smalls = Arrays.asList(1,2,3);
+    assert sumInteger(smalls) == sum(smalls);
+    assert sumInteger(smalls) == sumInteger(smalls); // not recommended
+  ```
  
 - 这是因为`6`小于`128`，所以装箱数值`6`总是返回正确的同一个对象。 一般来说，
 没有规定两次是否装箱相同的值返回相同或不同的对象，所以前面显示的不等式断言也可以取决于实施失败或成功。 
