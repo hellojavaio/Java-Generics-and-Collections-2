@@ -15,7 +15,7 @@
   * [Safari®联机丛书](Preface.md#Safari®联机丛书)
   * [致谢](Preface.md#致谢)
 * [第一部分：泛型](ch1/00_Introduction.md)
-  * \[第一章\(简介\)\]\(ch1/00\_Introduction.md\#第一章\(简介\)\)
+  * [第一章(简介)](ch1/00_Introduction.md#第一章(简介))
     * [泛型](ch1/01_Generics.md#泛型) 
     * [装箱与拆箱](ch1/02_Boxing_and_Unboxing.md#装箱与拆箱)
 
