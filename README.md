@@ -2,8 +2,8 @@
 
 # 还在翻译中
  
-gitbook: https://gc.study365.cc
-pageServer: https://gc.study365.fun
+- gitbook: https://gc.study365.cc
+- pageServer: https://gc.study365.fun
 
 ---
 
