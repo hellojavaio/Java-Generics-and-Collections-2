@@ -22,6 +22,8 @@
     * [泛型](ch1/01_Generics.md#泛型) 
     * [装箱与拆箱](ch1/02_Boxing_and_Unboxing.md#装箱与拆箱)
     * [循环](ch1/03_Foreach.md#循环)
+    * [泛型方法和可变参数](ch1/04_Generic_Methods_and_Varargs.md#泛型方法和可变参数)
+    * [断言](ch1/05_Assertions.md#断言)
 
 ---
 
