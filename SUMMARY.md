@@ -16,3 +16,4 @@
     * [泛型方法和可变参数](ch01/04_Generic_Methods_and_Varargs.md#泛型方法和可变参数)
     * [断言](ch01/05_Assertions.md#断言)
   * [第二章(子类型化和通配符)](ch02/00_Subtyping_and_Wildcards.md#第二章(子类型化和通配符))
+    * [子类型化和替代原则](ch02/01_Subtyping_and_the_Substitution_Principle.md#子类型化和替代原则)
