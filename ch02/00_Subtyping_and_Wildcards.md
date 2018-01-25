@@ -1,4 +1,4 @@
-《《《 [返回首页](../README.md)     </br>
+《《《 [返回首页](../README.md)     <p>
 《《《 [上一节](../ch01/05_Assertions.md)
 
 ## 第二章(子类型化和通配符)
@@ -7,5 +7,5 @@
 在本节中，我们将回顾如何分类作品，我们将看到通配符如何让您使用与泛型相关的子类型。
 我们将用集合框架中的例子来说明我们的观点。
 
-《《《 [下一节](01_Subtyping_and_the_Substitution_Principle.md) </br>
+《《《 [下一节](01_Subtyping_and_the_Substitution_Principle.md) <p>
 《《《 [返回首页](../README.md)

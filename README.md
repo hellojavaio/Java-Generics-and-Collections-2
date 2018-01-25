@@ -3,7 +3,7 @@
 # 还在翻译中
  
 - gitbook: [https://gc.study365.cc](https://gc.study365.cc)
-- pageServer: [https://gc.study365.fun](https://gc.study365.fun)
+- pageServer: [http://gc.study365.fun](http://gc.study365.fun)
 
 ---
 

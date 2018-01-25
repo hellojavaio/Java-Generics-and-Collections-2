@@ -1,4 +1,4 @@
-《《《 [返回首页](../README.md)     </br>
+《《《 [返回首页](../README.md)     <p>
 《《《 [上一节](04_Generic_Methods_and_Varargs.md)
 
 ### 断言
@@ -13,5 +13,5 @@
 - 总而言之，我们已经看到了泛型，装箱和拆箱，`foreach`循环和可变参数一起工作，
 使`Java`代码更容易编写，通过使用集合框架说明了这一点。
 
-《《《 [下一节](../ch02/00_Subtyping_and_Wildcards.md) </br>
+《《《 [下一节](../ch02/00_Subtyping_and_Wildcards.md) <p>
 《《《 [返回首页](../README.md)

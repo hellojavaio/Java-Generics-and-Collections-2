@@ -1,4 +1,4 @@
-《《《 [返回首页](../README.md)     </br>
+《《《 [返回首页](../README.md)     <p>
 《《《 [上一节](02_Boxing_and_Unboxing.md)
 
 ### 循环
@@ -82,5 +82,5 @@
 - 两个迭代器`uIt`和`vIt`在锁定步骤中跨越列表`u`和`v`。 循环条件只检查第一个迭代器，
 但断言确认我们可以有使用第二个迭代器，因为我们先前测试了两个列表来确认他们有相同的长度。   
    
-《《《 [下一节](04_Generic_Methods_and_Varargs.md) </br>
+《《《 [下一节](04_Generic_Methods_and_Varargs.md) <p>
 《《《 [返回首页](../README.md)
