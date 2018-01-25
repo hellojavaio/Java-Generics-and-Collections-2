@@ -1,4 +1,4 @@
-《《《 [返回首页](../README.md)     <p>
+《《《 [返回首页](../README.md)       <br/>
 《《《 [上一节](00_Introduction.md)
 
 ### 泛型
@@ -66,5 +66,5 @@
 `Java`泛型被有意地限制为类型，以使它们简单易懂。
 
 
-《《《 [下一节](02_Boxing_and_Unboxing.md) <p>
+《《《 [下一节](02_Boxing_and_Unboxing.md)   <br/>
 《《《 [返回首页](../README.md)

@@ -1,4 +1,4 @@
-《《《 [返回首页](../README.md)     <p>
+《《《 [返回首页](../README.md)       <br/>
 《《《 [上一节](03_Foreach.md)
 
 ### 泛型方法和可变参数
@@ -97,5 +97,5 @@
 （这两个类都在`java.util`包中）`asList`的集合框架版本不返回`ArrayList`，而是返回由给定数组支持的专用列表类。 
 此外，其版本的`addAll`作用于一般集合，而不仅仅是列表。
   
-《《《 [下一节](05_Assertions.md) <p>
+《《《 [下一节](05_Assertions.md)      <br/>
 《《《 [返回首页](../README.md)
