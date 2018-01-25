@@ -1,4 +1,5 @@
-《《《 [返回首页](../README.md)
+《《《 [返回首页](../README.md)     </br>
+《《《 [上一节](01_Subtyping_and_the_Substitution_Principle.md)
 
 ### 通配符和继承
 
@@ -53,4 +54,5 @@
 如下一节所述。
 
 
+《《《 [下一节](03_Wildcards_with_super.md) </br>
 《《《 [返回首页](../README.md)

@@ -1,4 +1,5 @@
-《《《 [返回首页](../README.md)
+《《《 [返回首页](../README.md)     </br>
+《《《 [上一节](02_Wildcards_with_extends.md)
 
 ### 通配符和超类
 
