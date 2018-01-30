@@ -47,7 +47,7 @@
     public static <T> void copy(List<? super T> dst, List<T> src)
     public static <T> void copy(List<? super T> dst, List<? extends T> src)
   ```
-- 第一种限制性太强，因为只有当目的地和来源具有完全相同的类型时才允许呼叫。 
+- 第一种限制性太强，因为只有当目的地和来源具有完全相同的类型时才允许调用。 
 其余三个对于使用隐式类型参数的调用是等效的，但是对于显式类型参数不同。 
 对于上面的示例调用，第二个签名仅在类型参数为`Object`时起作用，第三个签名仅在类型参数为`Integer`时起作用，
 最后一个签名对所有三个类型参数起作用（如我们所见），即`Object` ，`Number`和`Integer`。 

@@ -28,6 +28,7 @@
     * [子类型化和替代原则](ch02/01_Subtyping_and_the_Substitution_Principle.md#子类型化和替代原则)
     * [通配符和继承](ch02/02_Wildcards_with_extends.md#通配符和继承)
     * [通配符和超类](ch02/03_Wildcards_with_super.md#通配符和超类)
+    * [获取和放置原则](ch02/04_The_Get_and_Put_Principle.md#获取和放置原则)
     
     
 ---
