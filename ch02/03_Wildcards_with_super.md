@@ -54,5 +54,5 @@
 最后一个签名对所有三个类型参数起作用（如我们所见），即`Object` ，`Number`和`Integer`。 
 在签名中始终使用通配符，因为这样可以实现最广泛的调用。
 
-
+《《《 [下一节](04_The_Get_and_Put_Principle.md) <br/>
 《《《 [返回首页](../README.md)
