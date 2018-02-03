@@ -13,9 +13,9 @@
     assert s.equals("Hello world!");
   ```
   
-- 在集合框架中，类`ArrayList<E>`实现接口`List<E>`。 这个简单的代码片段声明变量字包含一个字符串列表，创建一个`ArrayList`的实例，将两个字符串添加到
+- 在集合框架中，类`ArrayList<E>`实现接口`List<E>`。 这个简单的代码片段声明一个包含字符串列表的变量，创建一个`ArrayList`的实例，将两个字符串添加到
 列表中，并再次获取它们。
-- 在泛型之前的`Java`中，相同的代码将被编写如下：
+- 在泛型之前的`Java`中，相同功能的代码将被编写如下：
   ```java
     List words = new ArrayList();
     words.add("Hello ");
