@@ -34,8 +34,13 @@ Java Generics and Collections
 ---
 
 ![Java Generics and Collections](book.jpg)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections?ref=badge_shield)
 
 ### 高清英文版PDF[下载](https://github.com/maskleo/Java-Generics-and-Collections/files/1634266/Java.pdf)
 
 
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections?ref=badge_large)
