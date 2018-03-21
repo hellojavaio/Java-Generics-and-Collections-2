@@ -2,19 +2,19 @@
 《《《 [上一节](01_Generics.md)
 
 ### 装箱与拆箱
-- 回想一下，`Java`中的每种类型都是引用类型或基本类型。 引用类型是任何类，接口或数组类型。 所有引用类型都是`Object`类的子类型，
-任何引用类型的变量都可以设置为`null`。 如下表所示，有八种基本类型，每种都有相应的类库的引用类型。 类库位于`java.lang`包：
+　 回想一下，`Java` 中的每种类型都是引用类型或基本类型。 引用类型是任何类，接口或数组类型。 所有引用类型都是`Object`类的子类型，任何引用类型的变量都
+可以设置为 `null`。 如下表所示，有八种基本类型，每种都有相应的类库的引用类型。 类库位于 `java.lang` 包：
   
-    原始类型 | 引用类型
-    ---|---
-    `byte` |`Byte`
-    `short` |`Short`
-    `int` |`Integer`
-    `long` |`Long`
-    `float` |`Float`
-    `double` |`Double`
-    `boolean` |`Boolean`
-    `char` |`Character`
+  原始类型 | 引用类型
+  ---|---
+  `byte` |`Byte`
+  `short` |`Short`
+  `int` |`Integer`
+  `long` |`Long`
+  `float` |`Float`
+  `double` |`Double`
+  `boolean` |`Boolean`
+  `char` |`Character`
 
 - 将原始类型转换为相应的引用类型称为装箱，并将引用类型转换为相应的原始类型称为拆箱。
 
