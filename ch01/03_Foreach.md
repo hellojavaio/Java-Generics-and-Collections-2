@@ -39,17 +39,17 @@ interface Iterator<E> {
 }
 ```
     
-- 集合框架中的所有集合，集合和列表都实现了`Iterable<E>`接口; 而其他供应商或用户定义的类也可以实现它。`foreach`循环也可以应用于一个数组：
+集合框架中的所有集合，集合和列表都实现了 `Iterable<E>` 接口; 而其他供应商或用户定义的类也可以实现它。`foreach` 循环也可以应用于一个数组：
  
 ```java
 public static int sumArray(int[] a) {
-int s = 0;
-for (int n : a) { s += n; }
-  return s;
-}
+    int s = 0;
+    for (int n : a) { s += n; }
+      return s;
+    }
 ```
     
-`foreach` 循环是故意保持简单的，只捕获最常见的情况。如果你想使用 `remove` 方法或者并行迭代多个列表，你需要明确地引入一个迭代器。 这是一个从 
+`foreach` 循环是故意保持简单的，只捕获最常见的情况。如果你想使用 `remove` 方法或者并行迭代多个列表，你需要明确地引入一个迭代器。这是一个从 
 `Double` 列表中删除负值的方法：
     
 ```java
@@ -65,17 +65,17 @@ public static void removeNegative(List<Double> v) {
        
 ```java
 public static double dot(List<Double> u, List<Double> v) {
-if (u.size() != v.size())
-  throw new IllegalArgumentException("different sizes");
-double d = 0;
-Iterator<Double> uIt = u.iterator();
-Iterator<Double> vIt = v.iterator();
-while (uIt.hasNext()) {
-  assert uIt.hasNext() && vIt.hasNext();
-  d += uIt.next() * vIt.next();
-}
-assert !uIt.hasNext() && !vIt.hasNext();
-return d;
+    if (u.size() != v.size())
+      throw new IllegalArgumentException("different sizes");
+    double d = 0;
+    Iterator<Double> uIt = u.iterator();
+    Iterator<Double> vIt = v.iterator();
+    while (uIt.hasNext()) {
+      assert uIt.hasNext() && vIt.hasNext();
+      d += uIt.next() * vIt.next();
+    }
+    assert !uIt.hasNext() && !vIt.hasNext();
+    return d;
 }
 ```
 
