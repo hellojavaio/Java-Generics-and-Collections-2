@@ -15,25 +15,25 @@
  assert s == 6;
 ```
  
-- 不需要太多的解释你就可以读这个代码，但是让我们来看看关键特征。接口列表和类数组是集合框架的一部分（都可以在`java.util`包中找到）。  类型`List`现
-在是通用的;你写`List<E>`以指示具有类型`E`的元素的列表。这里我们写`List<Integer>`指出列表的元素属于`Integer`类，  即包装类对应于基本类型`int`。
-装箱和拆箱操作，用于转换从原始类型到包装类，自动插入。静态的方法`asList`可以使用任意数量的参数，将它们放入一个数组中，然后返回一个由数组支持的新列
-表。新的循环形式，`foreach`，被用来绑定一个变量依次到列表的每个元素，循环体将这些添加到总和中。该断言语句（在`Java1.4`中引入）用于检查总和是否正确
-当启用断言时，如果条件不计算，则会引发错误真的。
+　　不需要太多的解释你就可以读懂代码，但是让我们来看看关键特征。接口列表和类数组是集合框架的一部分（都可以在 `java.util` 包中找到）。类型 `List` 现
+在是通用的；你写 `List<E>` 以指示具有类型 `E` 的元素的列表。这里我们写 `List<Integer>` 指出列表的元素属于 `Integer` 类，即包装类对应于基本类型
+`int`。装箱和拆箱操作，用于转换从原始类型到包装类，自动插入。静态方法 `asList` 可以使用任意数量的参数，将它们放入一个数组中，然后返回一个由数组支持
+的新列表。新的循环形式，`foreach`，被用来绑定一个变量依次到列表的每个元素，循环体将这些添加到总和中。该断言语句（在 `Java1.4` 中引入）用于检查总和是
+否正确。当启用断言时，如果条件不成立，则会引发错误。
  
-- 下面是在泛型之前`Java`中相同作用的代码：
+　　下面是在泛型之前`Java`中相同作用的代码：
 
-  ```java
-    List ints = Arrays.asList( new Integer[] {
-    new Integer(1), new Integer(2), new Integer(3)
-    } );
-    int s = 0;
-    for (Iterator it = ints.iterator(); it.hasNext(); ) {
-       int n = ((Integer)it.next()).intValue();
-       s += n;
-    }
-    assert s == 6;
-  ```
+```java
+  List ints = Arrays.asList( new Integer[] {
+  new Integer(1), new Integer(2), new Integer(3)
+  } );
+  int s = 0;
+  for (Iterator it = ints.iterator(); it.hasNext(); ) {
+     int n = ((Integer)it.next()).intValue();
+     s += n;
+  }
+  assert s == 6;
+```
  
 - 阅读这段代码并不是那么容易。 没有泛型，就没有办法指出类型声明你打算在列表中存储什么样的元素，所以而不是写`List<Integer>`，你写`List`。  现在是
 编辑器而不是编译器谁负责记住列表元素的类型，所以你必须写下从列表中提取元素时将其转换为（整数）。 没有装箱和拆箱，你必须显式地分配属于包装类`Integer`
