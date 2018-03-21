@@ -2,31 +2,35 @@
 《《《 [上一节](00_Introduction.md)
 
 ### 泛型
-- 可以为一个接口或类声明一个或多个类型参数，它们是写在尖括号中，当你声明一个变量属于时应该被提供到接口或类，或者当你创建一个新的类的实例。
-- 我们在前面的部分看到了一个例子。 这是另一个：
+　 可以为一个接口或类声明一个或多个类型参数，它们是写在尖括号中，当你声明一个变量属于时应该被提供到接口或类，或者当你创建一个新的类的实例。
+
+　 我们在前面的部分看到了一个例子。 这是另一个：
   
-  ```java
-    List<String> words = new ArrayList<String>();
-    words.add("Hello ");
-    words.add("world!");
-    String s = words.get(0)+words.get(1);
-    assert s.equals("Hello world!");
-  ```
+```java
+  List<String> words = new ArrayList<String>();
+  words.add("Hello ");
+  words.add("world!");
+  String s = words.get(0)+words.get(1);
+  assert s.equals("Hello world!");
+```
+  
+　 在集合框架中，类 `ArrayList<E>` 实现接口 `List<E>`。 这个简单的代码片段声明一个包含字符串列表的变量，创建一个 `ArrayList` 的实例，将两个字符串
+添加到列表中，并再次获取它们。
+ 
+　 在泛型之前的 `Java` 中，相同功能的代码将被编写如下：
   
-- 在集合框架中，类`ArrayList<E>`实现接口`List<E>`。 这个简单的代码片段声明一个包含字符串列表的变量，创建一个`ArrayList`的实例，将两个字符串添加到
-列表中，并再次获取它们。
-- 在泛型之前的`Java`中，相同功能的代码将被编写如下：
-  ```java
-    List words = new ArrayList();
-    words.add("Hello ");
-    words.add("world!");
-    String s = ((String)words.get(0))+((String)words.get(1))
-    assert s.equals("Hello world!");
-  ```
-- 如果没有泛型，则省略类型参数，但只要从列表中提取元素，就必须显式地转换。
-- 事实上，从上面两个来源编译的字节码将是相同的。 我们说泛型是通过擦除来实现的，因为类型`List<Integer>`，`List<String>`和`List<List<String>`都在
-运行时由相同的类型`List`。 我们还使用“类型擦除”来描述将第一个程序转换为第二个程序的过程。术语擦除是一个轻微的误称，因为该过程擦除了类型参数但增加了
-代码。
+```java
+  List words = new ArrayList();
+  words.add("Hello ");
+  words.add("world!");
+  String s = ((String)words.get(0))+((String)words.get(1))
+  assert s.equals("Hello world!");
+```
+　 如果没有泛型，则省略类型参数，但只要从列表中提取元素，就必须显式地转换。
+  
+　 事实上，从上面两个来源编译的字节码将是相同的。我们说泛型是通过擦除来实现的，因为类型 `List<Integer>`，`List<String>` 和 `List<List<String>`都
+在运行时由相同的类型 `List`。我们还使用**类型擦除**来描述将第一个程序转换为第二个程序的过程。术语擦除是一个轻微的误称，因为该过程擦除了类型参数但增
+加了代码。
 - 泛型隐式执行没有泛型明确执行的相同的强制转换。如果使用这样转换可能会失败，可能很难调试使用泛型编写的代码。 这就是为什么可以肯定泛型具有以下保证：
     > 保证：通过泛型编译添加的隐式转换从不失败。
 - 这个保证也有一些细小的瑕疵：只有在没有检查的情况下才适用编译器发出警告。 后来我们会详细讨论一下导致发出未经检查的警告以及如何最小化其影响。  
