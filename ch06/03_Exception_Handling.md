@@ -40,10 +40,32 @@
    }
 ```
 
+试图编译上述报告错误：
 
+```java
+   % javac ParametricException.java
+   ParametricException.java:1: a generic class may not extend
+   java.lang.Throwable
+   class ParametricException<T> extends Exception { // 编译报错
+                                        ^
+   1 error
+```
 
+这种限制是明智的，因为几乎任何捕捉这种异常的尝试都必须失败，因为该类型不可确定。 人们可能会期望典型的例外使用如下所示：
 
+```java
+   class ParametricExceptionTest {
+     public static void main(String[] args) {
+       try {
+         throw new ParametricException<Integer>(42);
+       } catch (ParametricException<Integer> e) { // compile-time error
+         assert e.getValue()==42;
+       }
+     }
+   }
+```
 
+这是不允许的，因为 `catch` 子句中的类型是不可确定的。 在撰写本文时，`Sun` 编译器在这种情况下报告了一系列语法错误：
 
 
 
