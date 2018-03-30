@@ -67,17 +67,22 @@
 
 这是不允许的，因为 `catch` 子句中的类型是不可确定的。 在撰写本文时，`Sun` 编译器在这种情况下报告了一系列语法错误：
 
+```java
+   % javac ParametricExceptionTest.java
+   ParametricExceptionTest.java:5: <identifier> expected
+   } catch (ParametricException<Integer> e) {
+                               ^
+   ParametricExceptionTest.java:8: ')' expected
+   }
+   ^
+   ParametricExceptionTest.java:9: '}' expected
+   }
+   ^
+   3 errors
+```
 
+由于异常不能是参数化的，因此语法受到限制，因此必须将该类型编写为标识符，而没有以下参数。
 
-
-
-
-
-
-
-
-
-
-
+在 `Throwable` 子句中输入变量虽然 `Throwable` 的子类不能是参数化的，但可以在方法声明的 `throws` 子句中使用类型变量。此技术在第 `9.3` 节中说明。
 
 
