@@ -1,0 +1,186 @@
+## 数组创建和可变参数
+
+方便的变量表示法允许方法接受可变数量的参数并将它们打包到数组中，如 `1.4` 节所述。 这种表示法并不像你想要的那样方便，因为它创建的数组受到与其他数组相同的涉及到物化的问题的困扰。
+
+例 `6-2`。 如何定义 `ArrayList`
+
+```java
+   import java.util.*;
+    class ArrayList<E> extends AbstractList<E> implements RandomAccess {
+      private E[] arr;
+      private int size = 0;
+      public ArrayList(int cap) {
+        if (cap < 0)
+        throw new IllegalArgumentException("Illegal Capacity: "+cap);
+        arr = (E[])new Object[cap]; // unchecked cast
+      }
+      public ArrayList() { this(10); }
+      public ArrayList(Collection<? extends E> c) { this(c.size()); addAll(c); }
+      public void ensureCapacity(int mincap) {
+        int oldcap = arr.length;
+        if (mincap > oldcap) {
+          int newcap = Math.max(mincap, (oldcap*3)/2+1);
+          E[] oldarr = arr;
+          arr = (E[])new Object[newcap]; // unchecked cast
+          System.arraycopy(oldarr,0,arr,0,size);
+        }
+      }
+      public int size() { return size; }
+      private void checkBounds(int i, int size) {
+        if (i < 0 || i >= size)
+        throw new IndexOutOfBoundsException("Index: "+i+", Size: "+size);
+      }
+      public E get(int i) { checkBounds(i,size); return arr[i]; }
+      public E set(int i, E elt) {
+        checkBounds(i,size); E old = arr[i]; arr[i] = elt; return old;
+      }
+      public void add(int i, E elt) {
+        checkBounds(i,size+1); ensureCapacity(size+1);
+        System.arraycopy(arr,i,arr,i+1,size-i); arr[i] = elt; size++;
+      }
+      public E remove(int i) {
+        checkBounds(i,size); E old = arr[i]; arr[i] = null; size--;
+        System.arraycopy(arr,i+1,arr,i,size-i); return old;
+      }
+      public <T> T[] toArray(T[] a) {
+        if (a.length < size)
+        a = (T[])java.lang.reflect.Array. // unchecked cast
+        newInstance(a.getClass().getComponentType(), size);
+        System.arraycopy(arr,0,a,0,size);
+        if (size < a.length) a[size] = null;
+        return a;
+      }
+      public Object[] toArray() { return toArray(new Object[0]); }
+    }
+```
+
+在 `1.4` 节我们讨论了声明为的方法 `java.util.Arrays.asList` 如下：
+
+```java
+   public static <E> List<E> asList(E... arr)
+```
+
+例如，这里有三个对这个方法的调用：
+
+```java
+   List<Integer> a = Arrays.asList(1, 2, 3);
+   List<Integer> b = Arrays.asList(4, 5, 6);
+   List<List<Integer>> x = Arrays.asList(a, b); // 通用数组创建
+```
+
+回想一下，可变长度的参数列表是通过将参数打包到数组中并传递它来实现的。 因此这三个呼叫相当于以下内容：
+
+```java
+   List<Integer> a = Arrays.asList(new Integer[] { 1, 2, 3 });
+   List<Integer> b = Arrays.asList(new Integer[] { 4, 5, 6 });
+   List<List<Integer>> x = Arrays.asList(new List<Integer>[] { a, b }); // 通用数组创建
+```
+
+前两个调用很好，但由于 `List<Integer>` 不是可重用的类型，所以第三次在编译时警告未经检查的泛型数组的创建。
+
+```java
+   VarargError.java:6: warning: [unchecked] unchecked generic array creation
+   of type java.util.List<java.lang.Integer>[] for varargs parameter
+   List<List<Integer>> x = Arrays.asList(a, b);
+```
+
+此警告可能会造成混淆，特别是因为该源代码行不包含数组创建的显式实例！
+
+如果您尝试创建泛型类型的列表，则会出现类似的问题。 这是一个使用 `Arrays.asList` 创建包含给定元素的长度列表的方法：
+
+```java
+   public static List<E> singleton(E elt) {
+     return Arrays.asList(elt); // 通用数组创建
+   }
+```
+
+这也会产生警告，出于同样的原因可能会造成混淆。
+
+通常，通用阵列创建报告错误。作为一种解决方法，可以创建一个可修饰类型的数组，并执行未经检查的转换。该变通方法不适用于可变参数使用中隐含的数组创建，因此在这种情况下，通用数组创建会发出警告而不是错误。通用数组创建警告就像未经检查的警告一样，因为它会使伴随泛型的铸铁保证失效。将前面的每个示例都作为未经检查的警告的结果，并不难，并创建一个使用可变参数的类似示例，其中发出通用数组创建警告。
+
+在我们看来，可变参数提供的便利性超过了未经检查的警告中固有的危险，并且我们建议您在参数不可接受时避免使用可变参数。例如，在前面的两个例子中，我们不是使用 `Arrays.asList`，而是创建一个新的 `ArrayList` 并使用 `add`方法，即使这样做不太方便也不那么高效。
+
+如果可变参数符号已被定义为将参数打包到列表而不是数组中，那么就不会出现通用数组创建警告和相关变通方法的需要，因为 `T ...` 等同于 `List<T>` 而不是 `T[]`。不幸的是，可变参数表示法是在完全理解这个问题之前设计的。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
