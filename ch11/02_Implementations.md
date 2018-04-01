@@ -6,58 +6,25 @@
 
 数组
   
-   这些是来自 `Java` 语言熟悉的结构 - 自 `Fortran` 以来几乎所有其他编程语言。 因为数组是直接在硬件中实现的，所以它们具有随机存取内存的特性：按位置访问元素并迭代它们非常快，但在任意位置插入和移除元素的速度较慢（因为这可能需要调整位置 其他元素）。 在集合框架中中使用数组作为 `ArrayList`，`CopyOnWriteArrayList`，`EnumSet` 和 `EnumMap` 以及许多 `Queue` 和 `Deque` 实现的支持结构。 它们也是实现散列表机制的一个重要部分（稍后讨论）。
+ - 这些是来自 `Java` 语言熟悉的结构 - 自 `Fortran` 以来几乎所有其他编程语言。 因为数组是直接在硬件中实现的，所以它们具有随机存取内存的特性：按位置
+ 访问元素并迭代它们非常快，但在任意位置插入和移除元素的速度较慢（因为这可能需要调整位置 其他元素）。 在集合框架中中使用数组作为 `ArrayList`，
+ `CopyOnWriteArrayList`，`EnumSet` 和 `EnumMap` 以及许多 `Queue` 和 `Deque` 实现的支持结构。 它们也是实现散列表机制的一个重要部分（稍后讨论）。
    
 链接列表
 
-   顾名思义，它们由链式单元链组成。 每个单元格都包含对数据的引用和对列表中下一个单元格的引用（以及在某些实现中的前一个单元格）。 链接列表的执行方式与数组完全不同：按位置访问元素的速度很慢，因为必须从列表的开始处跟随引用链，但可以通过重新排列单元格引用来在不变的时间内执行插入和删除操作。 链接列表是用于类 `ConcurrentLinkedQueue`，`LinkedBlockingQueue` 和 `LinkedList` 以及新的跳过列表集合 `ConcurrentSkipListSet` 和 `ConcurrentSkipListMap` 的主要支持结构。 它们也用于实现 `HashSet` 和 `LinkedHashSet`。
+ - 顾名思义，它们由链式单元链组成。 每个单元格都包含对数据的引用和对列表中下一个单元格的引用（以及在某些实现中的前一个单元格）。 链接列表的执行方式与
+ 数组完全不同：按位置访问元素的速度很慢，因为必须从列表的开始处跟随引用链，但可以通过重新排列单元格引用来在不变的时间内执行插入和删除操作。 链接列表
+ 是用于类 `ConcurrentLinkedQueue`，`LinkedBlockingQueue` 和 `LinkedList` 以及新的跳过列表集合 `ConcurrentSkipListSet` 和 
+ `ConcurrentSkipListMap` 的主要支持结构。 它们也用于实现 `HashSet` 和 `LinkedHashSet`。
 
 哈希表
 
-   这些提供了一种存储在其内容上索引的元素的方法，而不是像列表那样在整数值索引上存储索引。 与数组和链表相比，散列表不支持按位置访问元素，但内容访问通常非常快速，就像插入和删除一样。 哈希表是许多 `Set` 和 `Map` 实现的支持结构，包括 `HashSet` 和 `LinkedHashSet` 以及相应的映射 `HashMap` 和 `LinkedHashMap`，以及 `WeakHashMap`，`IdentityHashMap` 和 `ConcurrentHashMap`。
+ - 这些提供了一种存储在其内容上索引的元素的方法，而不是像列表那样在整数值索引上存储索引。 与数组和链表相比，散列表不支持按位置访问元素，但内容访问通常非
+ 常快速，就像插入和删除一样。 哈希表是许多 `Set` 和 `Map` 实现的支持结构，包括 `HashSet` 和 `LinkedHashSet` 以及相应的映射 `HashMap` 和 
+ `LinkedHashMap`，以及 `WeakHashMap`，`IdentityHashMap` 和 `ConcurrentHashMap`。
 
 树
 
-   这些也按内容来组织它们的元素，但重要的区别是它们可以按排序顺序存储和检索它们。它们对于插入和删除元素，通过内容访问它们并迭代它们的操作相对较快。 树是 `TreeSet` 和 `TreeMap` 的支持结构。 在执行 `PriorityQueue` 和 `PriorityBlockingQueue` 时使用的优先堆是与树有关的结构。   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ - 这些也按内容来组织它们的元素，但重要的区别是它们可以按排序顺序存储和检索它们。它们对于插入和删除元素，通过内容访问它们并迭代它们的操作相对较快。 树是 
+ `TreeSet` 和 `TreeMap` 的支持结构。 在执行 `PriorityQueue` 和 `PriorityBlockingQueue` 时使用的优先堆是与树有关的结构。    
 
