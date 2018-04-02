@@ -100,5 +100,5 @@
 
 这种限制的动机与前两种类似。 与以前一样，目前还不清楚是否有必要，但不太可能成为问题。
   
-《《《 [下一节](ch03/00_Comparison_and_Bounds.md)      <br/>
+《《《 [下一节](../ch03/00_Comparison_and_Bounds.md)      <br/>
 《《《 [返回首页](../README.md)    
