@@ -43,18 +43,18 @@ class Season extends Enum<Season>
      public static <T> T max(Collection<? extends T> coll, Comparator<? super T> cmp){
        T candidate = coll.iterator().next();
        for (T elt : coll) {
-		 if (cmp.compare(candidate, elt) < 0) { candidate = elt; }
-	   }
+         if (cmp.compare(candidate, elt) < 0) { candidate = elt; }
+       }
        return candidate;
      }
      public static <T extends Comparable<? super T>> T max(Collection<? extends T> coll){
-	   return max(coll, Comparators.<T>naturalOrder());
-	 }
-	 public static <T> T min(Collection<? extends T> coll, Comparator<? super T> cmp){
-	   return max(coll, reverseOrder(cmp));
+	return max(coll, Comparators.<T>naturalOrder());
      }
-	 public static <T extends Comparable<? super T>> T min(Collection<? extends T> coll){
-	   return max(coll, Comparators.<T>reverseOrder());
+     public static <T> T min(Collection<? extends T> coll, Comparator<? super T> cmp){
+	return max(coll, reverseOrder(cmp));
+     }
+     public static <T extends Comparable<? super T>> T min(Collection<? extends T> coll){
+	return max(coll, Comparators.<T>reverseOrder());
      }
      public static <T extends Comparable<? super T>> Comparator<T> naturalOrder(){
 	return new Comparator<T>() {
@@ -87,7 +87,7 @@ class Season extends Enum<Season>
      public final int ordinal() { return ordinal; }
      public String toString() { return name; }
      public final int compareTo(E o) {
-     return ordinal - o.ordinal;
+       return ordinal - o.ordinal;
      }
    }
 ```
@@ -170,5 +170,5 @@ class Season extends Enum<Season>
 阵列至关重要。请注意，调用 `clone` 方法时不需要强制转换，因为克隆数组现在可以利用协变返回类型（请参见第 `3.8` 节）。 `valueOf` 方法接受一个字符串并
 返回相应的常量，通过搜索内部数组找到。如果字符串没有命名枚举值，它将返回 `IllegalArgumentException`。
 
-《《《 [下一节](06_Multiple Bounds.md)      <br/>
+《《《 [下一节](06_Multiple_Bounds.md)      <br/>
 《《《 [返回首页](../README.md)
