@@ -64,5 +64,5 @@
 因此，如果你看到这个奇怪的短语 ` capture of ?` 在错误消息中，它将来自通配符类型。 即使有两个不同的通配符，编译器也会打印与每个相关的类型作为
 `capture of ?`。 有界的通配符会生成更加冗长的名称，如 `capture of ? extends Number`。  
 
-《《《 [下一节](08_Restrictions on Wildcards.md)      <br/>
+《《《 [下一节](08_Restrictions_on_Wildcards.md)      <br/>
 《《《 [返回首页](../README.md)
