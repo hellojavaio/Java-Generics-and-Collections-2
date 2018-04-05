@@ -304,9 +304,9 @@
 
 表 `13-1`。不同 `Set` 实现的比较性能
 
-                         ---| add     | contains   | next     | notes 
-						 ---|---      | ---        | ---      | ---   
-   HashSet                  |O(1)     | O(1)       |O(h/n)    | h is the table capacity
+   集合 | add     | contains   | next     | notes 
+ ---|---      | ---        | ---      | ---   
+   HashSet                  |O(1)     | O(1)       |O(h/n)    | h是表格容量
    LinkedHashSet            |O(1)     | O(1) O(1)  |          | 
    CopyOnWriteArraySet      |O(n)     | O(n) O(1)  | 	      | 
    EnumSet                  |O(1)     | O(1) O(1)  |          | 
