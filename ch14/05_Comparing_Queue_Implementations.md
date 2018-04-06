@@ -11,16 +11,17 @@
 
 表 `14-1`。不同 `Queue` 和 `Deque` 实现的比较性能
 
-offer peek poll size
-PriorityQueue O(log n) O(1) O(log n) O(1)
-ConcurrentLinkedQueue O(1) O(1) O(1) O(n)
-ArrayBlockingQueue O(1) O(1) O(1) O(1)
-LinkedBlockingQueue O(1) O(1) O(1) O(1)
-PriorityBlockingQueue O(log n) O(1) O(log n) O(1)
-DelayQueue O(log n) O(1) O(log n) O(1)
-LinkedList O(1) O(1) O(1) O(1)
-ArrayDeque O(1) O(1) O(1) O(1)
-LinkedBlockingDeque O(1) O(1) O(1) O(1)
+　  　                  |offer     | peek     | poll      | size
+---                    |---       |---       |---        |---
+PriorityQueue          |O(log n)  | O(1)     | O(log n)  | O(1)
+ConcurrentLinkedQueue  |O(1)      | O(1)     | O(1)      | O(n)
+ArrayBlockingQueue     |O(1)      | O(1)     | O(1)      | O(1)
+LinkedBlockingQueue    |O(1)      | O(1)     | O(1)      | O(1)
+PriorityBlockingQueue  |O(log n)  | O(1)     | O(log n)  | O(1)
+DelayQueue             |O(log n)  | O(1)     | O(log n)  | O(1)
+LinkedList             |O(1)      | O(1)     | O(1)      |O(1)
+ArrayDeque             |O(1)      | O(1)     | O(1)      |O(1)
+LinkedBlockingDeque    |O(1)      | O(1)     | O(1)      |O(1)
 
 问题在于你是否需要阻塞方法，就像你通常为生产者 - 消费者问题所做的那样（要么是因为消费者必须通过等待来处理一个空队列，要么是因为想通过限制队列限制对它们的需求，然后生产者有时必须等待）。如果您不需要阻塞方法或队列大小的限制，请选择高效且免等待的 `ConcurrentLinkedQueue`。
 
