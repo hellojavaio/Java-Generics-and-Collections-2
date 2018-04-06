@@ -9,7 +9,7 @@
 
 表 `15-1`。不同列表实现的比较性能
 
----|get| add| contains |next |remove(0) |iterator.remove
+　　|get| add| contains |next |remove(0) |iterator.remove
 ---|---|---|---|---|---|---
 ArrayList             |O(1) | O(1) | O(n) |O(1) | O(n) | O(n)
 LinkedList            |O(n) | O(1) | O(n) |O(1) | O(1) | O(1)
