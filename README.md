@@ -20,6 +20,10 @@
     * [通配符和超类](ch02/03_Wildcards_with_super.md#通配符和超类)
     * [获取和放置原则](ch02/04_The_Get_and_Put_Principle.md#获取和放置原则)
     
+## PR
+提交 PR 前请先确认排版,示例: [中文文案排版](https://github.com/maskleo-doc/chinese-copywriting-guidelines)
 
-### 高清英文版PDF[下载](https://github.com/maskleo/Java-Generics-and-Collections/files/1634266/Java.pdf)
+## 高清英文版 PDF[下载](https://github.com/maskleo/Java-Generics-and-Collections/files/1634266/Java.pdf)
 
+## LICENSE
+![](LICENSE.png)
