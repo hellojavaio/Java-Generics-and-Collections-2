@@ -1,9 +1,5 @@
 # Java-Generics-and-Collections
 
-# 还在翻译中
- 
-- gitbook: [https://gc.study365.cc](https://gc.study365.cc)
-- pageServer: [http://gc.study365.fun](http://gc.study365.fun)
 
 ---
 
@@ -30,17 +26,5 @@ Java Generics and Collections
     * [通配符和超类](ch02/03_Wildcards_with_super.md#通配符和超类)
     * [获取和放置原则](ch02/04_The_Get_and_Put_Principle.md#获取和放置原则)
     
-    
----
-
-![Java Generics and Collections](book.jpg)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections?ref=badge_shield)
 
 ### 高清英文版PDF[下载](https://github.com/maskleo/Java-Generics-and-Collections/files/1634266/Java.pdf)
-
-
-
-
-
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections?ref=badge_large)
