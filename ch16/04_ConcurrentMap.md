@@ -1,0 +1,35 @@
+
+
+
+## ConcurrentMap
+
+`Map` 通常用于高性能服务器应用程序中 - 例如，用作缓存实现 - 因此高吞吐量线程安全的地图实现是 `Java` 平台的重要组成部分。 同步地图（例如由 `Collections.synchronizedMap` 提供的 `Map`）无法满足此要求，因为在完全同步的情况下，每个操作都需要在整个地图上获得排他锁，从而有效地序列化对它的访问。 我们很快就会看到 `ConcurrentHashMap`，可以在吞吐量上获得非常大的增益，只锁定一部分集合。 但是因为客户端没有单独的锁来获得独占访问权限，所以客户端锁定不再起作用，并且客户端需要来自集合本身的帮助来执行原子动作。
+
+这就是 `ConcurrentMap` 接口的目的。 它为以原子方式执行复合操作的方法提供声明。 有四种方法：
+
+```java
+   V putIfAbsent(K key, V value) // 仅当密钥当前不存在时才将密钥与值关联。 如果键存在，则返回旧值（可以为空），否则返回 null
+   boolean remove(Object key, Object value)  // 只有在当前映射为值的情况下才移除键。 如果该值已删除，则返回 true，否则返回 false
+   V replace(K key, V value) // 仅当密钥当前存在时才替换密钥的条目。 如果密钥存在，则返回旧值（可以为 null），否则返回 null
+   boolean replace(K key, V oldValue, V newValue) // 只有在当前映射到 oldValue 的情况下才替换键的条目。 如果值被替换则返回 true，否则返回 false
+```
+
+### ConcurrentHashMap
+ 
+`ConcurrentHashMap` 提供了 `ConcurrentMap` 的实现，并提供了一个解决吞吐量与线程安全性问题的高效解决方案。 它针对阅读进行了优化，因此即使在更新表时检索也不会被阻止（为此，合同规定检索结果将反映在检索开始之前完成的最新更新操作）。 更新通常也可以不受阻塞地进行，因为 `ConcurrentHashMap` 不是由一个而是由一组表组成，称为段，它们可以独立锁定。 如果段的数量相对于访问表的线程数量足够大，那么每个段的任何时间通常不会有多个更新正在进行。`ConcurrentHashMap` 的构造函数类似于 `HashMap` 的构造函数，但是还有一个额外的提供程序员控制 `Map` 将使用的段数（其并发级别）：
+
+```java
+   ConcurrentHashMap()
+   ConcurrentHashMap(int initialCapacity)
+   ConcurrentHashMap(int initialCapacity, float loadFactor)
+   ConcurrentHashMap(
+   int initialCapacity, float loadFactor, int concurrencyLevel)
+   ConcurrentHashMap(Map<? extends K,? extends V> m)
+```
+
+`ConcurrentHashMap` 类是在任何不需要锁定整个表的应用程序中使用 `Map` 的有用实现;这是 `SynchronizedMap` 的一个不支持的功能。这有时会带来问题：例如，`size` 方法尝试在不使用锁的情况下对地图中的条目进行计数。但是，如果地图正在同时更新，则尺寸方法将无法获得一致的结果。在这种情况下，它通过锁定所有分段获得对地图的独占访问权，从每个分段中获取入口数，然后再次解锁它们。与此相关的性能成本对于常见操作的高度优化性能（尤其是读取）来说是合理的折衷。总体而言，`ConcurrentHashMap` 在高度并发的上下文中是不可或缺的，它比任何可用的替代方法都要好得多。
+
+忽略刚刚描述的锁定开销，`ConcurrentHashMap` 的操作成本类似于 `HashMap` 的操作成本。集合视图返回弱一致的迭代器。
+
+
+
