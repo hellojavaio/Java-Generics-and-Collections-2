@@ -14,7 +14,7 @@
     * [循环](ch01/03_Foreach.md#循环)
     * [泛型方法和可变参数](ch01/04_Generic_Methods_and_Varargs.md#泛型方法和可变参数)
     * [断言](ch01/05_Assertions.md#断言)
- * [第二章(子类型化和通配符)](ch02/00_Subtyping_and_Wildcards.md#第二章(子类型化和通配符))
+  * [第二章(子类型化和通配符)](ch02/00_Subtyping_and_Wildcards.md#第二章(子类型化和通配符))
     * [子类型化和替代原则](ch02/01_Subtyping_and_the_Substitution_Principle.md#子类型化和替代原则)
     * [通配符和继承](ch02/02_Wildcards_with_extends.md#通配符和继承)
     * [通配符和超类](ch02/03_Wildcards_with_super.md#通配符和超类)
@@ -22,3 +22,4 @@
     
 
 ### 高清英文版PDF[下载](https://github.com/maskleo/Java-Generics-and-Collections/files/1634266/Java.pdf)
+
