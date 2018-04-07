@@ -1,22 +1,12 @@
-# Java-Generics-and-Collections
+#  Java 泛型与集合
 
-# 还在翻译中
- 
-- gitbook: [https://gc.study365.cc](https://gc.study365.cc)
-- pageServer: [http://gc.study365.fun](http://gc.study365.fun)
+使用[谷歌翻译](https://translate.google.cn) 进行初步翻译.
 
 ---
 
-Java Generics and Collections
-
----
+## 目录
 
 * [前言](Preface.md)
-  * [获取示例程序](Preface.md#获取示例程序)
-  * [如何联系我们](Preface.md#如何联系我们)
-  * [本书中使用的约定](Preface.md#本书中使用的约定)
-  * [Safari®联机丛书](Preface.md#Safari®联机丛书)
-  * [致谢](Preface.md#致谢)
 * [第一部分：泛型](ch01/00_Introduction.md)
   * [第一章(简介)](ch01/00_Introduction.md#第一章(简介))
     * [泛型](ch01/01_Generics.md#泛型) 
@@ -30,17 +20,10 @@ Java Generics and Collections
     * [通配符和超类](ch02/03_Wildcards_with_super.md#通配符和超类)
     * [获取和放置原则](ch02/04_The_Get_and_Put_Principle.md#获取和放置原则)
     
-    
----
+## PR
+提交 PR 前请先确认排版,示例: [中文文案排版](https://github.com/maskleo-doc/chinese-copywriting-guidelines)
 
-![Java Generics and Collections](book.jpg)
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections?ref=badge_shield)
+## 高清英文版 PDF[下载](https://github.com/maskleo/Java-Generics-and-Collections/files/1634266/Java.pdf)
 
-### 高清英文版PDF[下载](https://github.com/maskleo/Java-Generics-and-Collections/files/1634266/Java.pdf)
-
-
-
-
-
-## License
-[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmaskleo%2FJava-Generics-and-Collections?ref=badge_large)
+## LICENSE
+![](LICENSE.png)
