@@ -19,7 +19,9 @@
     * [通配符和继承](ch02/02_Wildcards_with_extends.md#通配符和继承)
     * [通配符和超类](ch02/03_Wildcards_with_super.md#通配符和超类)
     * [获取和放置原则](ch02/04_The_Get_and_Put_Principle.md#获取和放置原则)
-    
+    * [数组](hc02/05_Arrays.md#数组)
+    * [通配符与类型参数](ch02/06_Wildcards_Versus_Type_Parameters.md#通配符与类型参数)    
+    
 ## PR
 提交 PR 前请先确认排版,示例: [中文文案排版](https://github.com/maskleo-doc/chinese-copywriting-guidelines)
 
