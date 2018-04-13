@@ -1,7 +1,6 @@
 《《《 [返回首页](../README.md)    <br/>
 《《《 [上一节](../Preface.md)
 
-
 ## 第一章(简介)
  
 `Java` 最新版本中现在对泛型和集合与许多其他新功能有良好的支持，包括装箱和拆箱，新的循环形式，以及接受可变数量参数的函数。我们从一个例子开始说明了这
@@ -10,10 +9,12 @@
 因此作为我们的座右铭，让我们做一些简单求和：把三个数字一个列表并将它们加在一起。 下面是如何在 `Java` 中使用泛型：   
 
 ```java
- List<Integer> ints = Arrays.asList(1,2,3);
- int s = 0;
- for (int n : ints) { s += n; }
- assert s == 6;
+   List<Integer> ints = Arrays.asList(1,2,3);
+   int s = 0;
+   for (int n : ints) {
+     s += n; 
+   }
+   assert s == 6;
 ```
  
 不需要太多的解释你就可以读懂代码，但是让我们来看看关键特征。接口列表和类数组是集合框架的一部分（都可以在 `java.util` 包中找到）。类型 `List` 现在是
@@ -25,15 +26,15 @@
 下面是在泛型之前 `Java` 中相同作用的代码：
 
 ```java
-  List ints = Arrays.asList( new Integer[] {
-  new Integer(1), new Integer(2), new Integer(3)
-  } );
-  int s = 0;
-  for (Iterator it = ints.iterator(); it.hasNext(); ) {
+   List ints = Arrays.asList( new Integer[] {
+     new Integer(1), new Integer(2), new Integer(3)
+   } );
+   int s = 0;
+   for (Iterator it = ints.iterator(); it.hasNext(); ) {
      int n = ((Integer)it.next()).intValue();
      s += n;
-  }
-  assert s == 6;
+   }
+   assert s == 6;
 ```
  
 阅读这段代码并不是那么容易。 没有泛型，就没有办法指出类型声明你打算在列表中存储什么样的元素，所以而不是写 `List<Integer>`，你写 `List`。  现在是
@@ -44,10 +45,12 @@
 顺便说一句，下面是如何在泛型之前用 `Java` 中的数组做同样的事情：
 
 ```java
- int[] ints = new int[] { 1,2,3 };
- int s = 0;
- for (int i = 0; i < ints.length; i++) { s += ints[i]; }
- assert s == 6;
+   int[] ints = new int[] { 1,2,3 };
+   int s = 0;
+   for (int i = 0; i < ints.length; i++) { 
+     s += ints[i]; 
+   }
+   assert s == 6;
 ```
 
 这比使用泛型和集合的相应代码略长，可以说是不太可读，而且肯定不够灵活。 集合让你轻松增大或缩小集合的大小，或在切换到适当的不同的表示形式时，如链表或散
