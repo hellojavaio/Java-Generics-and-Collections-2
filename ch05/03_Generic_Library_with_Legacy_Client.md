@@ -1,3 +1,6 @@
+《《《 [返回首页](../README.md)       <br/>
+《《《 [上一节](02_Generic_Library_with_Generic_Client.md)
+
 ## 具有传统客户端的通用库
 
 现在让我们考虑一下这种情况，即在客户端保留其旧版本时，库更新为泛型。这可能是因为没有足够的时间一次转换所有内容，或者因为类库和客户由不同的组织控制。
@@ -28,15 +31,15 @@
 
 ```java
    g/Stack.java:
-    interface Stack<E> {
-      public boolean empty();
-      public void push(E elt);
-      public E pop();
-    }
+     interface Stack<E> {
+       public boolean empty();
+       public void push(E elt);
+       public E pop();
+     }
    
    g/ArrayStack.java:
-    import java.util.*;
-    class ArrayStack<E> implements Stack<E> {
+     import java.util.*;
+     class ArrayStack<E> implements Stack<E> {
       private List<E> list;
 	  public ArrayStack() { list = new ArrayList<E>(); }
       public boolean empty() { return list.size() == 0; }
@@ -48,7 +51,7 @@
 	  public String toString() { return "stack"+list.toString(); }
      }
     
-	g/Stacks.java:
+   g/Stacks.java:
      class Stacks {
 	   public static <T> Stack<T> reverse(Stack<T> in) {
 	     Stack<T> out = new ArrayStack<T>();
@@ -60,19 +63,19 @@
 	   }
 	 }
 	 
-	 g/Client.java:
-	  class Client {
-	    public static void main(String[] args) {
-		Stack<Integer> stack = new ArrayStack<Integer>();
-		for (int i = 0; i<4; i++) stack.push(i);
-		  assert stack.toString().equals("stack[0, 1, 2, 3]");
-		  int top = stack.pop();
-		  assert top == 3 && stack.toString().equals("stack[0, 1, 2]");
-		  Stack<Integer> reverse = Stacks.reverse(stack);
-		  assert stack.empty();
-		  assert reverse.toString().equals("stack[2, 1, 0]");
-		}
-	  }
+   g/Client.java:
+     class Client {
+     public static void main(String[] args) {
+	Stack<Integer> stack = new ArrayStack<Integer>();
+	for (int i = 0; i<4; i++) stack.push(i);
+	  assert stack.toString().equals("stack[0, 1, 2, 3]");
+	  int top = stack.pop();
+	  assert top == 3 && stack.toString().equals("stack[0, 1, 2]");
+	  Stack<Integer> reverse = Stacks.reverse(stack);
+	  assert stack.empty();
+	  assert reverse.toString().equals("stack[2, 1, 0]");
+	}
+ }
 ```
 
 如果我们遵循上面的建议，并在启用适当的开关的情况下重新运行编译器，我们会得到更多的细节：
@@ -130,3 +133,5 @@
 这编译了遗留代码并且没有发出警告或错误。 这种关闭警告的方法只适用于真正的遗留代码，没有 `Java 5` 中引入的通用功能或其他功能。 也可以使用注释关闭未经
 检查的警告，如下一节所述，即使使用 `Java 5` 中引入的功能，也可以使用这些警告。
 
+《《《 [下一节](04_Legacy_Library_with_Generic_Client.md)      <br/>
+《《《 [返回首页](../README.md)
