@@ -85,5 +85,5 @@
 中接收方是传递到方法中的类标记，并且该转换将应用于使用 `get`，`set` 或 `add` 添加到列表中的任何元素，或者将其写入列表中。 然而，`Class<T>` 的类型
 参数意味着 `checkedList` 的代码不需要额外的转换（除了调用类类中的 `cast` 方法外），并且编译器可以检查该方法是否使用类标记调用 一个合适的类型。
 
-《《《 [下一节](04_How_Erasure_Works.md)      <br/>
+《《《 [下一节](02_Reflected_Types_are_Reifiable_Types.md)      <br/>
 《《《 [返回首页](../README.md)
