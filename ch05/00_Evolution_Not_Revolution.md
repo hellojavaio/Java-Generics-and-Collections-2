@@ -1,5 +1,5 @@
 《《《 [返回首页](../README.md)       <br/>
-《《《 [上一节](../ch04/05_Conclusions.md)
+《《《 [上一节](../ch04/04_How_Erasure_Works.md)
 
 ## 进化，而不是革命
 
@@ -28,5 +28,5 @@
 在实践中，类库和客户端可能涉及很多接口和类，甚至可能在图书馆和客户端之间没有明确的区别。但是这里讨论的相同原则仍然适用，并且可以用来独立于任何其他部分发
 展程序的任何部分。
 
-《《《 [下一节](01_Reifiable_Types.md)      <br/>
+《《《 [下一节](01_Legacy_Library_with_Legacy_Client.md)      <br/>
 《《《 [返回首页](../README.md)
