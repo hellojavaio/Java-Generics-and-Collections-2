@@ -1,5 +1,5 @@
-
-
+《《《 [返回首页](../README.md)       <br/>
+《《《 [上一节](00_The_Collections_Class.md)
 
 ## 通用算法
 
@@ -64,5 +64,5 @@ void swap(List<?> list, int i, int j) // 交换指定位置的元素
 
 `indexOfSubList` 和 `lastIndexOfSubList` 方法的操作不需要排序列表。他们的签名允许源列表和目标列表包含任何类型的元素（请记住，这两个通配符可能代表两种不同的类型）。这些签名背后的设计决策与 `Collection` 方法 `containsAll`，`retainAll`和removeAll背后的设计决策相同（参见第 `2.6` 节）。
 
-
-
+《《《 [下一节](02_Collection_Factories.md)      <br/>
+《《《 [返回首页](../README.md)

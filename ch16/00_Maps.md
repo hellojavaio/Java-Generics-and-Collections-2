@@ -1,5 +1,5 @@
-
-
+《《《 [返回首页](../README.md)       <br/>
+《《《 [上一节](../ch15/03_Comparing_List_Implementations.md)
 
 ## Maps
 
@@ -55,7 +55,8 @@
 
 `entrySet` 返回的集合的成员实现了接口 `Map.Entry`，它表示键值关联并提供了一个 `setValue` 方法，可用于更改备份映射中的值。`Map.Entry` 的文档在指定实现接口的对象时只能在通过 `entrySet` 调用产生的视图迭代期间创建，并且如果在此迭代过程中修改了支持映射，则这些对象变为无效。在 `Java 6` 中，创建 `Map.Entry` 对象的这种限制性方案不够充分，因为它是 `NavigableMap` 的许多方法的返回类型（请参见第 `16.3` 节）。
 
-
+《《《 [下一节](01_Using_the_Methods_of_Map.md)      <br/>
+《《《 [返回首页](../README.md)
 
 
 

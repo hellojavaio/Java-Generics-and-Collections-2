@@ -1,5 +1,5 @@
-
-
+《《《 [返回首页](../README.md)       <br/>
+《《《 [上一节](03_BlockingQueue.md)
 
 ## Deque
 
@@ -99,3 +99,5 @@
 
 它具有与 `LinkedBlockingQueue` 类似的性能特征 - 队列插入和删除需要不断的时间和操作，比如包含需要遍历队列的操作，需要线性时间。迭代器是弱一致的。
 
+《《《 [下一节](05_Comparing_Queue_Implementations.md)      <br/>
+《《《 [返回首页](../README.md)

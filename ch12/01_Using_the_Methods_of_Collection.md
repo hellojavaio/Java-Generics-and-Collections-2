@@ -1,3 +1,5 @@
+《《《 [返回首页](../README.md)       <br/>
+《《《 [上一节](00_The_Collection_Interface.md)
 
 ### 使用集合方法
 
@@ -247,19 +249,5 @@
    "[code db, code gui, code logic, phone Mike, phone Paul]");
 ```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+《《《 [下一节](02_Implementing_Collection.md)      <br/>
+《《《 [返回首页](../README.md)
