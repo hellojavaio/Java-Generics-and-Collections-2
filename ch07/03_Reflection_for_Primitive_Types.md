@@ -1,3 +1,6 @@
+《《《 [返回首页](../README.md)       <br/>
+《《《 [上一节](02_Reflected_Types_are_Reifiable_Types.md)
+
 ## 对原始类型的反思
 
 `Java` 中的每种类型（包括基元类型和数组类型）都具有类文字和相应的类标记。
@@ -12,3 +15,5 @@
 
 另一方面，`int[].class` 表示具有基本类型 `integer` 的组件的数组的类标记，并且此类标记的类型为 `Class<int[]>`，这是允许的，因为 `int[]` 是引用类型。
 
+《《《 [下一节](04_A_Generic_Reflection_Library.md)      <br/>
+《《《 [返回首页](../README.md)
