@@ -1,5 +1,5 @@
-
-
+《《《 [返回首页](../README.md)       <br/>
+《《《 [上一节](01_Using_the_Methods_of_List.md)
 
 ## 实现List
 
@@ -48,3 +48,5 @@
 
 `CopyOnWriteArraySet` 类实际上将其所有操作委托给 `CopyOnWriteArrayList` 实例，利用后者提供的原子操作 `addIfAbsent` 和 `addAllAbsent` 来启用 `Set` 方法 `add` 和 `addAll`，以避免向该集合中引入重复项。除了两个标准的构造函数（参见 `12.3` 节）之外，`CopyOnWriteArrayList` 还有一个允许使用提供的数组元素作为其初始内容创建的额外元素。它的迭代器是快照迭代器，反映了它们创建时的列表状态。
 
+《《《 [下一节](03_Comparing_List_Implementations.md)      <br/>
+《《《 [返回首页](../README.md)
