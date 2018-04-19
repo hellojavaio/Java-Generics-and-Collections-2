@@ -1,5 +1,5 @@
-
-
+《《《 [返回首页](../README.md)       <br/>
+《《《 [上一节](02_Implementing_Queue.md)
 
 ## BlockingQueue
 
@@ -212,3 +212,5 @@
 
 就 `Collection` 方法而言，`SynchronousQueue` 表现得像一个空的 `Collection`; `Queue` 和 `BlockingQueue` 方法的行为与您对容量为零的队列的期望值相同，因此它始终为空。 迭代器方法返回一个空的迭代器，其中 `hasNext` 总是返回 `false`。
 
+《《《 [下一节](04_Deque.md)      <br/>
+《《《 [返回首页](../README.md)
