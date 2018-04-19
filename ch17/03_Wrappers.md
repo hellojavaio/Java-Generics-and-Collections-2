@@ -1,5 +1,5 @@
-
-
+《《《 [返回首页](../README.md)       <br/>
+《《《 [上一节](02_Collection_Factories.md)
 
 ## 包装
 
@@ -54,3 +54,5 @@
    static <K, V> SortedMap checkedSortedMap(SortedMap<K, V> c, Class<K> keyType,Class<V> valueType)
 ```
 
+《《《 [下一节](04_Other_Methods.md)      <br/>
+《《《 [返回首页](../README.md)
