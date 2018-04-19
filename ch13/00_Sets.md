@@ -1,5 +1,5 @@
-
-
+《《《 [返回首页](../README.md)       <br/>
+《《《 [上一节](../ch12/03_Collection_Constructors.md)
 
 ## Sets
 
@@ -13,13 +13,5 @@
 
 这是因为处理重复元素的方式。 在星期一任务和电话任务中的任务麦克电话，只有一次出现在 `phoneAndMondayTasks 中 - 你绝对不希望两次完成所有这些任务！
 
-
-
-
-
-
-
-
-
-
-
+《《《 [下一节](01_Implementing_Set.md)      <br/>
+《《《 [返回首页](../README.md)
