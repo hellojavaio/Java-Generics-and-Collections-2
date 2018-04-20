@@ -1,7 +1,7 @@
 《《《 [返回首页](../README.md)       <br/>
 《《《 [上一节](01_Implementing_Set.md)
 
-## SortedSet和NavigableSet
+### SortedSet和NavigableSet
 
 `Set` 有一个子接口 `SortedSet`（图 `13-4`），它向 `Set` 约束添加一个保证，它的迭代器将以升序元素顺序遍历集合。`SortedSet` 本身在接口 `NavigableSet` 的 `Java 6` 中扩展（见图 `13-5` ），它添加了一些方法来查找与目标元素最接近的匹配。`Java 6` 之前的 `SortedSet` 的唯一实现是 `TreeSet`，它已经用实现新接口所需的方法进行了改进。由于在 `Java 6` 中没有实现 `NavigableSet` 的 `SortedSet` 的平台实现，所以在同一部分讨论它们是有意义的。对于为 `Java 6` 平台开发的新客户端代码，根本不需要使用 `SortedSet` 接口，但是为了受限于使用 `Java 5` 的读者，我们将在本节中分别介绍这两个接口的方法。
 

@@ -1,9 +1,9 @@
 《《《 [返回首页](../README.md)       <br/>
 《《《 [上一节](01_Using_the_Methods_of_Queue.md)
 
-## 队列的实现
+### 队列的实现
 
-### PriorityQueue
+#### PriorityQueue
 
 `PriorityQueue` 是两个非主题的 `Queue` 实现之一，主要不是为并发使用而设计的（另一个是 `ArrayDeque`）。它不是线程安全的，也不提供阻塞行为。它根据 `NavigableSet` 所使用的顺序放弃其处理元素 - 如果它们实现 `Comparable` 时其元素的自然顺序，或构造 `PriorityQueue` 时提供的比较器施加的顺序。因此，`PriorityQueue` 将成为我们在 `13.2` 节中使用 `NavigableSet` 概述的基于优先级的待办事项管理器的另一种设计选择（显然，以其名称为例）。您的应用程序将决定选择哪种替代方法：如果需要检查和操作一组等待任务，请使用 `NavigableSet`。如果其主要要求是有效访问要执行的下一个任务，请使用 `PriorityQueue`。
 
