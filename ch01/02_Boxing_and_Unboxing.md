@@ -24,17 +24,17 @@
 式 `e.intValue()`。例如，集合
 
 ```java
-  List<Integer> ints = new ArrayList<Integer>();
-  ints.add(1);
-  int n = ints.get(0);
+   List<Integer> ints = new ArrayList<Integer>();
+   ints.add(1);
+   int n = ints.get(0);
 ```
   
 相当于集合:
   
 ```java
-  List<Integer> ints = new ArrayList<Integer>();
-  ints.add(Integer.valueOf(1));
-  int n = ints.get(0).intValue();
+   List<Integer> ints = new ArrayList<Integer>();
+   ints.add(Integer.valueOf(1));
+   int n = ints.get(0).intValue();
 ```
   
 调用 `Integer.valueOf(1)` 与新的 `Integer(1)` 表达式类似，但是可能会缓存一些值以提高性能，正如我们稍后解释的那样。
@@ -42,11 +42,11 @@
 在这里，再次，是代码来找到一个整数集合的和，方便打包为一个静态的方法：
 
 ```java
-  public static int sum (List<Integer> ints) {
-  int s = 0;
-  for (int n : ints) { s += n; }
-  return s;
-  }
+   public static int sum (List<Integer> ints) {
+   int s = 0;
+   for (int n : ints) { s += n; }
+     return s;
+   }
 ```
   
 为什么参数的类型是 `List<Integer>` 而不是 `List<int>`？ 因为类型参数必须始终绑定到引用类型，而不是基本类型。 
@@ -58,11 +58,11 @@
 我们可以重写这个方法，用Integer来替换每个 `int` 的出现：
 
 ```java
-  public static Integer sumInteger(List<Integer> ints) {
-    Integer s = 0;
-    for (Integer n : ints) { s += n; }
-    return s;
-  }
+   public static Integer sumInteger(List<Integer> ints) {
+     Integer s = 0;
+     for (Integer n : ints) { s += n; }
+     return s;
+   }
 ```
 
 此代码编译，但执行了很多不必要的工作。 循环的每个迭代将 `s` 和 `n` 中的值拆箱，执行加法操作，然后再次结束结果。使用 `Sun` 当前的编译器，测量结果显示
@@ -72,9 +72,9 @@
 来定义。 所以下面的两个断言使用 `Sun` 的 `JVM` 是成功的： 
   
 ```java
-  List<Integer> bigs = Arrays.asList(100,200,300);
-  assert sumInteger(bigs) == sum(bigs);
-  assert sumInteger(bigs) != sumInteger(bigs); // 不推荐
+   List<Integer> bigs = Arrays.asList(100,200,300);
+   assert sumInteger(bigs) == sum(bigs);
+   assert sumInteger(bigs) != sumInteger(bigs); // 不推荐
 ```
 
 在第一个断言中，拆箱会导致值进行比较，所以结果是相同的。在第二个断言中，没有拆箱，两个方法调用返回不同整数对象，所以即使两个整数对象都表示结果也是不
@@ -85,9 +85,9 @@
 个字节或一个布尔值; 并在装箱时允许进行缓存。因此，与我们之前的例子相比，我们有以下几点：
 
 ```java
-  List<Integer> smalls = Arrays.asList(1,2,3);
-  assert sumInteger(smalls) == sum(smalls);
-  assert sumInteger(smalls) == sumInteger(smalls); // 不推荐
+   List<Integer> smalls = Arrays.asList(1,2,3);
+   assert sumInteger(smalls) == sum(smalls);
+   assert sumInteger(smalls) == sumInteger(smalls); // 不推荐
 ```
  
 这是因为 `6` 小于 `128`，所以装箱数值 `6` 总是返回正确的同一个对象。 一般来说，没有规定两次是否装箱相同的值返回相同或不同的对象，所以前面显示的不等
