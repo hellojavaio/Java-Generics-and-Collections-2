@@ -26,6 +26,11 @@
     * [2.5 数组](hc02/05_Arrays.md#数组)
     * [2.6 通配符与类型参数](ch02/06_Wildcards_Versus_Type_Parameters.md#通配符与类型参数)
     * [2.7 通配符捕获](ch02/07_Wildcard_Capture.md#通配符捕获)
+    * [2.8 对通配符的限制](ch02/08_Restrictions_on_Wildcards.md)
+  * [第三章(集合类)](ch03/00_Comparison_and_Bounds.md)
+    * [3.1 可比较的](ch03/01_Comparable.md)
+    * [3.2 集合的最大值](ch03/02_Maximum_of_a_Collection.md)
+
     
 ## PR
 提交 PR 前请先确认排版,示例: [中文文案排版](https://github.com/maskleo-doc/chinese-copywriting-guidelines)
