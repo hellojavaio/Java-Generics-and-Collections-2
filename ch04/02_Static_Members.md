@@ -1,7 +1,7 @@
 《《《 [返回首页](../README.md)       <br/>
 《《《 [上一节](01_Constructors.md)
 
-## 静态成员
+### 静态成员
 
 因为泛型是通过擦除编译的，所以在运行时类`List<Integer>`，`List<String>` 和 `List<List<String>>` 全部由一个类实现，即 `List`。你可以看到这个使用
 反射：
