@@ -30,7 +30,17 @@
   * [第三章(集合类)](ch03/00_Comparison_and_Bounds.md)
     * [3.1 可比较的](ch03/01_Comparable.md)
     * [3.2 集合的最大值](ch03/02_Maximum_of_a_Collection.md)
-
+    * [3.3 水果相关示例](ch03/03_A_Fruity_Example.md)
+    * [3.4 比较](ch03/04_Comparator.md)
+    * [3.5 枚举类型](ch03/05_Enumerated_Types.md)
+    * [3.6 多重界限](ch03/06_Multiple_Bounds.md)
+    * [3.7 桥梁](ch03/07_Bridges.md)
+    * [3.8 协变覆盖](ch03/08_Covariant_Overriding.md)
+  * [第四章(声明)](ch04/00_Declarations.md)  
+    * [4.1 构造函数](ch04/01_Constructors.md)
+    * [4.2 静态成员](ch04/02_Static_Members.md)
+    * [4.3 嵌套类](ch04/03_Nested_Classes.md)
+    * [4.4 擦除的工作原理](ch04/04_How_Erasure_Works.md)
     
 ## PR
 提交 PR 前请先确认排版,示例: [中文文案排版](https://github.com/maskleo-doc/chinese-copywriting-guidelines)
