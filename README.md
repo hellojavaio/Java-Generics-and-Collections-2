@@ -41,6 +41,12 @@
     * [4.2 静态成员](ch04/02_Static_Members.md)
     * [4.3 嵌套类](ch04/03_Nested_Classes.md)
     * [4.4 擦除的工作原理](ch04/04_How_Erasure_Works.md)
+  * [第五章(进化，而不是革命)](ch05/00_Evolution_Not_Revolution.md)
+    * [5.1 旧版客户端的旧版库](ch05/01_Legacy_Library_with_Legacy_Client.md)
+    * [5.2 具有通用客户端的通用库](ch05/02_Generic_Library_with_Generic_Client.md)
+    * [5.3 具有传统客户端的通用库](ch05/03_Generic_Library_with_Legacy_Client.md)
+    * [5.4 具有通用客户端的旧版库](ch05/04_Legacy_Library_with_Generic_Client.md)
+    * [5.5 结论](ch05/05_Conclusions.md)
     
 ## PR
 提交 PR 前请先确认排版,示例: [中文文案排版](https://github.com/maskleo-doc/chinese-copywriting-guidelines)

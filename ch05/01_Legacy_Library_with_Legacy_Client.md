@@ -1,7 +1,7 @@
 《《《 [返回首页](../README.md)       <br/>
 《《《 [上一节](00_Evolution_Not_Revolution.md)
 
-## 旧版客户端的旧版库
+### 旧版客户端的旧版库
 
 我们从一个简单的栈库和一个关联的客户端开始，如例 `5-1` 所示。这是为 `Java 1.4` 及其版本的集合框架编写的遗留代码。像集合框架一样，我们将库构造为接口 
 `Stack`（类似于 `List`），实现类 `ArrayStack`（类似于 `ArrayList`）和实用类 `Stacks`（类似于 `Collections`）。接口堆栈提供了三种方法：`empty`，
