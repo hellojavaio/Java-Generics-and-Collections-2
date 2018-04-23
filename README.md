@@ -72,6 +72,16 @@
     * [8.2 使用选中的集合来强化安全性](ch08/02_Use_Checked_Collections_to_Enforce_Security.md)
     * [8.3 专注于创建可维持类型](ch08/03_Specialize_to_Create_Reifiable_Types.md)
     * [8.4 保持二进制兼容性](ch08/04_Maintain_Binary_Compatibility.md)
+  * [第九章(设计模式)](ch09/00_Design_Patterns.md)
+    * [9.1 游客](ch09/01_Visitor.md)
+    * [9.2 翻译员](ch09/02_Interpreter.md)
+    * [9.3 功能](ch09/03_Function.md)
+    * [9.4 策略](ch09/04_Strategy.md)
+    * [9.5 主题观察者](ch09/05_Subject-Observer.md)
+
+
+
+    
 
 ## PR
 提交 PR 前请先确认排版,示例: [中文文案排版](https://github.com/maskleo-doc/chinese-copywriting-guidelines)
