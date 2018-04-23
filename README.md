@@ -67,6 +67,11 @@
     * [7.4 一个通用的反射库](ch07/04_A_Generic_Reflection_Library.md)
     * [7.5 泛型的反思](ch07/05_Reflection_for_Generics.md)
     * [7.6 反思泛型类型](ch07/06_Reflecting_Generic_Types.md)
+  * [第八章(有效的泛型)](ch08/00_Effective_Generics.md)
+    * [8.1 调用遗留代码时要小心](ch08/01_Take_Care_when_Callin_Legacy_Code.md)
+    * [8.2 使用选中的集合来强化安全性](ch08/02_Use_Checked_Collections_to_Enforce_Security.md)
+    * [8.3 专注于创建可维持类型](ch08/03_Specialize_to_Create_Reifiable_Types.md)
+    * [8.4 保持二进制兼容性](ch08/04_Maintain_Binary_Compatibility.md)
 
 ## PR
 提交 PR 前请先确认排版,示例: [中文文案排版](https://github.com/maskleo-doc/chinese-copywriting-guidelines)
