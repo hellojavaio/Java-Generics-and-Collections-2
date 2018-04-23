@@ -57,6 +57,9 @@
     * [6.5 广告中的真理原则](ch06/05_The_Principle_of_Truth_in_Advertising.md)
     * [6.6 不雅暴露的原则](ch06/06_The_Principle_of_Indecent_Exposure.md)
     * [6.7 如何定义 ArrayList](ch06/07_How_to_Define_ArrayList.md)
+    * [6.8 数组创建和可变参数](ch06/08_Array_Creation_and_Varargs.md)
+    * [6.9 作为已弃用类型的阵列](ch06/09_Arrays_as_a_Deprecated_Type.md)
+    * [6.10 加起来](ch06/10_Summing_Up.md)
     
 ## PR
 提交 PR 前请先确认排版,示例: [中文文案排版](https://github.com/maskleo-doc/chinese-copywriting-guidelines)
