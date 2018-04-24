@@ -1,7 +1,7 @@
 《《《 [返回首页](../README.md)       <br/>
 《《《 [上一节](02_Implementing_Map.md)
 
-## SortedMap 和 NavigableMap
+### SortedMap和NavigableMap
 
 ![](16_5.png)
 
