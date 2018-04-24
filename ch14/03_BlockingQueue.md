@@ -1,7 +1,7 @@
 《《《 [返回首页](../README.md)       <br/>
 《《《 [上一节](02_Implementing_Queue.md)
 
-## BlockingQueue
+### BlockingQueue
 
 `Java 5` 为集合框架添加了许多类以供并发应用程序使用。其中大部分是 `Queue` 子接口 `BlockingQueue`（见图 `14-5`）的实现，主要用于生产者消费者队列。
 

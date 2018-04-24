@@ -1,7 +1,7 @@
 《《《 [返回首页](../README.md)       <br/>
 《《《 [上一节](02_Reflected_Types_are_Reifiable_Types.md)
 
-## 对原始类型的反思
+### 对原始类型的反思
 
 `Java` 中的每种类型（包括基元类型和数组类型）都具有类文字和相应的类标记。
 

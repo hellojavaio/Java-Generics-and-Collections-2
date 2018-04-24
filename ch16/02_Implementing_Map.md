@@ -1,7 +1,7 @@
 《《《 [返回首页](../README.md)       <br/>
 《《《 [上一节](01_Using_the_Methods_of_Map.md)
 
-## 实现 Map
+### 实现Map
 
 图 `16-2` 显示了集合框架为 `Map` 提供的实现，共八个实例。 我们将在这里讨论 `HashMap`，`LinkedHashMap`，`WeakHashMap`，`IdentityHashMap` 和 `EnumMap`; 讨论 `NavigableMap`，`ConcurrentMap` 和 `ConcurrentNavigableMap` 的接口及其实现，以下部分。
 
