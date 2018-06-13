@@ -22,7 +22,9 @@
   ```java
     public static double sum(Collection<? extends Number> nums) {
       double s = 0.0;
-      for (Number num : nums) s += num.doubleValue();
+      for (Number num : nums){
+        s += num.doubleValue();
+      }
       return s;
     }
   ```
