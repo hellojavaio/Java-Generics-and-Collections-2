@@ -1,7 +1,7 @@
 # 第十四章\(Queues\)
 
-《《《 [返回首页](../../)   
- 《《《 [上一节](../di-shi-san-zhang-sets/13.2-sortedset-he-navigableset.md)
+《《《 [返回首页](../../)  
+《《《 [上一节](../di-shi-san-zhang-sets/13.2-sortedset-he-navigableset.md)
 
 ## Queues
 
@@ -47,6 +47,6 @@
 
 由于这些方法返回 `null` 以表示队列为空，因此应避免将 `null` 用作队列元素。 通常，`Queue` 接口不鼓励使用 `null` 作为队列元素，并且允许它的唯一标准实现是传统实现 `LinkedList`。
 
-《《《 [下一节](14.1-shi-yong-dui-lie-fang-fa.md)   
- 《《《 [返回首页](../../)
+《《《 [下一节](14.1-shi-yong-dui-lie-fang-fa.md)  
+《《《 [返回首页](../../)
 

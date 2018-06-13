@@ -1,7 +1,7 @@
 # 第十五章\(Lists\)
 
-《《《 [返回首页](../../)   
- 《《《 [上一节](../di-shi-si-zhang-queues/14.5-bi-jiao-dui-lie-shi-xian.md)
+《《《 [返回首页](../../)  
+《《《 [上一节](../di-shi-si-zhang-queues/14.5-bi-jiao-dui-lie-shi-xian.md)
 
 ## Lists
 
@@ -68,6 +68,6 @@
 
 操作设置和删除工作的方式不同。它们的效果不取决于迭代器的当前位置，而是取决于它的“当前元素”，使用下一个或上一个遍历的最后一个：`set` 替换当前元素，`remove` 将其删除。如果没有当前元素，或者因为迭代器刚刚创建，或者因为当前元素已被删除，这些方法将抛出 `IllegalStateException`。
 
-《《《 [下一节](15.1-shi-yong-list-de-fang-fa.md)   
- 《《《 [返回首页](../../)
+《《《 [下一节](15.1-shi-yong-list-de-fang-fa.md)  
+《《《 [返回首页](../../)
 

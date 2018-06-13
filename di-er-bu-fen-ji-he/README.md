@@ -1,7 +1,7 @@
 # 第二部分：集合
 
-《《《 [返回首页](../)   
- 《《《 [上一节](../di-yi-bu-fen-fan-xing/di-jiu-zhang-she-ji-mo-shi/9.5-zhu-ti-guan-cha-zhe.md)
+《《《 [返回首页](../)  
+《《《 [上一节](../di-yi-bu-fen-fan-xing/di-jiu-zhang-she-ji-mo-shi/9.5-zhu-ti-guan-cha-zhe.md)
 
 ## 集合
 
@@ -9,6 +9,6 @@
 
 本书的这一部分首先概述框架，然后详细介绍每个主界面及其标准实现。最后，我们将看看 `Collections` 类中提供的专用实现和通用算法。
 
-《《《 [下一节](di-shi-zhang-ji-he/10.1-java-ji-he-kuang-jia-de-zhu-yao-jie-kou.md)   
- 《《《 [返回首页](../)
+《《《 [下一节](di-shi-zhang-ji-he/10.1-java-ji-he-kuang-jia-de-zhu-yao-jie-kou.md)  
+《《《 [返回首页](../)
 

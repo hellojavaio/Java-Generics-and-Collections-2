@@ -149,6 +149,6 @@ Note: Recompile with -Xlint:unchecked for details.
 
 我们的家人让我们保持健康（疯狂）。爱他们，`Adam, Ben`, `Catherine`, `Daniel`, `Isaac`,`Joe`,`Leora`,`Lionel` 和 `Ruth`.
 
-《《《 [下一节](di-yi-bu-fen-fan-xing/)   
- 《《《 [返回首页](./)
+《《《 [下一节](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/di-yi-bu-fen-fan-xing/README.md)  
+《《《 [返回首页](./)
 

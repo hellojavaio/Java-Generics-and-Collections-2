@@ -1,7 +1,7 @@
 # 第十二章\(集合接口\)
 
-《《《 [返回首页](../../)   
- 《《《 [上一节](../di-shi-yi-zhang-chu-bu-cuo-shi/11.5-ji-he-he-xian-cheng-an-quan.md)
+《《《 [返回首页](../../)  
+《《《 [上一节](../di-shi-yi-zhang-chu-bu-cuo-shi/11.5-ji-he-he-xian-cheng-an-quan.md)
 
 ## 集合接口
 
@@ -108,6 +108,6 @@
 
 集合框架不包括将集合转换为基本类型数组的便利方法。 幸运的是，这只需要几行代码。
 
-《《《 [下一节](12.1-shi-yong-ji-he-fang-fa.md)   
- 《《《 [返回首页](../../)
+《《《 [下一节](12.1-shi-yong-ji-he-fang-fa.md)  
+《《《 [返回首页](../../)
 

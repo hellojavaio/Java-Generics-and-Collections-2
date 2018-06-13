@@ -1,7 +1,7 @@
 # 第十三章\(Sets\)
 
-《《《 [返回首页](../../)   
- 《《《 [上一节](../di-shi-er-zhang-ji-he-jie-kou/12.3-ji-he-gou-zao-han-shu.md)
+《《《 [返回首页](../../)  
+《《《 [上一节](../di-shi-er-zhang-ji-he-jie-kou/12.3-ji-he-gou-zao-han-shu.md)
 
 ## Sets
 
@@ -15,6 +15,6 @@
 
 这是因为处理重复元素的方式。 在星期一任务和电话任务中的任务麦克电话，只有一次出现在 \`phoneAndMondayTasks 中 - 你绝对不希望两次完成所有这些任务！
 
-《《《 [下一节](13.1-shi-xian-set.md)   
- 《《《 [返回首页](../../)
+《《《 [下一节](13.1-shi-xian-set.md)  
+《《《 [返回首页](../../)
 

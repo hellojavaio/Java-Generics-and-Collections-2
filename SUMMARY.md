@@ -1,8 +1,8 @@
 # Table of contents
 
-* [Introduction](README.md)
+* [泛型与集合](README.md)
 * [前言](qian-yan.md)
-* [第一部分：泛型](ch01/00_Introduction.md)
+* [第一部分：泛型](di-yi-bu-fen-fan-xing/README.md)
   * [\[第一章\(简介\)\]\(ch01/00\_Introduction.md\#第一章\(简介\)\)](di-yi-bu-fen-fan-xing/di-yi-zhang-jian-jie-ch0100introduction.md-di-yi-zhang-jian-jie/README.md)
     * [1.1 泛型](di-yi-bu-fen-fan-xing/di-yi-zhang-jian-jie-ch0100introduction.md-di-yi-zhang-jian-jie/1.1-fan-xing.md)
     * [1.2 装箱与拆箱](di-yi-bu-fen-fan-xing/di-yi-zhang-jian-jie-ch0100introduction.md-di-yi-zhang-jian-jie/1.2-zhuang-xiang-yu-chai-xiang.md)
