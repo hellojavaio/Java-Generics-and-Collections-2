@@ -25,7 +25,7 @@
 
   ```java
     List<Integer> ints = Arrays.asList(1,2,3);
-    List<Number> nums = ints; // compile-time error
+    List<Number> nums = ints; // 编译期异常
     nums.set(2, 3.14);
     assert ints.toString().equals("[1, 2, 3.14]"); // uh oh!
   ```
@@ -37,7 +37,7 @@
   ```java
       List<Integer> ints = Arrays.asList(1,2,3);
       List<? extends Number> nums = ints;
-      nums.set(2, 3.14); // compile-time error
+      nums.set(2, 3.14); // 编译期异常
       assert ints.toString().equals("[1, 2, 3.14]"); // uh oh!
   ```
   
