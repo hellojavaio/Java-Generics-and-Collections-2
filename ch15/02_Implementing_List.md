@@ -32,7 +32,7 @@
 
 即便如此，提醒读者回顾了用于实现 `ArrayBlockingQueue` 和 `ArrayDeque`（参见 `14.4.1` 节）的循环数组的讨论可能会想知道为什么还没有选择循环数组来实现 `ArrayList`。确实，循环数组的添加和删除方法只有在索引参数为0时才会显示出更好的性能，但这是一个常见的情况，并且使用循环数组的开销非常小，以至于问题依旧。
 
-事实上，`Heinz Kabutz` 在 `The Java Specialists'Newsletter`(http://www.javaspecialists.co.za/archive/Issue027.html) 中提出了一个循环数组列表的大纲实现。原则上，仍然有可能的 `ArrayList` 可以通过这种方式来重新实现，这可能导致许多现有的 `Java applications.A` 可能的替代真正的性能提升是圆形 `ArrayDeque` 可改进来实现列表的方法。与此同时，如果您的应用程序使用 `List`，其中从列表开始的元素插入和删除的性能比 `randomaccess` 操作的性能更重要，请考虑写入 `Deque` 接口并利用其非常高效的 `ArrayDeque` 实现。
+事实上，`Heinz Kabutz` 在 [`The Java Specialists'Newsletter`](http://www.javaspecialists.co.za/archive/Issue027.html) 中提出了一个循环数组列表的大纲实现。原则上，仍然有可能的 `ArrayList` 可以通过这种方式来重新实现，这可能导致许多现有的 `Java applications.A` 可能的替代真正的性能提升是圆形 `ArrayDeque` 可改进来实现列表的方法。与此同时，如果您的应用程序使用 `List`，其中从列表开始的元素插入和删除的性能比 `randomaccess` 操作的性能更重要，请考虑写入 `Deque` 接口并利用其非常高效的 `ArrayDeque` 实现。
 
 正如我们在讨论 `ArrayBlockingQueue`（第 `14.2` 节）时所提到的，可变大小的数组支持的集合类可以有一个配置参数：数组的初始长度。因此，除了标准集合框架构造函数之外，`ArrayList` 还有一个允许您选择初始容量的值足够大以容纳集合的元素，而无需频繁的创建 - 复制操作。由默认构造函数创建的 `ArrayList` 的初始容量为 `10`，使用另一个集合的元素初始化的初始容量是该集合大小的 `110％`。
 
