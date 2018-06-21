@@ -1,0 +1,22 @@
+{
+  "name": "Java-Generics-and-Collections-rdoc",
+  "version": "1.0.0",
+  "description": "Describe Java-Generics-and-Collections-rdoc here",
+  "private": true,
+  "scripts": {
+    "deploy": "rdoc --publish https://github.com/zerotoneorg/Java-Generics-and-Collections --branch rdoc",
+    "build": "rdoc -d home,introduce,faq,about,github --clean --build",
+    "start": "rdoc -d home,introduce,faq,about,github --clean"
+  },
+  "keywords": [
+    "Java-Generics-and-Collections-rdoc",
+    "rdoc",
+    "react-doc",
+    "react"
+  ],
+  "dependencies": {
+    "rdoc": "1.10.x"
+  },
+  "author": "",
+  "license": "MIT"
+}
