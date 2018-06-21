@@ -4,7 +4,7 @@
   "description": "Describe Java-Generics-and-Collections-rdoc here",
   "private": true,
   "scripts": {
-    "deploy": "rdoc --publish https://github.com/zerotoneorg/Java-Generics-and-Collections --branch rdoc",
+    "deploy": "rdoc --publish https://github.com/hellojavaio/Java-Generics-and-Collections --branch master",
     "build": "rdoc -d home,introduce,faq,about,github --clean --build",
     "start": "rdoc -d home,introduce,faq,about,github --clean"
   },
