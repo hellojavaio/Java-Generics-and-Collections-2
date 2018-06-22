@@ -8,12 +8,12 @@
 在 `Java` 中，数组的子类型是协变的，这意味着当 `S` 是 `T` 的子类型时，类型 `S []` 被认为是 `T []` 的一个子类型。考虑下面的代码片段，它分配一个整数
 数组，分配一个数组 的数字，然后尝试在数组中分配一个 `double`：
   
-  ```java
-    Integer[] ints = new Integer[] {1,2,3};
-    Number[] nums = ints;
-    nums[2] = 3.14; // array store exception
-    assert Arrays.toString(ints).equals("[1, 2, 3.14]"); // uh oh!
-  ```
+```java
+  Integer[] ints = new Integer[] {1,2,3};
+  Number[] nums = ints;
+  nums[2] = 3.14; // array store exception
+  assert Arrays.toString(ints).equals("[1, 2, 3.14]"); // uh oh!
+```
   
 这个程序有什么问题，因为它把一个整数数组放入一个 `double` ！哪里有问题？ 由于 `Integer []` 被认为是 `Number []` 的子类型，所以根据替换原则，第二行
 的赋值必须是合法的。 相反，问题出现在第三行，并在运行时被捕获。 当一个数组被分配时（如在第一行），它被标记为它的被指定的类型（它的组件类型的运行时表
@@ -23,23 +23,23 @@
 相比之下，泛型的子类型关系是不变的，意味着类型 `List<S>` 不被认为是 `List<T>` 的子类型，除了 `S` 和 `T` 相同的普通情况。 这是一个类似于前一个的代
 码片段，用列表替换数组：
 
-  ```java
-    List<Integer> ints = Arrays.asList(1,2,3);
-    List<Number> nums = ints; // 编译时报错
-    nums.set(2, 3.14);
-    assert ints.toString().equals("[1, 2, 3.14]"); // uh oh!
-  ```
+```java
+  List<Integer> ints = Arrays.asList(1,2,3);
+  List<Number> nums = ints; // 编译时报错
+  nums.set(2, 3.14);
+  assert ints.toString().equals("[1, 2, 3.14]"); // uh oh!
+```
   
 由于 `List<Integer>` 不被认为是 `List<Number>` 的子类型，因此在第二行而不是第三行检测到问题，并且在编译时检测到，而不是在运行时检测到。
   
 通配符重新引入泛型的协变子类型，在当 `S` 是 `T` 的子类型时，这种类型中 `List<S>` 被认为是 `List<? extends T>` 的子类型？ 这是片段的第三个变体：  
   
-  ```java
-      List<Integer> ints = Arrays.asList(1,2,3);
-      List<? extends Number> nums = ints;
-      nums.set(2, 3.14); // 编译时报错
-      assert ints.toString().equals("[1, 2, 3.14]"); // uh oh!
-  ```
+```java
+    List<Integer> ints = Arrays.asList(1,2,3);
+    List<? extends Number> nums = ints;
+    nums.set(2, 3.14); // 编译时报错
+    assert ints.toString().equals("[1, 2, 3.14]"); // uh oh!
+```
   
 和数组一样，第三行是错误的，但是与数组相比，这个问题在编译时被检测到，而不是运行时。 该分配违反了“获取和放置原则”，因为您不能将值放入使用 `extends`
 通配符声明的类型中。  
@@ -64,18 +64,18 @@
 总而言之，最好在编译时检测错误，而不是在运行时检测错误，但是 `Java` 数组在运行时被强制检测到某些错误，因为决定做出数组子类型协变。 这是一个很好的决
 定？ 在泛型出现之前，这是绝对必要的。 例如，看下面的方法，这些方法用于对任何数组进行排序或使用给定值填充数组：  
  
-  ```java
-    public static void sort(Object[] a);
-    public static void fill(Object[] a, Object val);
-  ```
+```java
+  public static void sort(Object[] a);
+  public static void fill(Object[] a, Object val);
+```
   
 由于协变，这些方法可以用来排序或填充任何引用类型的数组。 没有协变性，没有泛型，就没有办法声明适用于所有类型的方法。 但是，现在我们已经有了泛型，协变
 阵列就不再需要了。 现在我们可以给这些方法以下签名，直接说明它们适用于所有类型：  
   
-  ```java
-      public static <T> void sort(T[] a);
-      public static <T> void fill(T[] a, T val);
-  ```
+```java
+    public static <T> void sort(T[] a);
+    public static <T> void fill(T[] a, T val);
+```
   
 从某种意义上讲，协变数组是早期 `Java` 版本中缺乏泛型的人为因素。 一旦你有泛型，协变数组可能是错误的设计选择，保留它们的唯一原因是向后兼容。
   
