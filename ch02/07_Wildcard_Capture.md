@@ -9,13 +9,13 @@
 
 ```java
   public static void reverse(List<?> list);
-  public static void <T> reverse(List<T> list);
+  public static <T> void reverse(List<T> list);
 ```
 
 通配符签名稍短且更清晰，是类库中使用的签名。如果使用第二个签名，则很容易实现该方法：
 
 ```java
-  public static void <T> reverse(List<T> list) {
+  public static <T> void reverse(List<T> list) {
     List<T> tmp = new ArrayList<T>(list);
     for (int i = 0; i < list.size(); i++) {
       list.set(i, tmp.get(list.size()-i-1));
