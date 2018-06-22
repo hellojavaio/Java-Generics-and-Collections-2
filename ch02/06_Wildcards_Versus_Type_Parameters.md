@@ -37,10 +37,10 @@
   assert !ints.containsAll(objs);
 ```
   
-给定的对象列表包含字符串“one”和给定的整数列表，但给定的整数列表不包含字符串“one”，也不包含给定的对象列表。
+给定的对象列表包含字符串 “one” 和给定的整数列表，但给定的整数列表不包含字符串 “one”，也不包含给定的对象列表。
 
-测试 `ints.contains(obj)` 和 `ints.containsAll(objs)` 可能看起来很愚蠢。当然，整数列表将不包含任意对象，如字符串“one”。 但这是允许的，因为有时这
-样的测试可能会成功：  
+测试 `ints.contains(obj)` 和 `ints.containsAll(objs)` 可能看起来很愚蠢。当然，整数列表将不包含任意对象，如字符串 “one”。 但这是允许的，因为有时
+这样的测试可能会成功：  
 
 ```java
   Object obj = 1;
