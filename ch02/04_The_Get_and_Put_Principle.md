@@ -11,86 +11,86 @@
 
 我们已经在复制方法的签名中看到了这个原理：
   
-  ```java
-    public static <T> void copy(List<? super T> dest, List<? extends T> src)
-  ``` 
+```java
+  public static <T> void copy(List<? super T> dest, List<? extends T> src)
+``` 
   
 该方法从源 `src` 中获取值，因此使用扩展通配符声明值，并将值放入目标 `dst` 中，因此使用超级通配符声明值。 
 
 无论何时使用迭代器，都会从结构中获取值，因此请使用扩展通配符。 这是一个需要一个数字集合的方法，每个转换为一个双精度求和：  
 
-  ```java
-    public static double sum(Collection<? extends Number> nums) {
-      double s = 0.0;
-      for (Number num : nums){
-        s += num.doubleValue();
-      }
-      return s;
+```java
+  public static double sum(Collection<? extends Number> nums) {
+    double s = 0.0;
+    for (Number num : nums){
+      s += num.doubleValue();
     }
-  ```
+    return s;
+  }
+```
   
 由于这个使用 `extends`，所有以下的调用是合法的：
   
-  ```java
-    List<Integer> ints = Arrays.asList(1,2,3);
-    assert sum(ints) == 6.0;
-    List<Double> doubles = Arrays.asList(2.78,3.14);
-    assert sum(doubles) == 5.92;
-    List<Number> nums = Arrays.<Number>asList(1,2,2.78,3.14);
-    assert sum(nums) == 8.92;
-  ```
+```java
+  List<Integer> ints = Arrays.asList(1,2,3);
+  assert sum(ints) == 6.0;
+  List<Double> doubles = Arrays.asList(2.78,3.14);
+  assert sum(doubles) == 5.92;
+  List<Number> nums = Arrays.<Number>asList(1,2,2.78,3.14);
+  assert sum(nums) == 8.92;
+```
   
 如果不使用 `extends`，前两个调用将不合法
   
 每当你使用add方法时，你把值放到一个结构中，所以使用 `super` 通配符。 这是一个采用数字和整数n的集合的方法将从零开始的前n个整数放入集合中：
 
-  ```java
-    public static void count(Collection<? super Integer> ints, int n) {
-      for (int i = 0; i < n; i++) ints.add(i);
-    }
-  ```
+```java
+  public static void count(Collection<? super Integer> ints, int n) {
+    for (int i = 0; i < n; i++) ints.add(i);
+  }
+```
 
 由于这使用 `super`，以下所有调用都是合法的：
 
-  ```java
-    List<Integer> ints = new ArrayList<Integer>();
-    count(ints, 5);
-    assert ints.toString().equals("[0, 1, 2, 3, 4]");
-    List<Number> nums = new ArrayList<Number>();
-    count(nums, 5); nums.add(5.0);
-    assert nums.toString().equals("[0, 1, 2, 3, 4, 5.0]");
-    List<Object> objs = new ArrayList<Object>();
-    count(objs, 5); objs.add("five");
-    assert objs.toString().equals("[0, 1, 2, 3, 4, five]");
-  ```
+```java
+  List<Integer> ints = new ArrayList<Integer>();
+  count(ints, 5);
+  assert ints.toString().equals("[0, 1, 2, 3, 4]");
+  List<Number> nums = new ArrayList<Number>();
+  count(nums, 5); nums.add(5.0);
+  assert nums.toString().equals("[0, 1, 2, 3, 4, 5.0]");
+  List<Object> objs = new ArrayList<Object>();
+  count(objs, 5); objs.add("five");
+  assert objs.toString().equals("[0, 1, 2, 3, 4, five]");
+```
 
 如果 `super` 不被使用，最后两个调用将是不合法的。无论何时您将值放入并从同一结构中获取值，都不应使用通配符。
   
-  ```java
-    public static double sumCount(Collection<Number> nums, int n) {
-      count(nums, n);
-      return sum(nums);
-    }
-  ```
+```java
+  public static double sumCount(Collection<Number> nums, int n) {
+    count(nums, n);
+    return sum(nums);
+  }
+```
   
 集合被传递给 `sum` 和 `count`，所以它的元素类型都必须继承 `Number`（按总数要求），`Integer` 的超类（按计数要求）。 唯一满足这两个约束的两个类是
 `Number` 和 `Integer`，我们选择了第一个。 以下是一个调用示例：
   
-  ```java
-    List<Number> nums = new ArrayList<Number>();
-    double sum = sumCount(nums,5);
-    assert sum == 10;
-  ```
+```java
+  List<Number> nums = new ArrayList<Number>();
+  double sum = sumCount(nums,5);
+  assert sum == 10;
+```
   
 由于没有通配符，参数必须是 `Number` 的集合。  
 
 如果您不喜欢在 `Number` 和 `Integer` 之间进行选择，那么您可能会想到，如果 `Java` 允许您使用 `extends` 和 `super` 编写通配符，则不需要选择。 例
 如，我们可以写下以下内容：
 
-  ```java
-    double sumCount(Collection<? extends Number super Integer> coll, int n)
-    // 这在java里面是非法的
-  ```
+```java
+  double sumCount(Collection<? extends Number super Integer> coll, int n)
+  // 这在java里面是非法的
+```
   
 然后我们可以在一个数字集合或一个整数集合上调用 `sumCount`。 但 `Java` 不允许这样做。 打乱它的唯一原因是简单，可以想象 `Java` 在将来可能会支持这种表
 示法。 但是，现在，如果你想同时获取和放置不要使用通配符。
@@ -100,26 +100,26 @@
     
 例如，考虑下面的代码片段，它使用一个用扩展通配符声明的列表：    
   
-  ```java
-    List<Integer> ints = new ArrayList<Integer>();
-    ints.add(1);
-    ints.add(2);
-    List<? extends Number> nums = ints;
-    double dbl = sum(nums); // ok
-    nums.add(3.14); // compile-time error
-  ```
+```java
+  List<Integer> ints = new ArrayList<Integer>();
+  ints.add(1);
+  ints.add(2);
+  List<? extends Number> nums = ints;
+  double dbl = sum(nums); // ok
+  nums.add(3.14); // compile-time error
+```
   
 调用它求和是好的，因为它从列表中获取值，但调用 `add` 的不是，因为它将一个值放入列表中。 这也是一样，因为否则我们可以添加双整数列表！相反，考虑下面的
 代码片段，它使用一个超级通配符声明的列表：
   
-  ```java
-    List<Object> objs = new ArrayList<Object>();
-    objs.add(1);
-    objs.add("two");
-    List<? super Integer> ints = objs;
-    ints.add(3); // ok
-    double dbl = sum(ints); // 编译报错
-  ```
+```java
+  List<Object> objs = new ArrayList<Object>();
+  objs.add(1);
+  objs.add("two");
+  List<? super Integer> ints = objs;
+  ints.add(3); // ok
+  double dbl = sum(ints); // 编译报错
+```
   
 现在调用 `add` 是正常的，因为它将一个值放入列表中，但是对 `sum` 的调用不是，因为它从列表中获取值。 这也是一样，因为包含一个字符串的列表的总和是没有
 意义的！  
@@ -137,13 +137,13 @@
   
 同样，你也不能从使用超级通配符声明的类型中获取任何东西 - 除了 `Object` 类型的值，它是每个引用类型的超类型：   
   
-  ```java
-    List<Object> objs = Arrays.<Object>asList(1,"two");
-    List<? super Integer> ints = objs;
-    String str = "";
-    for (Object obj : ints) str += obj.toString();
-    assert str.equals("1two");
-  ```
+```java
+  List<Object> objs = Arrays.<Object>asList(1,"two");
+  List<? super Integer> ints = objs;
+  String str = "";
+  for (Object obj : ints) str += obj.toString();
+  assert str.equals("1two");
+```
   
 你可能会觉得有帮助的想法？ 将 `T` 扩展为包含每个类型的一个区间，该区间由下面的 `null` 类型和上面的 `T`（其中 `null` 的类型是每个引用类型的子类型）
 限定。 同样，你可能会想到？ `super T` 包含每个类型在由 `T` 和由上面的 `Object` 限定的区间中。
