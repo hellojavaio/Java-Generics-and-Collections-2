@@ -18,7 +18,7 @@
   public static <T> void reverse(List<T> list) {
     List<T> tmp = new ArrayList<T>(list);
     for (int i = 0; i < list.size(); i++) {
-      list.set(i, tmp.get(list.size()-i-1));
+      list.set(i, tmp.get(list.size() - i - 1));
     }
   }
 ```
@@ -29,7 +29,7 @@
   public static void reverse(List<?> list) {
     List<Object> tmp = new ArrayList<Object>(list);
     for (int i = 0; i < list.size(); i++) {
-      list.set(i, tmp.get(list.size()-i-1)); // 编译报错
+      list.set(i, tmp.get(list.size() - i - 1)); // 编译报错
     }
   }
 ```
@@ -44,7 +44,7 @@
   private static <T> void rev(List<T> list) {
     List<T> tmp = new ArrayList<T>(list);
     for (int i = 0; i < list.size(); i++) {
-      list.set(i, tmp.get(list.size()-i-1));
+      list.set(i, tmp.get(list.size() - i - 1));
     }
   }
 ```
@@ -57,7 +57,7 @@
 ```java
   Capture.java:6: set(int,capture of ?) in java.util.List<capture of ?>
   cannot be applied to (int,java.lang.Object)
-  list.set(i, tmp.get(list.size()-i-1));
+  list.set(i, tmp.get(list.size() - i - 1));
       ^
 ```
   
