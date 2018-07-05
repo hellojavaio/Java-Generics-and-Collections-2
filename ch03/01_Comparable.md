@@ -7,7 +7,7 @@
 
 ```java
 interface Comparable<T> {
-public int compareTo(T o);
+  public int compareTo(T o);
 }
 ```
 
@@ -123,10 +123,10 @@ x.compareTo（x）== 0
 
 ```java
 class Integer implements Comparable<Integer> {
-...
-public int compareTo(Integer that) {
-return this.value < that.value ? -1 :
-this.value == that.value ? 0 : 1 ;
+  ...
+  public int compareTo(Integer that) {
+  return this.value < that.value ? -1 :
+  this.value == that.value ? 0 : 1 ;
 }
 ...
 }
