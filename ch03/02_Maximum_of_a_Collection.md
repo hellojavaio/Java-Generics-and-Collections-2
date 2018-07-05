@@ -9,13 +9,13 @@
 以下代码可以从类 `Collections` 中找到非空集合中的最大元素：
 
 ```java
-   public static <T extends Comparable<T>> T max(Collection<T> coll) {
-      T candidate = coll.iterator().next();
-      for (T elt : coll) {
-        if (candidate.compareTo(elt) < 0) candidate = elt;
-      }
-      return candidate;
+public static <T extends Comparable<T>> T max(Collection<T> coll) {
+   T candidate = coll.iterator().next();
+   for (T elt : coll) {
+     if (candidate.compareTo(elt) < 0) candidate = elt;
    }
+   return candidate;
+}
 ```
 
 我们首先看到了在 `1.4` 节签名中声明新类型变量的泛型方法。 例如，`asList` 方法接受一个 `E []` 类型的数组并返回 `List <E>` 类型的结果，并且对于任何
@@ -28,7 +28,7 @@
 在这种情况下，边界是递归的，因为 `T` 本身的边界取决于 `T`。 甚至可以有相互递归的界限，比如
 
 ```java
-   <T extends C<T,U>, U extends D<T,U>>
+<T extends C<T,U>, U extends D<T,U>>
 ```
 
 `9.5` 节中会出现一个相互递归界限的例子。
@@ -40,17 +40,17 @@
 `Comparable<String>`）：
 
 ```java
-   List<Integer> ints = Arrays.asList(0,1,2);
-   assert Collections.max(ints) == 2;
-   List<String> strs = Arrays.asList("zero","one","two");
-   assert Collections.max(strs).equals("zero");
+List<Integer> ints = Arrays.asList(0,1,2);
+assert Collections.max(ints) == 2;
+List<String> strs = Arrays.asList("zero","one","two");
+assert Collections.max(strs).equals("zero");
 ```
 
 但是我们可能不会选择 `T` 作为 `Number`（因为 `Number` 不能实现 `Comparable`）：
 
 ```java
-   List<Number> nums = Arrays.asList(0,1,2,3.14);
-   assert Collections.max(nums) == 3.14; // 编译报错
+List<Number> nums = Arrays.asList(0,1,2,3.14);
+assert Collections.max(nums) == 3.14; // 编译报错
 ```
 
 正如预期的那样，这里调用 `max` 是非法的。
@@ -58,15 +58,15 @@
 这是一个效率提示。 前面的实现使用 `foreach` 循环来提高简洁性和清晰度。如果效率是一个紧迫的问题，您可能需要重写该方法以使用显式迭代器，如下所示：
 
 ```java
-   public static <T extends Comparable<T>> T max(Collection<T> coll) {
-       Iterator<T> it = coll.iterator();
-       T candidate = it.next();
-       while (it.hasNext()) {
-           T elt = it.next();
-           if (candidate.compareTo(elt) < 0) candidate = elt;
-       }
-       return candidate;
-   }
+public static <T extends Comparable<T>> T max(Collection<T> coll) {
+    Iterator<T> it = coll.iterator();
+    T candidate = it.next();
+    while (it.hasNext()) {
+        T elt = it.next();
+        if (candidate.compareTo(elt) < 0) candidate = elt;
+    }
+    return candidate;
+}
 ```
 
 这分配一次迭代器而不是两次，并执行少一次比较。
@@ -74,23 +74,23 @@
 方法的签名应该尽可能通用以最大化效用。 如果你可以用通配符替换一个类型参数，那么你应该这样做。 我们可以通过替换以下来改进 `max` 的签名：
 
 ```java
-   <T extends Comparable<T>> T max(Collection<T> coll)
+<T extends Comparable<T>> T max(Collection<T> coll)
 ```
 
 同
 
 ```java
-   <T extends Comparable<? super T>> T max(Collection<? extends T> coll)
+<T extends Comparable<? super T>> T max(Collection<? extends T> coll)
 ```
 
-遵循 `Get` 和 `Put` 原则，我们使用 `extends` 来继承 `Collection`，因为我们从集合中获得类型 `T` 的值，并且我们使用 `Comparable` 与 `super`，因为
-我们将类型 `T` 的值放入 `compareTo` 方法中。 在下一节中，我们将看到一个不会键入的示例 - 如果上面的 `super` 子句被忽略。
+遵循获取和放置原则，我们使用 `extends` 来继承 `Collection`，因为我们从集合中获得类型 `T` 的值，并且我们使用 `Comparable` 与 `super`，因为我们将
+类型 `T` 的值放入 `compareTo` 方法中。 在下一节中，我们将看到一个不会键入的示例 - 如果上面的 `super` 子句被忽略。
 
-如果您查看Java库中此方法的签名，您将看到一些内容看起来比上面的代码更糟糕：
+如果您查看 `Java` 库中此方法的签名，您将看到一些内容看起来比上面的代码更糟糕：
 
 ```java
-   <T extends Object & Comparable<? super T>>
-   T max(Collection<? extends T> coll)
+<T extends Object & Comparable<? super T>>
+T max(Collection<? extends T> coll)
 ```
 
 这是为了向后兼容，正如我们将在 `3.6` 节结束时所解释的那样。
