@@ -9,18 +9,18 @@
 通配符: 以下是 `Java` 中泛型方法的类型：
   
 ```java
-  interface Collection<E> {
+interface Collection<E> {
   ...
   public boolean contains(Object o);
   public boolean containsAll(Collection<?> c);
   ...
-  }
+}
 ``` 
   
 第一种方法根本不使用泛型！ 第二种方法是我们第一次看到一个重要的缩写。 类型 `Collection <?>` 代表：  
   
 ```java
-  Collection<? extends Object>
+Collection<? extends Object>
 ```
   
 扩展对象是通配符最常用的用法之一，所以提供一个简短的表单来编写它是有意义的.
@@ -28,13 +28,13 @@
 这些方法让我们测试成员和遏制： 
 
 ```java
-  Object obj = "one";
-  List<Object> objs = Arrays.<Object>asList("one", 2, 3.14, 4);
-  List<Integer> ints = Arrays.asList(2, 4);
-  assert objs.contains(obj);
-  assert objs.containsAll(ints);
-  assert !ints.contains(obj);
-  assert !ints.containsAll(objs);
+Object obj = "one";
+List<Object> objs = Arrays.<Object>asList("one", 2, 3.14, 4);
+List<Integer> ints = Arrays.asList(2, 4);
+assert objs.contains(obj);
+assert objs.containsAll(ints);
+assert !ints.contains(obj);
+assert !ints.containsAll(objs);
 ```
   
 给定的对象列表包含字符串 “one” 和给定的整数列表，但给定的整数列表不包含字符串 “one”，也不包含给定的对象列表。
@@ -43,35 +43,35 @@
 这样的测试可能会成功：  
 
 ```java
-  Object obj = 1;
-  List<Object> objs = Arrays.<Object>asList(1, 3);
-  List<Integer> ints = Arrays.asList(1, 2, 3, 4);
-  assert ints.contains(obj);
-  assert ints.containsAll(objs);
+Object obj = 1;
+List<Object> objs = Arrays.<Object>asList(1, 3);
+List<Integer> ints = Arrays.asList(1, 2, 3, 4);
+assert ints.contains(obj);
+assert ints.containsAll(objs);
 ```
   
 在这种情况下，对象可能被包含在整数列表中，因为它碰巧是一个整数，并且对象列表可能包含在整数列表中，因为列表中的每个对象碰巧是一个整数。  - 类型参数你
 可以合理地选择一个替代设计的集合- 只能测试元素类型的子类型的容器的设计：
 
 ```java
-  interface MyCollection<E> { // alternative design
+interface MyCollection<E> { // alternative design
   ...
   public boolean contains(E o);
   public boolean containsAll(Collection<? extends E> c);
   ...
-  }
+}
 ```
   
 假设我们有一个实现 `MyCollection` 的 `MyList` 类。 现在这些测试是合法的，只有一个方法：
 
 ```java
-  Object obj = "one";
-  MyList<Object> objs = MyList.<Object>asList("one", 2, 3.14, 4);
-  MyList<Integer> ints = MyList.asList(2, 4);
-  assert objs.contains(obj);
-  assert objs.containsAll(ints)
-  assert !ints.contains(obj); // 编译报错
-  assert !ints.containsAll(objs); // 编译报错
+Object obj = "one";
+MyList<Object> objs = MyList.<Object>asList("one", 2, 3.14, 4);
+MyList<Integer> ints = MyList.asList(2, 4);
+assert objs.contains(obj);
+assert objs.containsAll(ints)
+assert !ints.contains(obj); // 编译报错
+assert !ints.containsAll(objs); // 编译报错
 ```
   
 最后两个测试是非法的，因为类型声明要求我们只能测试一个列表是否包含该列表的一个子类型的元素。所以我们可以检查一个对象列表是否包含整数列表，而不是相
