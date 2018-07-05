@@ -8,19 +8,19 @@
 考虑工具类 `java.util.Collections` 中的反向方法，它接受任何类型的列表并将其反向。它可以是以下两个签名中的任何一个，它们是相同的：
 
 ```java
-  public static void reverse(List<?> list);
-  public static <T> void reverse(List<T> list);
+public static void reverse(List<?> list);
+public static <T> void reverse(List<T> list);
 ```
 
 通配符签名稍短且更清晰，是类库中使用的签名。如果使用第二个签名，则很容易实现该方法：
 
 ```java
-  public static <T> void reverse(List<T> list) {
-    List<T> tmp = new ArrayList<T>(list);
-    for (int i = 0; i < list.size(); i++) {
-      list.set(i, tmp.get(list.size() - i - 1));
-    }
+public static <T> void reverse(List<T> list) {
+  List<T> tmp = new ArrayList<T>(list);
+  for (int i = 0; i < list.size(); i++) {
+    list.set(i, tmp.get(list.size() - i - 1));
   }
+}
 ```
   
 这会将参数复制到临时列表中，然后以相反的顺序将副本写回到原始文件中。如果您尝试使用类似方法体的第一个签名，它将不起作用：
