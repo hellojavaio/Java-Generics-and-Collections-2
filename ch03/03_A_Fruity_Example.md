@@ -9,9 +9,9 @@
 例 `3-2` 禁止苹果与橘子的比较。 以下是它声明的三个类：
 
 ```java
-   class Fruit {...}
-   class Apple extends Fruit implements Comparable<Apple> {...}
-   class Orange extends Fruit implements Comparable<Orange> {...}
+class Fruit {...}
+class Apple extends Fruit implements Comparable<Apple> {...}
+class Orange extends Fruit implements Comparable<Orange> {...}
 ```
 
 每个水果都有一个名称和一个大小，如果两个水果具有相同的名称和大小，则两个水果相等。 遵循良好的做法，我们还定义了一个 `hashCode` 方法，以确保相同的对
@@ -22,9 +22,9 @@
 例 `3-1` 允许比较苹果和橙子。 将这三个类声明与以前给出的类声明进行比较（突出显示示例示例 `3-2` 和示例 `3-1` 之间的所有区别）：
 
 ```java
-   class Fruit implements Comparable<Fruit> {...}
-   class Apple extends Fruit {...}
-   class Orange extends Fruit {...}
+class Fruit implements Comparable<Fruit> {...}
+class Apple extends Fruit {...}
+class Orange extends Fruit {...}
 ```
 
 和以前一样，每个水果都有一个名字和一个大小，如果两个水果有相同的名字和相同的大小，它们是相等的。 现在通过忽略他们的名字和比较他们的大小来比较任何两种
@@ -34,19 +34,19 @@
 回想一下，在上一节的结尾，我们继承了 `compareTo` 的类型签名以使用 `super`：
 
 ```java
-   <T extends Comparable<? super T>> T max(Collection<? extends T> coll)
+<T extends Comparable<? super T>> T max(Collection<? extends T> coll)
 ```
 
 第二个例子说明了为什么需要这个通配符。 如果我们想比较两个桔子，我们在前面的代码中将T代入橙色：
 
 ```java
-   Orange extends Comparable<? super Orange>
+Orange extends Comparable<? super Orange>
 ```
 
 这是事实，因为以下两点都成立：
 
 ```java
-   Orange extends Comparable<Fruit> and Fruit super Orange
+Orange extends Comparable<Fruit> and Fruit super Orange
 ```
 
 如果没有 `super` 通配符，查找 `List <Orange>` 的最大值将是非法的，即使找到 `List <Fruit>` 的最大值是允许的。
