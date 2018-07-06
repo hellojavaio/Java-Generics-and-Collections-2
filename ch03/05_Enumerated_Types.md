@@ -6,7 +6,7 @@
 `Java 5` 包含对枚举类型的支持。 这是一个简单的例子：
 
 ```java
-   enum Season { WINTER, SPRING, SUMMER, FALL }
+enum Season { WINTER, SPRING, SUMMER, FALL }
 ```
 
 每个枚举类型声明都可以以程式化的方式扩展为相应的类。相应的类被设计为每个枚举常量都有一个实例，绑定到一个合适的静态最终变量。 例如，上面的枚举声明扩展
@@ -15,7 +15,7 @@
 与枚举类型对应的每个类都是 `java.lang.Enum` 的子类。 它在 `Java` 文档中的定义是这样开始的：
 
 ```java
-   class Enum<E extends Enum<E>>
+class Enum<E extends Enum<E>>
 ```
 
 你可能会发现这种可怕的一见钟情 - 我们当然都这么做！ 但不要恐慌。实际上，我们已经看到了类似的东西。 令人担忧的短语 `E extends Enum <E>` 与我们在 
@@ -27,7 +27,7 @@
 这是 `Enum` 类声明的第一行：
 
 ```java
-   public abstract class Enum<E extends Enum<E>> implements Comparable<E>
+public abstract class Enum<E extends Enum<E>> implements Comparable<E>
 ```
 
 下面是季节课的声明的第一行：
@@ -39,101 +39,113 @@ class Season extends Enum<Season>
 例 `3-3`。比较
 
 ```java
-   class Comparators {
-     public static <T> T max(Collection<? extends T> coll, Comparator<? super T> cmp){
-       T candidate = coll.iterator().next();
-       for (T elt : coll) {
-         if (cmp.compare(candidate, elt) < 0) { candidate = elt; }
-       }
-       return candidate;
-     }
-     public static <T extends Comparable<? super T>> T max(Collection<? extends T> coll){
+class Comparators {
+  public static <T> T max(Collection<? extends T> coll, Comparator<? super T> cmp){
+	T candidate = coll.iterator().next();
+	for (T elt : coll) {
+	  if (cmp.compare(candidate, elt) < 0) { candidate = elt; }
+	}
+	return candidate;
+  }
+  public static <T extends Comparable<? super T>> T max(Collection<? extends T> coll){
 	return max(coll, Comparators.<T>naturalOrder());
-     }
-     public static <T> T min(Collection<? extends T> coll, Comparator<? super T> cmp){
+  }
+  public static <T> T min(Collection<? extends T> coll, Comparator<? super T> cmp){
 	return max(coll, reverseOrder(cmp));
-     }
-     public static <T extends Comparable<? super T>> T min(Collection<? extends T> coll){
-	return max(coll, Comparators.<T>reverseOrder());
-     }
-     public static <T extends Comparable<? super T>> Comparator<T> naturalOrder(){
+  }
+  public static <T extends Comparable<? super T>> T min(Collection<? extends T> coll){
+    return max(coll, Comparators.<T>reverseOrder());
+  }
+  public static <T extends Comparable<? super T>> Comparator<T> naturalOrder(){
 	return new Comparator<T>() {
-	   public int compare(T o1, T o2) { return o1.compareTo(o2); }
-	};
-     }
-     public static <T> Comparator<T> reverseOrder(final Comparator<T> cmp){
+	  public int compare(T o1, T o2) { return o1.compareTo(o2); }
+    };
+  }
+  public static <T> Comparator<T> reverseOrder(final Comparator<T> cmp){
 	return new Comparator<T>() {
 	  public int compare(T o1, T o2) { return cmp.compare(o2,o1); }
-        };
-     }
-     public static <T extends Comparable<? super T>> Comparator<T> reverseOrder(){
+	};
+  }
+  public static <T extends Comparable<? super T>> Comparator<T> reverseOrder(){
 	return new Comparator<T>() {
 	  public int compare(T o1, T o2) { return o2.compareTo(o1); }
-	};
-     }
-   }
+    };
+  }
+}
 ```
 
 例 `3-4`。 枚举类型的基类
 
 ```java
-   public abstract class Enum<E extends Enum<E>> implements Comparable<E> {
-     private final String name;
-     private final int ordinal;
-     protected Enum(String name, int ordinal) {
-       this.name = name; this.ordinal = ordinal;
-     }
-     public final String name() { return name; }
-     public final int ordinal() { return ordinal; }
-     public String toString() { return name; }
-     public final int compareTo(E o) {
-       return ordinal - o.ordinal;
-     }
-   }
+public abstract class Enum<E extends Enum<E>> implements Comparable<E> {
+  private final String name;
+  private final int ordinal;
+  protected Enum(String name, int ordinal) {
+    this.name = name; this.ordinal = ordinal;
+  }
+  public final String name() { 
+    return name; 
+  }
+  public final int ordinal() { 
+    return ordinal; 
+  }
+  public String toString() { 
+    return name; 
+  }
+  public final int compareTo(E o) {
+    return ordinal - o.ordinal;
+  }
+}
 ```
 
 例 `3-5`。 对应于枚举类型的类
 
 ```java
-   // corresponds to
-   // enum Season { WINTER, SPRING, SUMMER, FALL }
-   final class Season extends Enum<Season> {
-     private Season(String name, int ordinal) { super(name,ordinal); }
-     public static final Season WINTER = new Season("WINTER",0);
-     public static final Season SPRING = new Season("SPRING",1);
-     public static final Season SUMMER = new Season("SUMMER",2);
-     public static final Season FALL = new Season("FALL",3);
-     private static final Season[] VALUES = { WINTER, SPRING, SUMMER, FALL };
-     public static Season[] values() { return VALUES.clone(); }
-     public static Season valueOf(String name) {
-       for (Season e : VALUES) if (e.name().equals(name)) return e;
-         throw new IllegalArgumentException();
-     }
-   }
+// corresponds to
+// enum Season { WINTER, SPRING, SUMMER, FALL }
+final class Season extends Enum<Season> {
+  private Season(String name, int ordinal) { 
+    super(name,ordinal); 
+  }
+  public static final Season WINTER = new Season("WINTER",0);
+  public static final Season SPRING = new Season("SPRING",1);
+  public static final Season SUMMER = new Season("SUMMER",2);
+  public static final Season FALL = new Season("FALL",3);
+  private static final Season[] VALUES = { WINTER, SPRING, SUMMER, FALL };
+  public static Season[] values() { 
+    return VALUES.clone(); 
+  }
+  public static Season valueOf(String name) {
+    for (Season e : VALUES) 
+	  if (e.name().equals(name)) 
+	    return e;
+      throw new IllegalArgumentException();
+  }
+}
 ```
 
 匹配的东西，我们可以开始看到这是如何工作的。 类型变量 `E` 表示 `Enum` 的子类，它实现了一个特定的枚举类型，比如 `Season`。每个 `E` 必须满足：
 
 ```java
-   E extends Enum<E>
+E extends Enum<E>
 ```
 
 所以我们可以把 `E` 作为 `Season`，因为：
 
 ```java
-   Season extends Enum<Season>
+Season extends Enum<Season>
 ```
 
 此外，`Enum` 的声明告诉我们：
 
 ```java
-   Enum<E> implements Comparable<E>
+Enum<E> implements Comparable<E>
 ```
 
 所以它是这样的：
 
 ```java
-   Enum<Season> implements Comparable<Season>
+Enum<Season> implements Comparable<Season>
 ```
 
 因此，我们可以将 `Season` 类型的两个值相互比较，但我们无法将季节类型的值与任何其他类型的值进行比较。
@@ -141,13 +153,13 @@ class Season extends Enum<Season>
 没有类型变量，`Enum` 类的声明就会像这样开始：
 
 ```java
-   class Enum implements Comparable<Enum>
+class Enum implements Comparable<Enum>
 ```
 
 而 `Season` 类的声明将如下开始：
 
 ```java
-   class Season extends Enum
+class Season extends Enum
 ```
 
 这更简单，但它太简单了。 有了这个定义，`Season` 将实现 `Comparable <Enum>` 而不是 `Comparable<Season>`，这意味着我们可以将 `Season` 类型的值与
