@@ -89,8 +89,7 @@ public static <T extends Comparable<T>> T max(Collection<T> coll) {
 如果您查看 `Java` 库中此方法的签名，您将看到一些内容看起来比上面的代码更糟糕：
 
 ```java
-<T extends Object & Comparable<? super T>>
-T max(Collection<? extends T> coll)
+<T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
 ```
 
 这是为了向后兼容，正如我们将在 `3.6` 节结束时所解释的那样。
