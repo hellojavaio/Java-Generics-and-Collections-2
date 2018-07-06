@@ -15,12 +15,12 @@
 public static <S extends Readable & Closeable,T extends Appendable & Closeable> void copy(S src, T trg, int size) throws IOException {
   try {
     CharBuffer buf = CharBuffer.allocate(size);
-			int i = src.read(buf);
-			while (i >= 0) {
-				buf.flip(); // prepare buffer for writing
-				trg.append(buf);
-				buf.clear(); // prepare buffer for reading
-				i = src.read(buf);
+		int i = src.read(buf);
+		while (i >= 0) {
+			buf.flip(); // prepare buffer for writing
+			trg.append(buf);
+			buf.clear(); // prepare buffer for reading
+			i = src.read(buf);
 		}
 	} finally {
 		src.close();
@@ -36,13 +36,13 @@ public static <S extends Readable & Closeable,T extends Appendable & Closeable> 
 例如，可以使用两个文件作为源和目标或使用包含在缓冲区中的相同两个文件作为源和目标来调用此方法：
 
 ```java
- int size = 32;
- FileReader r = new FileReader("file.in");
- FileWriter w = new FileWriter("file.out");
- copy(r,w,size);
- BufferedReader br = new BufferedReader(new FileReader("file.in"));
- BufferedWriter bw = new BufferedWriter(new FileWriter("file.out"));
- copy(br,bw,size);
+int size = 32;
+FileReader r = new FileReader("file.in");
+FileWriter w = new FileWriter("file.out");
+copy(r,w,size);
+BufferedReader br = new BufferedReader(new FileReader("file.in"));
+BufferedWriter bw = new BufferedWriter(new FileWriter("file.out"));
+copy(br,bw,size);
 ```
 
 其他可能的来源包括 `FilterReader`，`PipedReader` 和 `StringReader`，其他可能的目标包括 `FilterWriter`，`PipedWriter` 和 `PrintStream`。但是你
@@ -56,7 +56,7 @@ public static void copy(Reader src, Writer trg, int size)
 ```
 
 这将确实承认大部分相同的课程，但不是全部。 例如，`PrintStream` 实现了 `Appendable` 和 `Closeable`，但不是 `Writer` 的子类。 此外，你不能排除一些
-使用你的代码的程序员可能有他或她自己的自定义类，比如实现 `Readable` 和 `Closeable`，但不是 `Reader`的子类。
+使用你的代码的程序员可能有他或她自己的自定义类，比如实现 `Readable` 和 `Closeable`，但不是 `Reader` 的子类。
 
 当出现多个界限时，第一个界限用于擦除。我们在第3.2节中提到了这一点：
 
