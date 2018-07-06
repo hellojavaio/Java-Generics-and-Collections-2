@@ -46,11 +46,11 @@ class Point {
 }
 ```
 
-现在我们可以克隆没有转换：
+现在我们可以克隆无须转换：
 
 ```java
-  Point p = new Point(1,2);
-  Point q = p.clone();
+Point p = new Point(1,2);
+Point q = p.clone();
 ```
 
 协变覆盖使用前一节中描述的桥接技术来实现。 和以前一样，如果您应用反射，您可以看到桥。 这里是在类 `Point` 中找到名称为 `clone` 的所有方法的代码：
@@ -64,8 +64,8 @@ for (Method m : Point.class.getMethods())
 在Point类的协变版本上运行此代码会产生以下输出：
 
 ```java
-  public Point Point.clone()
-  public bridge java.lang.Object Point.clone()
+public Point Point.clone()
+public bridge java.lang.Object Point.clone()
 ```
 
 这里桥接技术利用了这样一个事实，即在类文件中，同一类的两个方法可能具有相同的参数签名，尽管这在 `Java` 源代码中是不允许的。 桥接方法只是简单地调用第一
