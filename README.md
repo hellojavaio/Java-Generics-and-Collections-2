@@ -34,7 +34,7 @@
     * [3.4 比较](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch03/04_Comparator.md#比较)
     * [3.5 枚举类型](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch03/05_Enumerated_Types.md#枚举类型)
     * [3.6 多重界限](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch03/06_Multiple_Bounds.md#多重界限)
-    * [3.7 桥梁](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch03/07_Bridges.md#桥梁)
+    * [3.7 桥接器](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch03/07_Bridges.md#桥接器)
     * [3.8 协变覆盖](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch03/08_Covariant_Overriding.md#协变覆盖)
   * [第四章\(声明\)](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch04/00_Declarations.md#声明)
     * [4.1 构造函数](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch04/01_Constructors.md#构造函数)
