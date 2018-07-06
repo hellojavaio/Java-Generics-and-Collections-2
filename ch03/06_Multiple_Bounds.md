@@ -12,22 +12,21 @@
 目标：
 
 ```java
-   public static <S extends Readable & Closeable,T extends Appendable & Closeable> void copy(S src, T trg, int size) 
-   throws IOException {
-     try {
-	   CharBuffer buf = CharBuffer.allocate(size);
-	   int i = src.read(buf);
-	   while (i >= 0) {
-		 buf.flip(); // prepare buffer for writing
-		 trg.append(buf);
-		 buf.clear(); // prepare buffer for reading
-		 i = src.read(buf);
-           }
-       } finally {
-	   src.close();
-	   trg.close();
-       }
-     }   
+public static <S extends Readable & Closeable,T extends Appendable & Closeable> void copy(S src, T trg, int size) throws IOException {
+  try {
+    CharBuffer buf = CharBuffer.allocate(size);
+			int i = src.read(buf);
+			while (i >= 0) {
+				buf.flip(); // prepare buffer for writing
+				trg.append(buf);
+				buf.clear(); // prepare buffer for reading
+				i = src.read(buf);
+		}
+	} finally {
+		src.close();
+		trg.close();
+	}
+}   
 ```
 
 此方法从源重复读入缓冲区并从缓冲区追加到目标中。 当源为空时，它关闭源和目标。 （这个例子偏离了最佳做法，因为这些文件是在不同于打开文件的块中关闭
@@ -37,13 +36,13 @@
 例如，可以使用两个文件作为源和目标或使用包含在缓冲区中的相同两个文件作为源和目标来调用此方法：
 
 ```java
-   int size = 32;
-   FileReader r = new FileReader("file.in");
-   FileWriter w = new FileWriter("file.out");
-   copy(r,w,size);
-   BufferedReader br = new BufferedReader(new FileReader("file.in"));
-   BufferedWriter bw = new BufferedWriter(new FileWriter("file.out"));
-   copy(br,bw,size);
+ int size = 32;
+ FileReader r = new FileReader("file.in");
+ FileWriter w = new FileWriter("file.out");
+ copy(r,w,size);
+ BufferedReader br = new BufferedReader(new FileReader("file.in"));
+ BufferedWriter bw = new BufferedWriter(new FileWriter("file.out"));
+ copy(br,bw,size);
 ```
 
 其他可能的来源包括 `FilterReader`，`PipedReader` 和 `StringReader`，其他可能的目标包括 `FilterWriter`，`PipedWriter` 和 `PrintStream`。但是你
@@ -53,7 +52,7 @@
 `Writer` 的子类。 所以你可能想知道为什么我们不像这样简化方法签名：
 
 ```java
-   public static void copy(Reader src, Writer trg, int size)
+public static void copy(Reader src, Writer trg, int size)
 ```
 
 这将确实承认大部分相同的课程，但不是全部。 例如，`PrintStream` 实现了 `Appendable` 和 `Closeable`，但不是 `Writer` 的子类。 此外，你不能排除一些
@@ -62,7 +61,7 @@
 当出现多个界限时，第一个界限用于擦除。我们在第3.2节中提到了这一点：
 
 ```java
-   public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
+public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
 ```
 
 如果没有突出显示的文本，`max` 的已擦除类型签名将具有 `Comparable` 作为返回类型，而在旧库中，返回类型为 `Object`。 第 `5` 章和第 `8.4` 节将进一步
