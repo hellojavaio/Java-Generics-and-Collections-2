@@ -15,17 +15,17 @@
 public static <S extends Readable & Closeable,T extends Appendable & Closeable> void copy(S src, T trg, int size) throws IOException {
   try {
     CharBuffer buf = CharBuffer.allocate(size);
-		int i = src.read(buf);
-		while (i >= 0) {
-			buf.flip(); // prepare buffer for writing
-			trg.append(buf);
-			buf.clear(); // prepare buffer for reading
-			i = src.read(buf);
-		}
-	} finally {
-		src.close();
-		trg.close();
-	}
+    int i = src.read(buf);
+    while (i >= 0) {
+      buf.flip(); // prepare buffer for writing
+      trg.append(buf);
+      buf.clear(); // prepare buffer for reading
+      i = src.read(buf);
+    }
+  } finally {
+    src.close();
+    trg.close();
+  }
 }   
 ```
 
