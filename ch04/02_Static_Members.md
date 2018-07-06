@@ -7,9 +7,9 @@
 反射：
 
 ```java
-   List<Integer> ints = Arrays.asList(1,2,3);
-   List<String> strings = Arrays.asList("one","two");
-   assert ints.getClass() == strings.getClass();
+  List<Integer> ints = Arrays.asList(1,2,3);
+  List<String> strings = Arrays.asList("one","two");
+  assert ints.getClass() == strings.getClass();
 ```
 
 这里在运行时与整数列表关联的类与与字符串列表关联的类相同。
@@ -20,16 +20,26 @@
 例如，下面是一个类 `Cell<T>`，其中每个单元格都有一个整型标识符和一个类型为 `T` 的值：
 
 ```java
-   class Cell<T> {
-     private final int id;
-     private final T value;
-     private static int count = 0;
-     private static synchronized int nextId() { return count++; }
-     public Cell(T value) { this.value=value; id=nextId(); }
-     public T getValue() { return value; }
-     public int getId() { return id; }
-     public static synchronized int getCount() { return count; }
-   }
+class Cell<T> {
+  private final int id;
+  private final T value;
+  private static int count = 0;
+  private static synchronized int nextId() { 
+    return count++; 
+  }
+  public Cell(T value) { 
+    this.value=value; id=nextId(); 
+  }
+  public T getValue() { 
+    return value; 
+  }
+  public int getId() { 
+    return id; 
+  }
+  public static synchronized int getCount() { 
+    return count; 
+  }
+}
 ```
 
 静态字段 `count` 用于为每个单元分配不同的标识符。 静态 `nextId` 方法被同步，以确保即使在多个线程的情况下也能生成唯一的标识符。 静态 `getCount` 方
@@ -38,9 +48,9 @@
 这里是分配包含字符串的单元格和包含整数的单元格的代码，它们分别分配了标识符 `0` 和 `1`：
 
 ```java
-   Cell<String> a = new Cell<String>("one");
-   Cell<Integer> b = new Cell<Integer>(2);
-   assert a.getId() == 0 && b.getId() == 1 && Cell.getCount() == 2;
+  Cell<String> a = new Cell<String>("one");
+  Cell<Integer> b = new Cell<Integer>(2);
+  assert a.getId() == 0 && b.getId() == 1 && Cell.getCount() == 2;
 ```
 
 静态成员在类的所有实例中共享，因此在分配字符串或整数单元格时，相同的计数会递增。
@@ -48,9 +58,9 @@
 由于静态成员独立于任何类型参数，因此在访问静态成员时，我们不允许使用类型参数跟随类名称：
 
 ```java
-   Cell.getCount(); // ok
-   Cell<Integer>.getCount(); // 编译报错
-   Cell<?>.getCount(); // 编译报错
+  Cell.getCount(); // ok
+  Cell<Integer>.getCount(); // 编译报错
+  Cell<?>.getCount(); // 编译报错
 ```
 
 计数是静态的，所以它是整个类的一个属性，而不是任何特定的实例。
@@ -58,34 +68,40 @@
 出于同样的原因，您不能在静态成员中的任何地方引用类型参数。 以下是 `Cell` 的第二个版本，它试图使用一个静态变量来保存存储在任何单元中的所有值的列表：
 
 ```java
-   class Cell2<T> {
-     private final T value;
-     private static List<T> values = new ArrayList<T>(); // illegal
-     public Cell(T value) { this.value=value; values.add(value); }
-     public T getValue() { return value; }
-     public static List<T> getValues() { return values; } // illegal
-   }
+class Cell2<T> {
+  private final T value;
+  private static List<T> values = new ArrayList<T>(); // illegal
+  public Cell(T value) { this.value=value; values.add(value); }
+  public T getValue() { return value; }
+  public static List<T> getValues() { return values; } // illegal
+}
 ```
 
 由于类可能在不同的地方使用不同的类型参数，因此在声明静态字段值或静态方法 `getValues()` 时引用 `T` 是没有意义的，并且这些行在编译时会报告为错误。如果
 我们想要一个单元格中保存的所有值的列表，那么我们需要使用一个对象列表，如下面的变体所示：
 
 ```java
-   class Cell2<T> {
-     private final T value;
-     private static List<Object> values = new ArrayList<Object>(); // ok
-     public Cell(T value) { this.value=value; values.add(value); }
-     public T getValue() { return value; }
-     public static List<Object> getValues() { return values; } // ok
-   }
+class Cell2<T> {
+  private final T value;
+  private static List<Object> values = new ArrayList<Object>(); // ok
+  public Cell(T value) { 
+    this.value=value; values.add(value); 
+  }
+  public T getValue() { 
+    return value; 
+  }
+  public static List<Object> getValues() { 
+    return values; 
+  } // ok
+}
 ```
 
 这段代码编译和运行没有任何困难：
 
 ```java
-   Cell2<String> a = new Cell2<String>("one");
-   Cell2<Integer> b = new Cell2<Integer>(2);
-   assert Cell2.getValues().toString().equals("[one, 2]");
+Cell2<String> a = new Cell2<String>("one");
+Cell2<Integer> b = new Cell2<Integer>(2);
+assert Cell2.getValues().toString().equals("[one, 2]");
 ```
 
 《《《 [下一节](03_Nested_Classes.md)      <br/>
