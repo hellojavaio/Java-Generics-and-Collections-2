@@ -19,49 +19,53 @@
 例 `3-6`。 传统的可比较整数的代码
 
 ```java
-   interface Comparable {
-     public int compareTo(Object o);
-   }
-   class Integer implements Comparable {
-     private final int value;
-     public Integer(int value) { this.value = value; }
-     public int compareTo(Integer i) {
-       return (value < i.value) ? -1 : (value == i.value) ? 0 : 1;
-     }
-     public int compareTo(Object o) {
-       return compareTo((Integer)o);
-     }
-   }
+interface Comparable {
+  public int compareTo(Object o);
+}
+class Integer implements Comparable {
+  private final int value;
+  public Integer(int value) { 
+    this.value = value; 
+  }
+  public int compareTo(Integer i) {
+    return (value < i.value) ? -1 : (value == i.value) ? 0 : 1;
+  }
+  public int compareTo(Object o) {
+    return compareTo((Integer)o);
+  }
+}
 ```
 
 例 `3-7`。 可比较整数的通用代码
 
 ```java
-   interface Comparable<T> {
-     public int compareTo(T o);
-   }
-   class Integer implements Comparable<Integer> {
-	 private final int value;
-	 public Integer(int value) { this.value = value; }
-	 public int compareTo(Integer i) {
-	   return (value < i.value) ? -1 : (value == i.value) ? 0 : 1;
-	 }
-   }
+interface Comparable<T> {
+  public int compareTo(T o);
+}
+class Integer implements Comparable<Integer> {
+  private final int value;
+  public Integer(int value) { 
+    this.value = value; 
+  }
+  public int compareTo(Integer i) {
+    return (value < i.value) ? -1 : (value == i.value) ? 0 : 1;
+  }
+}
 ```
 
 如果您应用反射，您可以看到桥。 这里是代码，它使用 `toGenericString` 来打印方法的通用签名（参见 `7.5` 节），在 `Integer` 类中查找名称为 `compareTo` 的所有方法。
 
 ```java
-   for (Method m : Integer.class.getMethods())
-     if (m.getName().equals("compareTo"))
-	 System.out.println(m.toGenericString());
+for (Method m : Integer.class.getMethods())
+  if (m.getName().equals("compareTo"))
+    System.out.println(m.toGenericString());
 ```
 
 在通用版本的 `Integer` 类上运行此代码会产生以下输出：
 
 ```java
-   public int Integer.compareTo(Integer)
-   public bridge int Integer.compareTo(java.lang.Object)
+public int Integer.compareTo(Integer)
+public bridge int Integer.compareTo(java.lang.Object)
 ```
 
 这确实包含两种方法，一种是采用 `Integer` 类型参数的声明方法，另一种是采用 `Object` 类型参数的桥接方法。 （截至撰写本文时，`Sun JVM` 打印的是 
