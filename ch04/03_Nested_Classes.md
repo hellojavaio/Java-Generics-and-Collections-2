@@ -30,7 +30,9 @@ public class LinkedCollection<E> extends AbstractCollection<E> {
     return size; 
   }
   public boolean add(E elt) {
-    last.next = new Node(elt); last = last.next; size++;
+    last.next = new Node(elt); 
+    last = last.next; 
+    size++;
     return true;
   }
   public Iterator<E> iterator() {
@@ -81,7 +83,9 @@ class LinkedCollection<E> extends AbstractCollection<E> {
     return size; 
   }
   public boolean add(E elt) {
-    last.next = new Node<E>(elt); last = last.next; size++;
+    last.next = new Node<E>(elt); 
+    last = last.next; 
+    size++;
     return true;
   }
   private static class LinkedIterator<T> implements Iterator<T> {
