@@ -10,39 +10,39 @@
 这里是第二次尝试将集合转换为数组，这次使用未经检查的转换，并添加了测试代码：
 
 ```java
-   import java.util.*;
-    class Wrong {
-      public static<T> T[] toArray(Collection<T> c) {
-        T[] a = (T[])new Object[c.size()]; // 未经检查的转换
-        int i=0; for (T x : c) a[i++] = x;
-        return a;
-      }
-      public static void main(String[] args) {
-        List<String> strings = Arrays.asList("one","two");
-        String[] a = toArray(strings); // 类抛出错误
-      }
-    }
+import java.util.*;
+class Wrong {
+  public static<T> T[] toArray(Collection<T> c) {
+    T[] a = (T[])new Object[c.size()]; // 未经检查的转换
+    int i=0; for (T x : c) a[i++] = x;
+    return a;
+  }
+  public static void main(String[] args) {
+    List<String> strings = Arrays.asList("one","two");
+    String[] a = toArray(strings); // 类抛出错误
+  }
+}
 ```
 
 上一节中的代码使用短语 `new T[c.size()]` 创建数组，导致编译器报告通用数组创建错误。 新代码改为分配一个对象数组并将其转换为 `T []` 类型，这会导致编
 译器发出未经检查的强制转换警告：
 
 ```java
-   % javac -Xlint Wrong.java
-   Wrong.java:4: warning: [unchecked] 未经检查的转换
-   found : java.lang.Object[]
-   required: T[]
-		  T[] a = (T[])new Object[c.size()]; // 未经检查的转换
-					   ^
-   1 warning
+% javac -Xlint Wrong.java
+Wrong.java:4: warning: [unchecked] 未经检查的转换
+found : java.lang.Object[]
+required: T[]
+	  T[] a = (T[])new Object[c.size()]; // 未经检查的转换
+				   ^
+1 warning
 ```
 
 正如你从这个程序选择的名字中猜出的那样，这个警告不应该被忽略。 事实上，运行这个程序给出了以下结果：
 
 ```java
-   % java Wrong
-   Exception in thread "main" java.lang.ClassCastException: [Ljava.lang.Object;
-		   at Wrong.main(Wrong.java:11)
+% java Wrong
+Exception in thread "main" java.lang.ClassCastException: [Ljava.lang.Object;
+	   at Wrong.main(Wrong.java:11)
 ```
 
 难懂的短语 `[Ljava.lang.Object` 是数组的指定类型，其中 `[L` 表示它是引用类型的数组，而 `java.lang.Object` 是数组的组件类型。 类转换错误消息引用包
@@ -52,18 +52,18 @@
 在调用 `toArray` 时插入相应的强制转换，从而生成以下等效代码：
 
 ```java
-   import java.util.*;
-    class Wrong {
-      public static Object[] toArray(Collection c) {
-        Object[] a = (Object[])new Object[c.size()]; // unchecked cast
-        int i=0; for (Object x : c) a[i++] = x;
-        return a;
-      }
-      public static void main(String[] args) {
-        List strings = Arrays.asList(args);
-        String[] a = (String[])toArray(strings); // class cast error
-      }
-    }
+import java.util.*;
+class Wrong {
+  public static Object[] toArray(Collection c) {
+    Object[] a = (Object[])new Object[c.size()]; // unchecked cast
+    int i=0; for (Object x : c) a[i++] = x;
+    return a;
+  }
+  public static void main(String[] args) {
+    List strings = Arrays.asList(args);
+    String[] a = (String[])toArray(strings); // class cast error
+  }
+}
 ```
 
 类型擦除将未选中的转换转换为 `T []` 转换为 `Object []` 的转换，并在调用 `toArray` 时将转换插入 `String []`。 运行时，这些转换中的第一个成功。 但
@@ -87,25 +87,26 @@
 以下是实施替代方案的代码：
 
 ```java
-   import java.util.*;
-    class Right {
-      public static <T> T[] Array(toCollection<T> c, T[] a) {
-        if (a.length< c.size())
-        a = (T[])java.lang.reflect.Array. // unchecked cast
-        newInstance(a.get Class().getComponentType(), c.size());
-        int i=0; for (T x : c) a[i++] = x;
-        if (i< a.length) a[i] = null;
-        return a;
-      }
-      public static void main(String[] args) {
-        List<String> strings = Arrays.asList("one", "two");
-        String[] a = toArray(strings, new String[0]);
-        assert Arrays.toString(a).equals("[one, two]");
-        String[] b = new String[] { "x","x","x","x" };
-        toArray(strings, b);
-        assert Arrays.toString(b).equals("[one, two, null, x]");
-      }
-    }
+import java.util.*;
+class Right {
+  public static <T> T[] Array(toCollection<T> c, T[] a) {
+    if (a.length< c.size())
+    a = (T[])java.lang.reflect.Array. // unchecked cast
+    newInstance(a.get Class().getComponentType(), c.size());
+    int i=0; for (T x : c) a[i++] = x;
+    if (i< a.length) 
+      a[i] = null;
+    return a;
+  }
+  public static void main(String[] args) {
+    List<String> strings = Arrays.asList("one", "two");
+    String[] a = toArray(strings, new String[0]);
+    assert Arrays.toString(a).equals("[one, two]");
+    String[] b = new String[] { "x","x","x","x" };
+    toArray(strings, b);
+    assert Arrays.toString(b).equals("[one, two, null, x]");
+  }
+}
 ```
 
 这使用反射库中的三个方法来分配一个与旧数组具有相同组件类型的新数组：方法 `getClass`（在 `java.lang.Object` 中）返回表示数组类型的 `Class` 对象 
@@ -127,11 +128,11 @@
 集合框架包含两个将集合转换为数组的方法，类似于我们刚刚讨论的那个：
 
 ```java
-   interface Collection<E> {
-   ...
-     public Object[] toArray();
-     public <T> T[] toArray(T[] a)
-   }
+interface Collection<E> {
+  ...
+  public Object[] toArray();
+  public <T> T[] toArray(T[] a)
+}
 ```
 
 第一个方法返回一个带有指定组件类型 `Object` 的数组，而第二个方法从参数数组中复制指定组件类型，就像上面的静态方法一样。 就像那种方法一样，如果有空间
@@ -153,20 +154,20 @@
 需要未经检查的转换。
 
 ```java
-   import java.util.*;
-    class RightWithClass {
-      public static <T> T[] toArray(Collection<T> c, Class<T> k) {
-        T[] a = (T[])java.lang.reflect.Array. // unchecked cast
-        newInstance(k, c.size());
-        int i=0; for (T x : c) a[i++] = x;
-        return a;
-      }
-      public static void main(String[] args) {
-        List<String> strings = Arrays.asList("one", "two");
-        String[] a = toArray(strings, String.class);
-        assert Arrays.toString(a).equals("[one, two]");
-      }
-    }
+import java.util.*;
+class RightWithClass {
+  public static <T> T[] toArray(Collection<T> c, Class<T> k) {
+    T[] a = (T[])java.lang.reflect.Array. // unchecked cast
+    newInstance(k, c.size());
+    int i=0; for (T x : c) a[i++] = x;
+    return a;
+  }
+  public static void main(String[] args) {
+    List<String> strings = Arrays.asList("one", "two");
+    String[] a = toArray(strings, String.class);
+    assert Arrays.toString(a).equals("[one, two]");
+  }
+}
 ```
 
 转换方法现在传递类标记 `String.class` 而不是字符串数组。
