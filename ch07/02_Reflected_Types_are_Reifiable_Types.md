@@ -3,13 +3,13 @@
 
 ### 反射类型是可维持类型
 
-反思使程序可以使用物化类型信息。 因此，必要的是，每个类别标记对应于可确定类型。 如果您尝试反映参数化类型，则会获得相应原始类型的指定信息：
+反射使程序可以使用物化类型信息。 因此，必要的是，每个类别标记对应于可确定类型。 如果您尝试反映参数化类型，则会获得相应原始类型的指定信息：
 
 ```java
-   List<Integer> ints = new ArrayList<Integer>();
-   List<String> strs = new ArrayList<String>();
-   assert ints.get Class() == strs.getClass();
-   assert ints.getClass() == ArrayList.class;
+  List<Integer> ints = new ArrayList<Integer>();
+  List<String> strs = new ArrayList<String>();
+  assert ints.get Class() == strs.getClass();
+  assert ints.getClass() == ArrayList.class;
 ```
 
 这里整型的类型列表和字符串的类型列表都由同一个类标记表示，其中的类文字被写入 `ArrayList.class`。
@@ -21,9 +21,9 @@
 中 `| T |` 是类型 `T` 的删除。 这是一个例子：
 
 ```java
-   List<Integer> ints = new ArrayList<Integer>();
-   Class<? extends List> k = ints.getClass();
-   assert k == ArrayList.class;
+  List<Integer> ints = new ArrayList<Integer>();
+  Class<? extends List> k = ints.getClass();
+  assert k == ArrayList.class;
 ```
 
 这里表达式 `int` 具有 `List<Integer>` 类型，所以表达式 `int.getClass()` 的类型为 `Class <? extends List>`; 这是因为擦除 `List<Integer>` 会生
@@ -32,27 +32,27 @@
 类文字也受到限制; 在类文字中为类型提供类型参数甚至在语法上都是无效的。 因此，以下片段是非法的：
 
 ```java
-   class ClassLiteral {
-     public Class<?> k = List<Integer>.class; // syntax error
-   }
+class ClassLiteral {
+  public Class<?> k = List<Integer>.class; // syntax error
+}
 ```
 
 事实上，`Java` 的语法使得前面一个短语难以解析，并且可能触发语法错误级联：
 
 ```java
-   % javac ClassLiteral.java
-   ClassLiteral.java:2: illegal start of expression
-     public Class<?> k = List<Integer>.class; // syntax error
+  % javac ClassLiteral.java
+  ClassLiteral.java:2: illegal start of expression
+    public Class<?> k = List<Integer>.class; // syntax error
+								  ^
+  ClassLiteral.java:2: ';' expected
+    public Class<?> k = List<Integer>.class; // syntax error
+								  ^
+  ClassLiteral.java:2: <identifier> expected
+    public Class<?> k = List<Integer>.class; // syntax error
 									  ^
-   ClassLiteral.java:2: ';' expected
-     public Class<?> k = List<Integer>.class; // syntax error
-									  ^
-   ClassLiteral.java:2: <identifier> expected
-     public Class<?> k = List<Integer>.class; // syntax error
-									  ^
-   ClassLiteral.java:4: '}' expected
-   ^
-   4 errors
+  ClassLiteral.java:4: '}' expected
+  ^
+  4 errors
 ```
 
 解析器在这个短语中遇到了很多麻烦，当它到达文件末尾时仍然感到困惑！
