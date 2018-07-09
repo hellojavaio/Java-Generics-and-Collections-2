@@ -9,24 +9,23 @@
 在这种情况下，更新库以在其方法签名中使用参数化类型是有意义的，但不能更改方法体。 有三种方法可以实现这一点：对源代码进行最小限度的更改，创建存根文件或
 使用包装器。我们建议在仅有权访问类时有权访问源代码和使用存根时使用最少的更改 文件，我们建议不要使用包装。
 
-
-### 用最小的变化来演变一个类库
+#### 用最小的变化来演变一个类库
 
 示例 `5-3` 显示了最小更改技术。 这里库的来源已经被编辑过，但只是为了改变方法签名，而不是方法体。 所需的确切更改以粗体显示。 当您有权访问源时，推荐使
 用这种技术来使库变得通用。
 
 确切地说，所需的改变是：
 
-   - 根据需要为接口或类声明添加类型参数（对于接口 `Stack<E>` 和类 `ArrayStack<E>`）
-    
-   - 将类型参数添加到扩展或实现子句中的任何新参数化接口或类（对 `ArrayStack<E>` 的 `implements` 子句中的 `Stack<E>`），
-    
-   - 根据需要为每个方法签名添加类型参数（用于在 `Stack<E>` 和 `ArrayStack<E>` 中进行推入和弹出操作，并在堆栈中进行反向操作）
-    
-   - 在返回类型包含一个类型参数（对于在 `ArrayStack<E>` 中弹出，其中返回类型为 `E`）的每个返回中添加一个未经检查的强制转换 - 没有此强制转换的情况
-   下，您将得到一个错误而不是未经检查的警告
-    
-   - 可选择添加批注以抑制未经检查的警告（对于 `ArrayStack<E>` 和 `Stacks`）
+- 根据需要为接口或类声明添加类型参数（对于接口 `Stack<E>` 和类 `ArrayStack<E>`）
+
+- 将类型参数添加到扩展或实现子句中的任何新参数化接口或类（对 `ArrayStack<E>` 的 `implements` 子句中的 `Stack<E>`），
+
+- 根据需要为每个方法签名添加类型参数（用于在 `Stack<E>` 和 `ArrayStack<E>` 中进行推入和弹出操作，并在堆栈中进行反向操作）
+
+- 在返回类型包含一个类型参数（对于在 `ArrayStack<E>` 中弹出，其中返回类型为 `E`）的每个返回中添加一个未经检查的强制转换 - 没有此强制转换的情况
+下，您将得到一个错误而不是未经检查的警告
+
+- 可选择添加批注以抑制未经检查的警告（对于 `ArrayStack<E>` 和 `Stacks`）
 	
 值得注意的是我们不需要做出一些改变。 在方法体中，我们可以保留 `Object` 的出现（参见 `ArrayStack` 中的第一行 `pop`），并且我们不需要为任何出现的raw
 类型添加类型参数（请参阅 `Stacks` 中的第一行）。 此外，只有当返回类型是类型参数（如 `pop` 中）时，我们才需要将转换添加到 `return` 子句中，但是当返
@@ -69,39 +68,39 @@
 例 `5-3`。 使用最小的变化来发展一个类库
 
 ```
-   m/Stack.java:
-    interface Stack<E> {
-      public boolean empty();
-      public void push(E elt);
-      public E pop();
-    }
-   
-   m/ArrayStack.java:
-     @SuppressWarnings("unchecked")
-     class ArrayStack<E> implements Stack<E> {
-	   private List list;
-       public ArrayStack() { list = new ArrayList(); }
-       public boolean empty() { return list.size() == 0; }
-       public void push(E elt) { list.add(elt); } // unchecked call
-       public E pop() {
-		 Object elt = list.remove(list.size()-1);
-		 return (E)elt; // unchecked cast
+m/Stack.java:
+interface Stack<E> {
+	public boolean empty();
+	public void push(E elt);
+	public E pop();
+}
+
+m/ArrayStack.java:
+ @SuppressWarnings("unchecked")
+ class ArrayStack<E> implements Stack<E> {
+ private List list;
+	 public ArrayStack() { list = new ArrayList(); }
+	 public boolean empty() { return list.size() == 0; }
+	 public void push(E elt) { list.add(elt); } // unchecked call
+	 public E pop() {
+ Object elt = list.remove(list.size()-1);
+ return (E)elt; // unchecked cast
+}
+	public String toString() { return "stack"+list.toString(); }
+}
+
+m/Stacks.java:
+@SuppressWarnings("unchecked")
+class Stacks {
+	public static <T> Stack<T> reverse(Stack<T> in) {
+	  Stack out = new ArrayStack();
+	  while (!in.empty()) {
+		  Object elt = in.pop();
+	    out.push(elt); // unchecked call
 	  }
-      public String toString() { return "stack"+list.toString(); }
-    }
-   
-   m/Stacks.java:
-    @SuppressWarnings("unchecked")
-    class Stacks {
-      public static <T> Stack<T> reverse(Stack<T> in) {
-	    Stack out = new ArrayStack();
-	    while (!in.empty()) {
-	      Object elt = in.pop();
-		  out.push(elt); // unchecked call
-        }
-	    return out; // unchecked conversion
-      }
-   }
+	  return out; // unchecked conversion
+	}
+}
 ```
 
 消除（而不是抑制）编译库生成的未经检查的警告的唯一方法是更新整个库源以使用泛型。 这是完全合理的，因为除非更新整个源代码，否则编译器无法检查声明的通用
@@ -111,33 +110,41 @@
 例 `5-4`。 使用存根发展类库
 
 ```java
-   s/Stack.java:
-    interface Stack<E> {
-      public boolean empty();
-      public void push(E elt);
-      public E pop();
-    }
-	
-   s/StubException.java:
-    class StubException extends UnsupportedOperationException {}	
-	
-   s/ArrayStack.java:
-    class ArrayStack<E> implements Stack<E> {
-      public boolean empty() { throw new StubException(); }
-      public void push(E elt) { throw new StubException(); }
-      public E pop() { throw new StubException(); }
-      public String toString() { throw new StubException(); }
-    }	
-	
-   s/Stacks.java:
-    class Stacks {
-      public static <T> Stack<T> reverse(Stack<T> in) {
-        throw new StubException();
-      }
-    }	
+s/Stack.java:
+interface Stack<E> {
+  public boolean empty();
+  public void push(E elt);
+  public E pop();
+}
+
+s/StubException.java:
+class StubException extends UnsupportedOperationException {}	
+
+s/ArrayStack.java:
+class ArrayStack<E> implements Stack<E> {
+  public boolean empty() { 
+	  throw new StubException(); 
+	}
+  public void push(E elt) { 
+	  throw new StubException(); 
+	}
+  public E pop() { 
+	  throw new StubException(); 
+	}
+  public String toString() { 
+	  throw new StubException(); 
+	}
+}	
+
+s/Stacks.java:
+class Stacks {
+  public static <T> Stack<T> reverse(Stack<T> in) {
+    throw new StubException();
+  }
+}	
 ```
 
-### 使用存根演化库
+#### 使用存根演化库
 
 示例 `5-4` 中显示了存根技术。 在这里，我们编写了具有通用签名但不包含 `body` 的存根。我们针对通用签名编译通用客户端，但针对遗留类文件运行代码。 这种
 技术适用于源未发布或其他人负责维护源的情况。
@@ -149,14 +156,14 @@
 件（比如在目录 `l` 中）进行这种操作。
 
 ```java
-   % javac -classpath s g/Client.java
-   % java -ea -classpath l g/Client
+% javac -classpath s g/Client.java
+% java -ea -classpath l g/Client
 ```
 
 再说一遍，这是有效的，因为为传统文件和通用文件生成的类文件基本相同，除了关于类型的辅助信息。 特别是，客户端编译的通用签名与传统签名（除了关于类型参数
 的辅助信息）相匹配，因此代码可以成功运行并提供与以前相同的答案。
 
-### 使用包装进化库
+#### 使用包装进化库
 
 例 `5-5` 给出了这个包装技术。 在这里，我们保留原有的源文件和类文件不变，并提供通过代理访问遗留类的通用包装类。我们主要介绍这种技术，主要是为了警告您
 不要使用它 - 通常最好使用最少的更改或存根。
@@ -188,48 +195,61 @@
 例 `5-5`。 使用包装器发展一个库
 
 ```java
-   //不要这样做---不推荐使用包装类
-   l/Stack.java, l/Stacks.java, l/ArrayStack.java:
-   // As in Example 5.1
-   w/GenericStack.java:
-    interface GenericStack<E> {
-      public Stack unwrap();
-      public boolean empty();
-      public void push(E elt);
-      public E pop();
-    }
-   w/GenericStackWrapper.java:
-    @SuppressWarnings("unchecked")
-    class GenericStackWrapper<E> implements GenericStack<E> {
-      private Stack stack;
-      public GenericStackWrapper(Stack stack) { this.stack = stack; }
-      public Stack unwrap() { return stack; }
-      public boolean empty() { return stack.empty(); }
-      public void push(E elt) { stack.push(elt); }
-      public E pop() { return (E)stack.pop(); } // unchecked cast
-      public String toString() { return stack.toString(); }
-    }
-   w/GenericStacks.java:
-    class GenericStacks {
-      public static <T> GenericStack<T> reverse(GenericStack<T> in) {
-      Stack rawIn = in.unwrap();
-      Stack rawOut = Stacks.reverse(rawIn);
-      return new GenericStackWrapper<T>(rawOut);
-      }
-    }
-   w/Client.java:
-    class Client {
-      public static void main(String[] args) {
-        GenericStack<Integer> stack = new GenericStackWrapper<Integer>(new ArrayStack());
-        for (int i = 0; i<4; i++) stack.push(i);
-        assert stack.toString().equals("stack[0, 1, 2, 3]");
-        int top = stack.pop();
-        assert top == 3 && stack.toString().equals("stack[0, 1, 2]");
-        GenericStack<Integer> reverse = GenericStacks.reverse(stack);
-        assert stack.empty();
-        assert reverse.toString().equals("stack[2, 1, 0]");
-      }
-    }
+//不要这样做---不推荐使用包装类
+l/Stack.java, l/Stacks.java, l/ArrayStack.java:
+// As in Example 5.1
+w/GenericStack.java:
+interface GenericStack<E> {
+  public Stack unwrap();
+  public boolean empty();
+  public void push(E elt);
+  public E pop();
+}
+w/GenericStackWrapper.java:
+@SuppressWarnings("unchecked")
+class GenericStackWrapper<E> implements GenericStack<E> {
+  private Stack stack;
+  public GenericStackWrapper(Stack stack) { 
+	  this.stack = stack; 
+	}
+  public Stack unwrap() { 
+	  return stack; 
+	}
+  public boolean empty() { 
+	  return stack.empty(); 
+	}
+  public void push(E elt) { 
+	  stack.push(elt); 
+	}
+  public E pop() { 
+	  return (E)stack.pop(); 
+	} // unchecked cast
+  public String toString() { 
+	  return stack.toString(); 
+	}
+}
+w/GenericStacks.java:
+class GenericStacks {
+  public static <T> GenericStack<T> reverse(GenericStack<T> in) {
+    Stack rawIn = in.unwrap();
+    Stack rawOut = Stacks.reverse(rawIn);
+    return new GenericStackWrapper<T>(rawOut);
+  }
+}
+w/Client.java:
+class Client {
+  public static void main(String[] args) {
+    GenericStack<Integer> stack = new GenericStackWrapper<Integer>(new ArrayStack());
+    for (int i = 0; i<4; i++) 
+	    stack.push(i);
+    assert stack.toString().equals("stack[0, 1, 2, 3]");
+    int top = stack.pop();
+    assert top == 3 && stack.toString().equals("stack[0, 1, 2]");
+    GenericStack<Integer> reverse = GenericStacks.reverse(stack);
+    assert stack.empty();
+    assert reverse.toString().equals("stack[2, 1, 0]");
+  }
+}
 ```
 
 包装也呈现更深和更微妙的问题。 如果代码使用对象标识，则可能会出现问题，因为遗留对象和包装对象是不同的。 此外，复杂的结构将需要多层包装纸。 想象一下，
