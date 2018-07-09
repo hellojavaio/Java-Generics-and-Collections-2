@@ -9,10 +9,10 @@
 回想一下，`2.5` 节介绍了为什么需要物化的一个例子：
 
 ```java
-   Integer[] ints = new Integer[] {1};
-   Number[] nums = ints;
-   nums[0] = 1.01; // 数组存储异常
-   int n = ints[0];
+Integer[] ints = new Integer[] {1};
+Number[] nums = ints;
+nums[0] = 1.01; // 数组存储异常
+int n = ints[0];
 ```
 
 这将整数数组赋给一个数组数组，然后尝试将一个 `double` 存储到数组数组中。 该尝试引发数组存储异常，因为该检查与实体类型有关。 这也是一样，因为否则最后
@@ -21,11 +21,10 @@
 下面是一个类似的例子，数组数组被数组列表所取代：
 
 ```java
-   List<Integer>[] intLists
-   = (List<Integer>[])new List[] {Arrays.asList(1)}; // 未经检查的转换
-   List<? extends Number>[] numLists = intLists;
-   numLists[0] = Arrays.asList(1.01);
-   int n = intLists[0].get(0); // 类抛出异常!
+List<Integer>[] intLists = (List<Integer>[])new List[] {Arrays.asList(1)}; // 未经检查的转换
+List<? extends Number>[] numLists = intLists;
+numLists[0] = Arrays.asList(1.01);
+int n = intLists[0].get(0); // 类抛出异常!
 ```
 
 这将整数列表分配给数组列表，然后尝试将双列表存储到数组列表中。 这次尝试的存储不会失败，即使它应该，因为针对被指定类型的检查是不充分的：被指定的信息只
@@ -34,28 +33,27 @@
 例 `6-1`。 避免不可接受类型的数组
 
 ```java
-   DeceptiveLibrary.java:
-   import java.util.*;
-   public class DeceptiveLibrary {
-     public static List<Integer>[] intLists(int size) {
-       List<Integer>[] intLists =
-       (List<Integer>[]) new List[size]; // 未经检查的转换
-       for (int i = 0; i < size; i++)
-       intLists[i] = Arrays.asList(i+1);
-       return ints;
-     }
-   }
-   
-   InnocentClient.java:
-   import java.util.*;
-   public class InnocentClient {
-     public static void main(String[] args) {
-       List<Integer>[] intLists = DeceptiveLibrary.intLists(1);
-       List<? extends Number>[] numLists = intLists;
-       numLists[0] = Arrays.asList(1.01);
-       int i = intLists[0].get(0); // 类抛出异常!
-     }
-   }
+DeceptiveLibrary.java:
+import java.util.*;
+public class DeceptiveLibrary {
+  public static List<Integer>[] intLists(int size) {
+    List<Integer>[] intLists = (List<Integer>[]) new List[size]; // 未经检查的转换
+    for (int i = 0; i < size; i++)
+      intLists[i] = Arrays.asList(i+1);
+    return ints;
+  }
+}
+
+InnocentClient.java:
+import java.util.*;
+public class InnocentClient {
+  public static void main(String[] args) {
+    List<Integer>[] intLists = DeceptiveLibrary.intLists(1);
+    List<? extends Number>[] numLists = intLists;
+    numLists[0] = Arrays.asList(1.01);
+    int i = intLists[0].get(0); // 类抛出异常!
+  }
+}
 ```
 
 例 `6-1` 给出了一个类似的例子，分为两类，以说明设计不佳的图书馆如何为无辜的客户创造问题。 名为 `DeceptiveLibrary` 的第一个类定义了一个静态方法，该
@@ -63,13 +61,13 @@
 `List<Integer>`。 演员阵容会产生一个未经检查的警告：
 
 ```java
-   %javac -Xlint:unchecked DeceptiveLibrary.java
-   DeceptiveLibrary.java:5: warning: [unchecked] unchecked cast
-   found : java.util.List[]
-   required: java.util.List<java.lang.Integer>[]
-		 (List<Integer>[]) new List[size]; // unchecked cast
-						   ^
-   1 warning
+%javac -Xlint:unchecked DeceptiveLibrary.java
+DeceptiveLibrary.java:5: warning: [unchecked] unchecked cast
+found : java.util.List[]
+required: java.util.List<java.lang.Integer>[]
+	 (List<Integer>[]) new List[size]; // unchecked cast
+					   ^
+1 warning
 ```
 
 由于该数组确实是一个整数列表数组，因此该数组似乎是合理的，并且您可能认为可以安全地忽略此警告。 正如我们将要看到的，你无视这个警告！
@@ -78,9 +76,9 @@
 运行代码会用双精度列表覆盖整数列表。 尝试从整数列表中提取整数会导致通过擦除隐式插入的强制转换失败：
 
 ```java
-   %java InnocentClient
-   Exception in thread "main" java.lang.ClassCastException: java.lang.Double
-   at InnocentClient.main(InnocentClient.java:7)
+%java InnocentClient
+Exception in thread "main" java.lang.ClassCastException: java.lang.Double
+at InnocentClient.main(InnocentClient.java:7)
 ```
 
 如前一节所述，此错误消息可能会令人困惑，因为该行看起来不包含演员表！
@@ -97,8 +95,8 @@
 即使在Java泛型的设计者中，也要花费一些时间来理解不雅暴露原则的重要性。例如，反射库中的以下两种方法违反了该原则：
 
 ```java
-   TypeVariable<Class<T>>[] java.lang.Class.getTypeParameters()
-   TypeVariable<Method>[] java.lang.Reflect.Method.getTypeParameters()
+TypeVariable<Class<T>>[] java.lang.Class.getTypeParameters()
+TypeVariable<Method>[] java.lang.Reflect.Method.getTypeParameters()
 ```
 
 遵循前面的模型，创建自己的Innocent Client版本并不难，它会在没有投射的地方抛出类抛出错误，在这种情况下，正式Java库会播放 `DeceptiveLibrary` 的角
