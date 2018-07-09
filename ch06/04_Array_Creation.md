@@ -26,11 +26,11 @@ nums[2] = 3.14; // 数组存储异常
 import java.util.*;
   class Annoying {
     public static <T> T[] toArray(Collection<T> c) {
-    T[] a = new T[c.size()]; // 编译错误
-    int i=0; for (T x : c) a[i++] = x;
-    return a;
+      T[] a = new T[c.size()]; // 编译错误
+      int i=0; for (T x : c) a[i++] = x;
+      return a;
+    }
   }
-}
 ```
 
 这是一个错误，因为类型变量不是可确定类型。 尝试编译此代码会报告一个通用数组创建错误：
