@@ -18,9 +18,9 @@
 如，在目录 `l`）。 `Sun` 的 `Java 5` 编译器会产生以下消息：
 
 ```java
-   % javac g/Stack.java g/ArrayStack.java g/Stacks.java l/Client.java
-   Note: Client.java uses unchecked or unsafe operations.
-   Note: Recompile with -Xlint:unchecked for details.
+% javac g/Stack.java g/ArrayStack.java g/Stacks.java l/Client.java
+Note: Client.java uses unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
 ```
 
 未经检查的警告表明，编译器无法提供与泛型在统一使用时相同的安全保证。 但是，当通过更新遗留代码生成通用代码时，我们知道从两者都生成了等效的类文件，因此
@@ -30,73 +30,82 @@
 例 `5-2`。 具有通用客户端的通用库
 
 ```java
-   g/Stack.java:
-     interface Stack<E> {
-       public boolean empty();
-       public void push(E elt);
-       public E pop();
-     }
-   
-   g/ArrayStack.java:
-     import java.util.*;
-     class ArrayStack<E> implements Stack<E> {
-      private List<E> list;
-	  public ArrayStack() { list = new ArrayList<E>(); }
-      public boolean empty() { return list.size() == 0; }
-      public void push(E elt) { list.add(elt); }
-      public E pop() {
-		E elt = list.remove(list.size()-1);
-		return elt;
-	  }
-	  public String toString() { return "stack"+list.toString(); }
-     }
-    
-   g/Stacks.java:
-     class Stacks {
-	   public static <T> Stack<T> reverse(Stack<T> in) {
-	     Stack<T> out = new ArrayStack<T>();
-		 while (!in.empty()) {
-		   T elt = in.pop();
-		   out.push(elt);
-		 }
-		 return out;
-	   }
-	 }
-	 
-   g/Client.java:
-     class Client {
-     public static void main(String[] args) {
-	Stack<Integer> stack = new ArrayStack<Integer>();
-	for (int i = 0; i<4; i++) stack.push(i);
-	  assert stack.toString().equals("stack[0, 1, 2, 3]");
-	  int top = stack.pop();
-	  assert top == 3 && stack.toString().equals("stack[0, 1, 2]");
-	  Stack<Integer> reverse = Stacks.reverse(stack);
-	  assert stack.empty();
-	  assert reverse.toString().equals("stack[2, 1, 0]");
+g/Stack.java:
+interface Stack<E> {
+  public boolean empty();
+  public void push(E elt);
+  public E pop();
+}
+
+g/ArrayStack.java:
+import java.util.*;
+class ArrayStack<E> implements Stack<E> {
+  private List<E> list;
+  public ArrayStack() { 
+	  list = new ArrayList<E>(); 
+  }
+  public boolean empty() { 
+	  return list.size() == 0; 
 	}
- }
+  public void push(E elt) { 
+	  list.add(elt); 
+  }
+  public E pop() {
+    E elt = list.remove(list.size()-1);
+    return elt;
+  }
+  public String toString() { 
+	  return "stack"+list.toString(); 
+	}
+}
+
+g/Stacks.java:
+class Stacks {
+  public static <T> Stack<T> reverse(Stack<T> in) {
+    Stack<T> out = new ArrayStack<T>();
+    while (!in.empty()) {
+      T elt = in.pop();
+      out.push(elt);
+    }
+    return out;
+  }
+}
+
+g/Client.java:
+class Client {
+  public static void main(String[] args) {
+    Stack<Integer> stack = new ArrayStack<Integer>();
+    for (int i = 0; i<4; i++) 
+		  stack.push(i);
+    assert stack.toString().equals("stack[0, 1, 2, 3]");
+    int top = stack.pop();
+    assert top == 3 && stack.toString().equals("stack[0, 1, 2]");
+    Stack<Integer> reverse = Stacks.reverse(stack);
+    assert stack.empty();
+    assert reverse.toString().equals("stack[2, 1, 0]");
+  }
+}
 ```
 
 如果我们遵循上面的建议，并在启用适当的开关的情况下重新运行编译器，我们会得到更多的细节：
 
 ```java
-   % javac -Xlint:unchecked g/Stack.java g/ArrayStack.java \
-   % g/Stacks.java l/Client.java
-   l/Client.java:4: warning: [unchecked] unchecked call
-   to push(E) as a member of the raw type Stack
-   for (int i = 0; i<4; i++) stack.push(new Integer(i));
-									   ^
-   l/Client.java:8: warning: [unchecked] unchecked conversion
-   found : Stack
-   required: Stack<E>
-   Stack reverse = Stacks.reverse(stack);
-								  ^
-   l/Client.java:8: warning: [unchecked] unchecked method invocation:
-   <E>reverse(Stack<E>) in Stacks is applied to (Stack)
-   Stack reverse = Stacks.reverse(stack);
-								  ^
-   3 warnings
+% javac -Xlint:unchecked g/Stack.java g/ArrayStack.java \
+% g/Stacks.java l/Client.java
+l/Client.java:4: warning: [unchecked] unchecked call
+to push(E) as a member of the raw type Stack
+for (int i = 0; i<4; i++) stack.push(new Integer(i));
+								 ^
+l/Client.java:8: warning: [unchecked] unchecked conversion
+found : Stack
+required: Stack<E>
+Stack reverse = Stacks.reverse(stack);
+							^
+l/Client.java:8: warning: [unchecked] unchecked method invocation:
+<E>reverse(Stack<E>) in Stacks is applied to (Stack)
+Stack reverse = Stacks.reverse(stack);
+							^
+3 warnings
 ```
 
 并非每种原始类型都会引发警告。因为每个参数化类型都是相应原始类型的子类型，但是相反，传递一个参数化类型（其中原始类型是预期的）是安全的（因此，没有警
@@ -111,13 +120,13 @@
 当我们用 `Java 5` 编译器和库编译所有文件的旧版本时发生的情况：
 
 ```java
-   % javac -Xlint:unchecked l/Stack.java l/ArrayStack.java \
-   % l/Stacks.java l/Client.java
-   l/ArrayStack.java:6: warning: [unchecked] unchecked call to add(E)
-   as a member of the raw type java.util.List
-   public void push(Object elt) list.add(elt);
-										 ^
-   1 warning
+% javac -Xlint:unchecked l/Stack.java l/ArrayStack.java \
+% l/Stacks.java l/Client.java
+l/ArrayStack.java:6: warning: [unchecked] unchecked call to add(E)
+as a member of the raw type java.util.List
+public void push(Object elt) list.add(elt);
+								 ^
+1 warning
 ```
 
 在这里，传统方法 `push` 中使用泛型方法 `add` 的警告是由于类似于从旧客户端发出使用泛型方法 `push` 的先前警告的原因而发布的。
@@ -126,8 +135,8 @@
 在纯代码的情况下，可以使用 `-source 1.4` 开关关闭此类警告：
 
 ```java
-   % javac -source 1.4 l/Stack.java l/ArrayStack.java \
-   % l/Stacks.java l/Client.java
+% javac -source 1.4 l/Stack.java l/ArrayStack.java \
+% l/Stacks.java l/Client.java
 ```
 
 这编译了遗留代码并且没有发出警告或错误。 这种关闭警告的方法只适用于真正的遗留代码，没有 `Java 5` 中引入的通用功能或其他功能。 也可以使用注释关闭未经
