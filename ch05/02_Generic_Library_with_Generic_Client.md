@@ -15,49 +15,49 @@
 例 `5-1`。 传统客户端的旧版库
 
 ```java
-   l/Stack.java:
-     interface Stack {
-       public boolean empty();
-       public void push(Object elt);
-       public Object pop();
-     }
-   l/ArrayStack.java:
-     import java.util.*;
-     class ArrayStack implements Stack {
-       private List list;
-       public ArrayStack() { list = new ArrayList(); }
-       public boolean empty() { return list.size() == 0; }
-       public void push(Object elt) { list.add(elt); }
-       public Object pop() {
-         Object elt = list.remove(list.size()-1);
-         return elt;
-       }
-       public String toString() { return "stack"+list.toString(); }
-     }
-   l/Stacks.java:
-     class Stacks {
-       public static Stack reverse(Stack in) {
-     	Stack out = new ArrayStack();
-     	while (!in.empty()) {
-     	  Object elt = in.pop();
-     	  out.push(elt);
-     	}
-     	return out;
-       }
-     }
-   l/Client.java:
-     class Client {
-       public static void main(String[] args) {
-         Stack stack = new ArrayStack();
-         for (int i = 0; i<4; i++) stack.push(new Integer(i));
-         assert stack.toString().equals("stack[0, 1, 2, 3]");
-         int top = ((Integer)stack.pop()).intValue();
-         assert top == 3 && stack.toString().equals("stack[0, 1, 2]");
-         Stack reverse = Stacks.reverse(stack);
-         assert stack.empty();
-         assert reverse.toString().equals("stack[2, 1, 0]");
-       }
-     }
+l/Stack.java:
+  interface Stack {
+    public boolean empty();
+    public void push(Object elt);
+    public Object pop();
+  }
+l/ArrayStack.java:
+  import java.util.*;
+  class ArrayStack implements Stack {
+    private List list;
+    public ArrayStack() { list = new ArrayList(); }
+    public boolean empty() { return list.size() == 0; }
+    public void push(Object elt) { list.add(elt); }
+    public Object pop() {
+      Object elt = list.remove(list.size()-1);
+      return elt;
+    }
+    public String toString() { return "stack"+list.toString(); }
+  }
+l/Stacks.java:
+  class Stacks {
+    public static Stack reverse(Stack in) {
+   Stack out = new ArrayStack();
+   while (!in.empty()) {
+     Object elt = in.pop();
+     out.push(elt);
+   }
+   return out;
+    }
+  }
+l/Client.java:
+  class Client {
+    public static void main(String[] args) {
+      Stack stack = new ArrayStack();
+      for (int i = 0; i<4; i++) stack.push(new Integer(i));
+      assert stack.toString().equals("stack[0, 1, 2, 3]");
+      int top = ((Integer)stack.pop()).intValue();
+      assert top == 3 && stack.toString().equals("stack[0, 1, 2]");
+      Stack reverse = Stacks.reverse(stack);
+      assert stack.empty();
+      assert reverse.toString().equals("stack[2, 1, 0]");
+    }
+  }
 ```
 
 《《《 [下一节](03_Generic_Library_with_Legacy_Client.md)      <br/>
