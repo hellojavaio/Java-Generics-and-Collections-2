@@ -10,20 +10,20 @@
 ```java
 public class Integer extends Number {
   private final int value;
-	public Integer(int value) { 
-		this.value=value; 
-	}
-	public int intValue() { 
-		return value; 
-	}
-	public boolean equals(Object o) {
-		if (o instanceof Integer) {
-			return value == ((Integer)o).intValue();
-		} else 
-			return false;
-		}
-		...
-	}
+  public Integer(int value) { 
+    this.value=value; 
+  }
+  public int intValue() { 
+    return value; 
+  }
+  public boolean equals(Object o) {
+    if (o instanceof Integer) {
+      return value == ((Integer)o).intValue();
+    } else 
+      return false;
+    }
+  ...
+  }
 ```
 
 `equals` 方法接受 `Object` 类型的参数，检查对象是否为 `Integer` 类的实例，如果是，则将其转换为 `Integer` 并比较两个整数的值。 此代码可用，因为 
@@ -37,19 +37,19 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
   public boolean equals(Object o) {
     if (o instanceof List<E>) { // compile-time error
       Iterator<E> it1 = iterator();
-			Iterator<E> it2 = ((List<E>)o).iterator(); // unchecked cast
-			while (it1.hasNext() && it2.hasNext()) {
-				E e1 = it1.next();
-				E e2 = it2.next();
-				if (!(e1 == null ? e2 == null : e1.equals(e2)))
-					return false;
-			}
-			return !it1.hasNext() && !it2.hasNext();
-		} else 
-		  return false;
-		}	   
-			...
-	}
+      Iterator<E> it2 = ((List<E>)o).iterator(); // unchecked cast
+      while (it1.hasNext() && it2.hasNext()) {
+        E e1 = it1.next();
+        E e2 = it2.next();
+        if (!(e1 == null ? e2 == null : e1.equals(e2)))
+          return false;
+      }
+      return !it1.hasNext() && !it2.hasNext();
+    } else 
+      return false;
+    }	   
+    ...
+  }
 ```
 
 同样，`equals` 方法接受 `Object` 类型的参数，检查对象是否为 `List<E>` 类型的实例，如果是，则将其转换为 `List<E>` 并比较两个列表中的相应元素。此代
@@ -62,17 +62,17 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 编译上面的代码报告了两个问题，一个是实例测试的错误，另一个是未经检查的演员警告：
 
 ```java
- % javac -Xlint:unchecked AbstractList.java
- AbstractList.java:6: illegal generic type for instanceof
-	 if (!(o instanceof List<E>)) return false; // compile-time error
-													 ^
- AbstractList.java:8: warning: [unchecked] unchecked cast
- found : java.lang.Object
- required: List<E>
-	 Iterator<E> it2 = ((List<E>)o).iterator(); // unchecked cast
-															 ^
- 1 error
- 1 warning
+% javac -Xlint:unchecked AbstractList.java
+AbstractList.java:6: illegal generic type for instanceof
+if (!(o instanceof List<E>)) return false; // compile-time error
+												 ^
+AbstractList.java:8: warning: [unchecked] unchecked cast
+found : java.lang.Object
+required: List<E>
+ Iterator<E> it2 = ((List<E>)o).iterator(); // unchecked cast
+														 ^
+1 error
+1 warning
 ```
 
 实例检查报告错误，因为没有可能的方法来测试给定对象是否属于类型 `List<E>`。 演员报告未经检查的警告; 它将执行转换，但它不能检查列表元素实际上是否为 
@@ -83,22 +83,22 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 ```java
 import java.util.*;
 public abstract class AbstractList<E> extends AbstractCollection<E> implements List<E> {
-	public boolean equals(Object o) {
-		if (o instanceof List<?>) {
-			Iterator<E> it1 = iterator();
-			Iterator<?> it2 = ((List<?>)o).iterator();
-			while (it1.hasNext() && it2.hasNext()) {
-				E e1 = it1.next();
-				Object e2 = it2.next();
-				if (!(e1 == null ? e2 == null : e1.equals(e2)))
-					return false;
-			}
-			return !it1.hasNext() && !it2.hasNext();
-		} else 
-			return false;
-		}
-		...
-	}
+  public boolean equals(Object o) {
+    if (o instanceof List<?>) {
+      Iterator<E> it1 = iterator();
+      Iterator<?> it2 = ((List<?>)o).iterator();
+      while (it1.hasNext() && it2.hasNext()) {
+        E e1 = it1.next();
+        Object e2 = it2.next();
+        if (!(e1 == null ? e2 == null : e1.equals(e2)))
+          return false;
+      }
+      return !it1.hasNext() && !it2.hasNext();
+    } else 
+      return false;
+    }
+    ...
+   }
 ```
 
 除了更改实例测试和强制类型外，第二个迭代器的类型也从 `Iterator<E>` 更改为 `Iterator<?>`，第二个元素的类型从 `E` 更改为 `Object`。 代码类型检查，
@@ -117,11 +117,11 @@ public abstract class AbstractList<E> extends AbstractCollection<E> implements L
 
 ```java
 public static <T> List<T> asList(Collection<T> c) throws InvalidArgumentException {
-	if (c instanceof List<?>) {
-		return (List<T>)c;
-	} else 
-		throw new InvalidArgumentException("Argument not a list");
-	}
+  if (c instanceof List<?>) {
+    return (List<T>)c;
+  } else 
+    throw new InvalidArgumentException("Argument not a list");
+}
 ```
 
 编译此代码将成功，不会出现错误或警告。 实例测试没有错误，因为 `List<?>` 是可重用的类型。 由于转换源的类型为 `Collection<T>`，转换不会报告警告，并且
@@ -137,26 +137,26 @@ public static <T> List<T> asList(Collection<T> c) throws InvalidArgumentExceptio
 
 ```java
 class Promote {
-	public static List<String> promote(List<Object> objs) {
-		for (Object o : objs)
-			if (!(o instanceof String))
-				throw new ClassCastException();
-		return (List<String>)(List<?>)objs; // unchecked cast
-	}
-	public static void main(String[] args) {
-		List<Object> objs1 = Arrays.<Object>asList("one","two");
-		List<Object> objs2 = Arrays.<Object>asList(1,"two");
-		List<String> strs1 = promote(objs1);
-		assert (List<?>)strs1 == (List<?>)objs1;
-		boolean caught = false;
-		try {
-			List<String> strs2 = promote(objs2);
-		} catch (ClassCastException e) { 
-				caught = true; 
-		}
-		assert caught;
-		}
-	}
+  public static List<String> promote(List<Object> objs) {
+    for (Object o : objs)
+      if (!(o instanceof String))
+        throw new ClassCastException();
+    return (List<String>)(List<?>)objs; // unchecked cast
+  }
+  public static void main(String[] args) {
+    List<Object> objs1 = Arrays.<Object>asList("one","two");
+    List<Object> objs2 = Arrays.<Object>asList(1,"two");
+    List<String> strs1 = promote(objs1);
+    assert (List<?>)strs1 == (List<?>)objs1;
+    boolean caught = false;
+    try {
+      List<String> strs2 = promote(objs2);
+    } catch (ClassCastException e) { 
+      caught = true; 
+    }
+    assert caught;
+  }
+}
 ```
 
 如果任何对象不是字符串，该方法会在对象列表上抛出循环并抛出类抛出异常。 因此，当方法的最后一行到达时，将对象列表转换为字符串列表是安全的。
