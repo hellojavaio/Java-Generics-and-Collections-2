@@ -10,7 +10,7 @@
 `int.class.newInstance()` 返回 `Integer` 类型的值，但实际上这些调用会引发异常。 同样，你可能会期待这个调用：
 
 ```java
-   java.lang.reflect.Array.newInstance(int.class,size)
+java.lang.reflect.Array.newInstance(int.class,size)
 ```
 
 返回 `Integer[]` 类型的值，但实际上该调用返回的是一个 `int[]` 类型的值。 这些例子表明，给类标记 `int.class` 的 `Class<?>` 类型可能更有意义.
