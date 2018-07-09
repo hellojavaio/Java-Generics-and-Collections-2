@@ -9,9 +9,9 @@
 回想一下第 `2.5` 节中的这个例子。
 
 ```java
-   Integer[] ints = new Integer[] {1,2,3};
-   Number[] nums = ints;
-   nums[2] = 3.14; // 数组存储异常
+Integer[] ints = new Integer[] {1,2,3};
+Number[] nums = ints;
+nums[2] = 3.14; // 数组存储异常
 ```
 
 第一行分配一个新数组，其中指定它是一个整数数组。 第二行将此数组赋给一个包含数字数组的变量; 这是允许的，因为与泛型类型不同，数组是协变的。 第三行的赋
@@ -23,24 +23,24 @@
 考虑以下（不正确）代码将集合转换为数组：
 
 ```java
-   import java.util.*;
-    class Annoying {
-      public static <T> T[] toArray(Collection<T> c) {
-        T[] a = new T[c.size()]; // 编译错误
-	int i=0; for (T x : c) a[i++] = x;
-        return a;
-      }
-    }
+import java.util.*;
+  class Annoying {
+    public static <T> T[] toArray(Collection<T> c) {
+    T[] a = new T[c.size()]; // 编译错误
+    int i=0; for (T x : c) a[i++] = x;
+    return a;
+  }
+}
 ```
 
 这是一个错误，因为类型变量不是可确定类型。 尝试编译此代码会报告一个通用数组创建错误：
 
 ```java
-   % javac Annoying.java
-   Annoying.java:4: generic array creation
-   T[] a = new T[c.size()]; // 编译错误
-		   ^
-   1 error
+% javac Annoying.java
+Annoying.java:4: generic array creation
+T[] a = new T[c.size()]; // 编译错误
+     ^
+1 error
 ```
 
 我们很快就讨论这个问题的解决方法。
@@ -48,24 +48,24 @@
 作为第二个示例，请考虑返回包含两个列表的数组的以下（不正确）代码：
 
 ```java
-   import java.util.*;
-    class AlsoAnnoying {
-      public static List<Integer>[] twoLists() {
-        List<Integer> a = Arrays.asList(1,2,3);
-        List<Integer> b = Arrays.asList(4,5,6);
-        return new List<Integer>[] {a, b}; // 编译错误
-      }
-    }
+import java.util.*;
+class AlsoAnnoying {
+  public static List<Integer>[] twoLists() {
+    List<Integer> a = Arrays.asList(1,2,3);
+    List<Integer> b = Arrays.asList(4,5,6);
+    return new List<Integer>[] {a, b}; // 编译错误
+  }
+}
 ```
 
 这是一个错误，因为参数化类型不是可确定类型。 尝试编译此代码也会报告一个通用数组创建错误：
 
 ```java
-   % javac AlsoAnnoying.java
-   AlsoAnnoying.java:6: generic array creation
-   return new List<Integer>[] {a, b}; // 编译错误
-							   ^
-   1 error
+% javac AlsoAnnoying.java
+AlsoAnnoying.java:6: generic array creation
+return new List<Integer>[] {a, b}; // 编译错误
+					   ^
+1 error
 ```
 
 我们也很快讨论这个问题的解决方法。
