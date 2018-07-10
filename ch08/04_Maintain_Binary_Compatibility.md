@@ -9,9 +9,9 @@
 如果擦除通用代码的签名与遗留代码的签名相同，并且两个版本都编译为相同的字节代码，则可以保证二进制兼容性。通常情况下，这是自然发生的自然结果，但在本节
 中，我们将看到一些可能导致问题的角落案例。
 
-本节的一些示例摘自Mark Reinhold编写的内部Sun笔记。
+本节的一些示例摘自 `Mark Reinhold` 编写的内部 `Sun` 笔记。
 
-调整擦除与集合类中的max方法的生成有关的一个边角情况出现了。我们在第3.2节和第3.6节中讨论了这种情况，但值得快速回顾一下。
+调整擦除与集合类中的 `max` 方法的生成有关的一个边角情况出现了。我们在第 `3.2` 节和第 `3.6` 节中讨论了这种情况，但值得快速回顾一下。
 
 这是这种方法的遗留签名：
 
@@ -48,9 +48,9 @@ T max(Collection<? extends T> coll)
 ```java
 // 旧版本
 public class Integer implements Comparable {
-public int compareTo(Object o) { ... }
-public int compareTo(Integer i) { ... }
-...
+  public int compareTo(Object o) { ... }
+  public int compareTo(Integer i) { ... }
+  ...
 }
 ```
 
@@ -59,8 +59,8 @@ public int compareTo(Integer i) { ... }
 ```java
 // 通用版本 - 保持二进制兼容性
 public final class Integer implements Comparable<Integer> {
-public int compareTo(Integer i) { ... }
-...
+  public int compareTo(Integer i) { ... }
+  ...
 }
 ```
 
@@ -71,8 +71,8 @@ public int compareTo(Integer i) { ... }
 ```java
 // 旧版本
 public interface Name extends Comparable {
-public int compareTo(Object o);
-...
+  public int compareTo(Object o);
+  ...
 }
 ```
 
@@ -81,8 +81,8 @@ public int compareTo(Object o);
 ```java
 // 通用版本 - 打破二进制兼容性
 public interface Name extends Comparable<Name> {
-public int compareTo(Name n);
-...
+  public int compareTo(Name n);
+  ...
 }
 ```
 
@@ -91,8 +91,8 @@ public int compareTo(Name n);
 ```java
 // 通用版本 - 保持二进制兼容性
 public interface Name extends Comparable<Object> {
-public int compareTo(Object o) { ... }
-...
+  public int compareTo(Object o) { ... }
+  ...
 }
 ```
 
@@ -120,8 +120,8 @@ public int compareTo(Object o) { ... }
 
 ```java
 class Object {
-public Object clone() { ... }
-...
+  public Object clone() { ... }
+  ...
 }
 ```
 
