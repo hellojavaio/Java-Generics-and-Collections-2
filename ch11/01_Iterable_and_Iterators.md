@@ -7,9 +7,9 @@
 
 ```java
 public Iterator<E> {
-boolean hasNext(); // 如果迭代有更多元素，则返回true
-E next(); // 返回迭代中的下一个元素
-void remove(); // 删除迭代器返回的最后一个元素
+  boolean hasNext(); // 如果迭代有更多元素，则返回true
+  E next(); // 返回迭代中的下一个元素
+  void remove(); // 删除迭代器返回的最后一个元素
 }
 ```
 
