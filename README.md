@@ -71,7 +71,7 @@
     * [8.3 专注于创建可维持类型](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch08/03_Specialize_to_Create_Reifiable_Types.md#专注于创建可维持类型)
     * [8.4 保持二进制兼容性](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch08/04_Maintain_Binary_Compatibility.md#保持二进制兼容性)
   * [第九章\(设计模式\)](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch09/00_Design_Patterns.md#设计模式)
-    * [9.1 游客](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch09/01_Visitor.md#游客)
+    * [9.1 游客](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch09/01_Visitor.md#访问者)
     * [9.2 翻译员](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch09/02_Interpreter.md#翻译员)
     * [9.3 功能](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch09/03_Function.md#功能)
     * [9.4 策略](https://github.com/zerotoneorg/Java-Generics-and-Collections/tree/e41f1e9a8eb376f2de33abd6022ce3b2989ba771/ch09/04_Strategy.md#策略)
