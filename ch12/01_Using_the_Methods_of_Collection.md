@@ -178,7 +178,7 @@ assert tuesdayPhoneTasks.toString().equals("[phone Paul]");
 这个例子提供了对这个组和下一个方法的签名的解释。我们已经讨论过（第 `2.6` 节），当添加到集合中的方法将它们的参数限制为它的参数类型时，他们为什么会接受 
 `Object` 或 `Collection<?>` 类型的参数。以 `retainAll` 为例，它的合同要求删除这个集合中不存在于参数集合中的那些元素。这没有理由限制论证集合可能包
 含的内容;在前面的示例中，它可以包含任何种类的任务的实例，而不仅仅是 `PhoneTask`。即使将参数限制为参数类型的超类型的集合也太狭窄了;我们希望可能的限制
-性最小的类型是 `Collection<?>。类似的推理适用于 `remove`，`removeAll`，`contains` 和 `containsAll`。
+性最小的类型是 `Collection<?>`。类似的推理适用于 `remove`，`removeAll`，`contains` 和 `containsAll`。
 
 **查询集合的内容**这些方法允许我们检查，例如，上述操作是否正常工作。我们将在这里使用断言来使系统检查我们的信念，即我们已经正确编程了以前的操作。例
 如，如果 `tuesdayPhoneTasks` 不包含 `paulPhone`，则第一条语句将抛出一个 `AssertionError`：
