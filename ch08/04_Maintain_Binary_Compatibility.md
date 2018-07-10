@@ -24,8 +24,7 @@ public static Object max(Collection coll)
 
 ```java
 // 通用版本 - 打破二进制兼容性
-public static <T extends Comparable<? super T>>
-T max(Collection<? extends T> coll)
+public static <T extends Comparable<? super T>> T max(Collection<? extends T> coll)
 ```
 
 但是这个签名有错误的擦除 - 它的返回类型是 `Comparable` 而不是 `Object`。 为了获得正确的签名，我们需要使用多重边界来摆弄类型参数的边界（参见第 
@@ -33,8 +32,7 @@ T max(Collection<? extends T> coll)
 
 ```java
 // 通用版本 - 保持二进制兼容性
-public static <T extends Object & Comparable<? super T>>
-T max(Collection<? extends T> coll)
+public static <T extends Object & Comparable<? super T>> T max(Collection<? extends T> coll)
 ```
 
 当有多个边界时，最左边界被用于擦除。 所以 `T` 的删除现在是 `Object`，给出了我们需要的结果类型。
