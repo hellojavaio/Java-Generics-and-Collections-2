@@ -37,10 +37,10 @@ boolean retainAll(Collection<?> c) // remove the elements *not* in c
 **查询集合的内容**
 
 ```java
-boolean contains(Object o) 			// 如果o存在，则为true
+boolean contains(Object o) 	// 如果o存在，则为true
 boolean containsAll(Collection<?> c) // 如果集合中存在c的所有元素，则返回 true
-boolean isEmpty() 					// 如果没有元素存在，则返回 true
-int size() 							// 返回元素数量（如果小于则返回 Integer.MAX_VALUE）
+boolean isEmpty() 	// 如果没有元素存在，则返回 true
+int size() 					// 返回元素数量（如果小于则返回 Integer.MAX_VALUE）
 ```
 
 对于超大型集合，大小返回 `Integer.MAX_VALUE` 的决定很可能是基于这样的假设，即具有超过 `20` 亿个元素的集合很少会出现。即便如此，一种提出异常而不是返
@@ -50,7 +50,7 @@ int size() 							// 返回元素数量（如果小于则返回 Integer.MAX_VALU
 
 ```java
 Iterator<E> iterator() // 在元素上返回一个迭代器
-Object[] toArray() // 将内容复制到 Object[]
+Object[] toArray()     // 将内容复制到 Object[]
 <T> T[] toArray(T[] t) // 将内容复制到 T []（对于任何 T）
 ```
 
@@ -111,7 +111,8 @@ int[] a = l.toArray(new int[0]); // 编译错误
 ```java
 List<Integer> l = Array.asList(0,1,2);
 int[] a = new int[l.size()];
-for (int i=0; i<l.size(); i++) a[i] = l.get(i);
+for (int i=0; i<l.size(); i++) 
+  a[i] = l.get(i);
 ```
 
 集合框架不包括将集合转换为基本类型数组的便利方法。 幸运的是，这只需要几行代码。
