@@ -268,9 +268,9 @@ class TrustTaxStrategy extends DefaultTaxStrategy<Trust> {
 总结正如我们所看到的，递归类型参数经常出现在 `Java` 中：
 
 ```java
-  class TaxPayer<P extends TaxPayer<P>>
-  Comparable<T extends Comparable<T>>
-  class Enum<E extends Enum<E>>
+class TaxPayer<P extends TaxPayer<P>>
+Comparable<T extends Comparable<T>>
+class Enum<E extends Enum<E>>
 ```
 
 `getThis` 技巧在这种情况下非常有用，只要有人想在基类型中使用这个类型参数提供的更具体的类型。
