@@ -179,6 +179,7 @@ assert s2.toString().equals("[a, b, j]");
 的通用集合不同，它的迭代器不是快速失败的。 它们可能是快照或弱一致的;保守，合约只能保证它们会弱一致（见第 `11.5` 节）。
 
 ![](13_3.png)
+
 图  `13-4`。`SortedSet` 的
 
 《《《 [下一节](02_SortedSet_and_NavigableSet.md)      <br/>
