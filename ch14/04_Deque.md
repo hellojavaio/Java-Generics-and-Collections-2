@@ -70,7 +70,7 @@
 
 方法 `getFirst` 和 `removeFirst` 是等效方法元素的重命名并在队列接口上删除。 方法名pop是一个同义词，用于删除首先，再次提供了栈的使用。
 
-#### 实现Deque
+#### 实现 Deque
 
 #### ArrayDeque
 
@@ -114,7 +114,7 @@
 个队列的头部窃取工作会冒险争夺头元素，它会更改队列中的队列并指示空闲线程从另一个线程的双端队列的尾部执行任务。事实证明这是一种高效的机制，并且正在被
 广泛使用。
 
-#### 实现BlockingDeque
+#### 实现 BlockingDeque
 
 接口 `BlockingDeque` 具有单个实现 `LinkedBlockingDeque`。`LinkedBlockingDeque` 基于类似 `LinkedList` 的双链表结构。除了两个标准构造函数之外，它可以有选择地被限制，它提供了第三个可以用来指定其容量的第三个构造函数：
 
