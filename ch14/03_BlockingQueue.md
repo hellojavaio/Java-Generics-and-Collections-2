@@ -256,7 +256,9 @@ public class DelayedTask implements Delayed {
     long otherDelay = t.getDelay(TimeUnit.MILLISECONDS);
     return (thisDelay < otherDelay) ? -1 : (thisDelay > otherDelay) ? 1 : 0;
   }
-  Task getTask() { return task; }
+  Task getTask() { 
+    return task; 
+  }
 }
 ```
 
