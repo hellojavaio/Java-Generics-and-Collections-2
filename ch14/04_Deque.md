@@ -23,12 +23,12 @@
 ### 集合方法
 
 ```java
-  void addFirst(E e) // 如果有足够的空间，将e插入头部
-  void addLast(E e)  // 如果有足够的空间，请在尾部插入e
-  void push(E e)     // 如果有足够的空间，将e插入头部
-  boolean removeFirstOccurrence(Object o); // 删除第一个出现的o
-  boolean removeLastOccurrence(Object o);  // 删除最后一次出现的o
-  Iterator<E> descendingIterator() // 得到一个迭代器，以相反的顺序返回deque元素
+void addFirst(E e) // 如果有足够的空间，将e插入头部
+void addLast(E e)  // 如果有足够的空间，请在尾部插入e
+void push(E e)     // 如果有足够的空间，将e插入头部
+boolean removeFirstOccurrence(Object o); // 删除第一个出现的o
+boolean removeLastOccurrence(Object o);  // 删除最后一次出现的o
+Iterator<E> descendingIterator() // 得到一个迭代器，以相反的顺序返回deque元素
 ```
 
 `addFirst` 和 `addLast` 方法的约定与 `Collection` 的 `add` 方法的约定类似，但另外指定要添加的元素的位置，如果不能添加，则引发的异常为 
@@ -116,10 +116,11 @@
 
 #### 实现 BlockingDeque
 
-接口 `BlockingDeque` 具有单个实现 `LinkedBlockingDeque`。`LinkedBlockingDeque` 基于类似 `LinkedList` 的双链表结构。除了两个标准构造函数之外，它可以有选择地被限制，它提供了第三个可以用来指定其容量的第三个构造函数：
+接口 `BlockingDeque` 具有单个实现 `LinkedBlockingDeque`。`LinkedBlockingDeque` 基于类似 `LinkedList` 的双链表结构。除了两个标准构造函数之外，
+它可以有选择地被限制，它提供了第三个可以用来指定其容量的第三个构造函数：
 
 ```java
-  LinkedBlockingDeque(int capacity)
+LinkedBlockingDeque(int capacity)
 ```
 
 它具有与 `LinkedBlockingQueue` 类似的性能特征 - 队列插入和删除需要不断的时间和操作，比如包含需要遍历队列的操作，需要线性时间。迭代器是弱一致的。
