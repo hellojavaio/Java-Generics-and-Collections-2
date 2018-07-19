@@ -21,7 +21,8 @@ TreeMap |O(log n) |O(log n)| O(log n)|
 ConcurrentHashMap |O(1) |O(1) |O(h/n)| h是表格容量
 ConcurrentSkipListMap| O(log n)| O(log n)| O(1)|
 
-这就为通用地图留下了实施的选择。 对于并发应用程序，`ConcurrentHashMap` 是唯一的选择。 否则，如果您需要使用映射的插入或访问顺序（例如，将其用作缓存），则可以优先使用 `HashMap` 上的 `LinkedHashMap`（并接受其稍差的性能）。
+这就为通用地图留下了实施的选择。 对于并发应用程序，`ConcurrentHashMap` 是唯一的选择。 否则，如果您需要使用映射的插入或访问顺序（例如，将其用作缓存），
+则可以优先使用 `HashMap` 上的 `LinkedHashMap`（并接受其稍差的性能）。
 
 《《《 [下一节](../ch17/00_The_Collections_Class.md)      <br/>
 《《《 [返回首页](../README.md)
